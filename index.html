@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>MAD DOGS STUDIO | Raw Digital Edge</title>
+    <!-- Google Fonts for a modern, bold grotesk style -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 (free icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #050505;
+        font-family: "Space Grotesk", sans-serif;
+        color: #e5e5e5;
+        line-height: 1.4;
+        scroll-behavior: smooth;
+      }
+
+      /* custom aggressive yet minimal container */
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* header / navigation */
+      .site-header {
+        padding: 1.8rem 0 1.2rem 0;
+        border-bottom: 1px solid rgba(255, 70, 85, 0.3);
+        margin-bottom: 3rem;
+      }
+
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .logo-area {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .logo-area .mad {
+        color: #ff4655;
+        text-shadow: 0 0 6px rgba(255, 70, 85, 0.4);
+      }
+
+      .logo-area .dogs {
+        color: #f0f0f0;
+      }
+
+      .logo-area .studio {
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: #aaa;
+        margin-left: 6px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: #ddd;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: 0.2s ease;
+        letter-spacing: 0.3px;
+      }
+
+      .nav-links a:hover {
+        color: #ff4655;
+        transform: translateY(-1px);
+      }
+
+      .cart-icon {
+        position: relative;
+        cursor: pointer;
+        font-size: 1.3rem;
+      }
+
+      /* hero section with MADDOGS central energy */
+      .hero {
+        text-align: center;
+        padding: 3rem 0 4rem 0;
+        border-bottom: 1px solid rgba(255, 70, 85, 0.25);
+        margin-bottom: 3rem;
+      }
+
+      .hero h1 {
+        font-size: 6rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, #ffffff 30%, #ff4655 80%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+        text-shadow: 0 2px 10px rgba(255, 70, 85, 0.2);
+      }
+
+      .hero-tagline {
+        font-size: 1.2rem;
+        color: #bbb;
+        max-width: 600px;
+        margin: 0 auto;
+        border-top: 1px dashed #ff465580;
+        display: inline-block;
+        padding-top: 0.8rem;
+      }
+
+      /* featured section — SHOP ALL vibe */
+      .featured-products {
+        margin-bottom: 5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-left: 4px solid #ff4655;
+        padding-left: 1rem;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
+
+      .product-card {
+        background: #111111;
+        border-radius: 24px;
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.2s;
+        border: 1px solid #2a2a2a;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 30px -12px rgba(255, 70, 85, 0.2);
+        border-color: #ff4655;
+      }
+
+      .product-img {
+        background: linear-gradient(145deg, #1f1f1f, #0a0a0a);
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: #ff4655;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-info h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #ff4655;
+        margin: 0.5rem 0;
+      }
+
+      .btn-add {
+        background: transparent;
+        border: 1.5px solid #ff4655;
+        color: #ff4655;
+        padding: 0.6rem 1rem;
+        font-weight: 600;
+        font-family: inherit;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: 0.2s;
+        width: 100%;
+        font-size: 0.9rem;
+        margin-top: 0.8rem;
+      }
+
+      .btn-add:hover {
+        background: #ff4655;
+        color: #0a0a0a;
+        box-shadow: 0 0 8px #ff4655;
+      }
+
+      /* INFO SECTION (studio vibe) */
+      .info-section {
+        background: #0b0b0b;
+        border-radius: 32px;
+        padding: 3rem 2rem;
+        margin-bottom: 4rem;
+        border: 1px solid #2a2a2a;
+      }
+
+      .info-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: space-between;
+      }
+
+      .info-card {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .info-card h3 {
+        color: #ff4655;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .info-card p,
+      .info-card a {
+        color: #ccc;
+        line-height: 1.5;
+        text-decoration: none;
+      }
+
+      .info-card a:hover {
+        color: #ff4655;
+        text-decoration: underline;
+      }
+
+      .contact-email {
+        font-weight: 500;
+        word-break: break-all;
+      }
+
+      /* FOLLOW section with icons */
+      .follow-section {
+        text-align: center;
+        margin: 3rem 0 4rem;
+      }
+
+      .follow-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+        font-size: 2.8rem;
+      }
+
+      .follow-icons i {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: #ddd;
+      }
+
+      .follow-icons i:hover {
+        color: #ff4655;
+        transform: scale(1.1);
+        text-shadow: 0 0 12px #ff4655;
+      }
+
+      /* cart side panel (JS interactive) */
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.25s ease;
+      }
+
+      .cart-overlay.open {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .cart-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 90%;
+        max-width: 420px;
+        height: 100%;
+        background: #0f0f0f;
+        border-left: 2px solid #ff4655;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        z-index: 1001;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+
+      .cart-overlay.open .cart-panel {
+        transform: translateX(0);
+      }
+
+      .cart-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #2a2a2a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-header h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .close-cart {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem 1.2rem;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #222;
+      }
+
+      .cart-item-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cart-item-title {
+        font-weight: 500;
+      }
+
+      .cart-item-price {
+        color: #ff4655;
+        font-size: 0.9rem;
+      }
+
+      .remove-item {
+        background: none;
+        border: none;
+        color: #888;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .remove-item:hover {
+        color: #ff4655;
+      }
+
+      .cart-total {
+        padding: 1.2rem;
+        border-top: 2px solid #2a2a2a;
+        font-size: 1.3rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .checkout-btn {
+        background: #ff4655;
+        color: black;
+        font-weight: bold;
+        border: none;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 40px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: 0.2s;
+      }
+
+      .checkout-btn:hover {
+        background: #ff6a77;
+        transform: scale(0.98);
+      }
+
+      .empty-cart-msg {
+        text-align: center;
+        color: #aaa;
+        margin-top: 2rem;
+      }
+
+      /* footer */
+      .site-footer {
+        border-top: 1px solid #2a2a2a;
+        padding: 2rem 0 2.5rem;
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        text-align: center;
+        color: #888;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      /* toast message */
+      .toast-msg {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1e1e1e;
+        color: #ff4655;
+        padding: 10px 20px;
+        border-radius: 60px;
+        font-weight: 500;
+        border-left: 3px solid #ff4655;
+        z-index: 1100;
+        opacity: 0;
+        transition: 0.2s;
+        pointer-events: none;
+        backdrop-filter: blur(8px);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 700px) {
+        .hero h1 {
+          font-size: 3.2rem;
+        }
+        .container {
+          padding: 0 1.2rem;
+        }
+        .nav-wrapper {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.8rem;
+        }
+        .section-title {
+          font-size: 1.6rem;
+        }
+      }
+
+      button {
+        background: none;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <div class="nav-wrapper">
+          <div class="logo-area">
+            <span class="mad">MAD</span><span class="dogs">DOGS</span
+            ><span class="studio"> STUDIO</span>
+          </div>
+          <div class="nav-links">
+            <a href="#" id="nav-home">HOME</a>
+            <a href="#" id="nav-shop-all">SHOP ALL</a>
+            <a href="#" id="nav-info">INFO</a>
+            <div class="cart-icon" id="cart-icon-btn">
+              <i class="fas fa-shopping-bag"></i>
+              <span
+                id="cart-count"
+                style="
+                  font-size: 0.75rem;
+                  background: #ff4655;
+                  color: black;
+                  border-radius: 40px;
+                  padding: 0px 6px;
+                  margin-left: 4px;
+                "
+                >0</span
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <h1>MADDOGS</h1>
+        <div class="hero-tagline">
+          RAW ENERGY // LIMITED DROPS // DIGITAL HOUNDS
+        </div>
+      </section>
+
+      <!-- SHOP ALL section (product showcase) -->
+      <section class="featured-products" id="shop-section">
+        <div class="section-title">
+          <i class="fas fa-fire-flame" style="color: #ff4655"></i> SHOP ALL —
+          LATEST DROPS
+        </div>
+        <div class="products-grid" id="products-container"></div>
+      </section>
+
+      <!-- INFO area combined: Contact + misc info (as per mockup) -->
+      <div class="info-section" id="info-area">
+        <div class="info-grid">
+          <div class="info-card">
+            <h3><i class="fas fa-envelope"></i> CONTACT</h3>
+            <p class="contact-email">maddogstudios27@gmail.com</p>
+            <p style="margin-top: 0.5rem">Studio inquiries / wholesale</p>
+          </div>
+          <div class="info-card">
+            <h3><i class="fas fa-compass"></i> INFO</h3>
+            <p>
+              Limited-run apparel & accessories. Handcrafted with brutalist
+              aesthetics.<br />Shipping worldwide — every drop is a statement.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3><i class="fas fa-asterisk"></i> MANIFESTO</h3>
+            <p>
+              Unleash the madness. No compromises, raw design, street culture
+              DNA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOLLOW section with icons 🖥️ ✂️ 🎵 but also social -->
+      <div class="follow-section">
+        <div
+          class="section-title"
+          style="
+            justify-content: center;
+            border-left: none;
+            border-bottom: 2px solid #ff4655;
+            display: inline-flex;
+            padding: 0 0 0.5rem 0;
+          "
+        >
+          FOLLOW THE PACK
+        </div>
+        <div class="follow-icons">
+          <i class="fab fa-twitch" data-social="twitch"></i>
+          <i class="fas fa-desktop" data-social="desktop"></i>
+          <!-- 🖥️ represented -->
+          <i class="fas fa-cut" data-social="scissors"></i>
+          <!-- ✂️ -->
+          <i class="fas fa-music" data-social="music"></i>
+          <!-- 🎵 -->
+          <i class="fab fa-instagram" data-social="ig"></i>
+          <i class="fab fa-tiktok" data-social="tiktok"></i>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.8rem; color: #777">
+          #MADDOGSSTUDIO // UNLEASH THE RAW
+        </p>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <span>© 2026 MAD DOGS STUDIO . ALL RIGHTS RESERVED.</span>
+          <span style="letter-spacing: 2px">🖥️ ✂️ 🎵</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- cart side panel -->
+    <div id="cart-overlay" class="cart-overlay">
+      <div class="cart-panel">
+        <div class="cart-header">
+          <h2><i class="fas fa-shopping-cart"></i> YOUR CAGE</h2>
+          <button class="close-cart" id="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-list">
+          <div class="empty-cart-msg">Your cart is growling... empty.</div>
+        </div>
+        <div class="cart-total">
+          <span>TOTAL</span>
+          <span id="cart-total-price">$0</span>
+        </div>
+        <button class="checkout-btn" id="checkout-action">CHECKOUT →</button>
+      </div>
+    </div>
+
+    <div id="toast-message" class="toast-msg"></div>
+
+    <script>
+      // -------- PRODUCT DATA (MAD DOGS STUDIO collection) --------
+      const products = [
+        {
+          id: 1,
+          name: "RUST BITE HOODIE",
+          price: 89,
+          icon: "fa-tshirt",
+          emoji: "👕",
+        },
+        {
+          id: 2,
+          name: "CHAINSAW TEETH TEE",
+          price: 49,
+          icon: "fa-shirt",
+          emoji: "👕",
+        },
+        {
+          id: 3,
+          name: "MAD CAP (SNAPBACK)",
+          price: 39,
+          icon: "fa-hat-cowboy",
+          emoji: "🧢",
+        },
+        {
+          id: 4,
+          name: "FANG PATCH DENIM",
+          price: 129,
+          icon: "fa-jeans",
+          emoji: "👖",
+        },
+      ];
+
+      // Shopping cart state
+      let cart = []; // each item: { id, name, price, quantity }
+
+      // Helper functions
+      function saveCart() {
+        localStorage.setItem("maddogs_cart", JSON.stringify(cart));
+      }
+
+      function loadCart() {
+        const stored = localStorage.getItem("maddogs_cart");
+        if (stored) {
+          try {
+            cart = JSON.parse(stored);
+          } catch (e) {
+            cart = [];
+          }
+        } else {
+          cart = [];
+        }
+        updateCartUI();
+      }
+
+      function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (!product) return;
+        const existing = cart.find((item) => item.id === productId);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+          });
+        }
+        saveCart();
+        updateCartUI();
+        showToast(`+1 ${product.name} added to cart`);
+      }
+
+      function removeCartItem(productId) {
+        const index = cart.findIndex((item) => item.id === productId);
+        if (index !== -1) {
+          const removed = cart[index];
+          cart.splice(index, 1);
+          saveCart();
+          updateCartUI();
+          showToast(`Removed ${removed.name}`);
+        }
+      }
+
+      function updateCartUI() {
+        const cartItemsContainer = document.getElementById("cart-items-list");
+        const cartTotalSpan = document.getElementById("cart-total-price");
+        const cartCountSpan = document.getElementById("cart-count");
+
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        if (!cartItemsContainer) return;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-paw"></i> Cart empty — add some madness.</div>`;
+          cartTotalSpan.innerText = "$0";
+          cartCountSpan.innerText = "0";
+          return;
+        }
+
+        let itemsHtml = "";
+        cart.forEach((item) => {
+          totalItems += item.quantity;
+          totalPrice += item.price * item.quantity;
+          itemsHtml += `
+        <div class="cart-item" data-id="${item.id}">
+          <div class="cart-item-info">
+            <span class="cart-item-title">${item.name} <span style="font-size:0.75rem;">x${item.quantity}</span></span>
+            <span class="cart-item-price">$${item.price}</span>
+          </div>
+          <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      `;
+        });
+        cartItemsContainer.innerHTML = itemsHtml;
+        cartTotalSpan.innerText = `$${totalPrice}`;
+        cartCountSpan.innerText = totalItems;
+
+        // attach remove events
+        document.querySelectorAll(".remove-item").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const id = parseInt(btn.getAttribute("data-id"));
+            removeCartItem(id);
+          });
+        });
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById("toast-message");
+        toast.textContent = message;
+        toast.style.opacity = "1";
+        setTimeout(() => {
+          toast.style.opacity = "0";
+        }, 2000);
+      }
+
+      // render products grid
+      function renderProducts() {
+        const container = document.getElementById("products-container");
+        if (!container) return;
+        container.innerHTML = "";
+        products.forEach((product) => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.setAttribute("data-id", product.id);
+          card.innerHTML = `
+        <div class="product-img">
+          <i class="fas ${product.icon}" style="font-size: 3.5rem;"></i> <span style="margin-left: 10px; font-size: 2.5rem;">${product.emoji}</span>
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <div class="price">$${product.price}</div>
+          <button class="btn-add add-to-cart-btn" data-id="${product.id}">ADD TO CAGE</button>
+        </div>
+      `;
+          container.appendChild(card);
+        });
+        // attach add to cart events
+        document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const id = parseInt(btn.getAttribute("data-id"));
+            addToCart(id);
+          });
+        });
+      }
+
+      // CART PANEL logic
+      const overlay = document.getElementById("cart-overlay");
+      const openCartBtn = document.getElementById("cart-icon-btn");
+      const closeCartBtn = document.getElementById("close-cart-btn");
+      const checkoutBtn = document.getElementById("checkout-action");
+
+      function openCart() {
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeCart() {
+        overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      if (openCartBtn) openCartBtn.addEventListener("click", openCart);
+      if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
+      if (overlay) {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) closeCart();
+        });
+      }
+      if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+          if (cart.length === 0) {
+            showToast("Cart is empty, add some goods first.");
+          } else {
+            showToast("Checkout demo — thank you for supporting MAD DOGS!");
+            // optional: clear cart for demo (comment to keep realistic)
+            // but we only reset if they'd like? We'll just show message.
+            // For UX we do not clear automatically, but we can simulate.
+            // (better to keep, but optionally reset after "purchase")
+            // I'll add a playful clear after 2sec with confirm? just a demo alert.
+            setTimeout(() => {
+              showToast(
+                "🛒 Order placed (demo). Your items remain, refresh to reset?",
+              );
+            }, 400);
+          }
+        });
+      }
+
+      // navigation smooth scroll to sections (HOME, SHOP ALL, INFO)
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          if (sectionId === "shop-section")
+            document
+              .getElementById("shop-section")
+              ?.scrollIntoView({ behavior: "smooth" });
+          else if (sectionId === "info-area")
+            document
+              .getElementById("info-area")
+              ?.scrollIntoView({ behavior: "smooth" });
+          else if (sectionId === "home")
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+
+      document.getElementById("nav-home")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      document
+        .getElementById("nav-shop-all")
+        ?.addEventListener("click", (e) => {
+          e.preventDefault();
+          document
+            .getElementById("shop-section")
+            ?.scrollIntoView({ behavior: "smooth" });
+        });
+      document.getElementById("nav-info")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        document
+          .getElementById("info-area")
+          ?.scrollIntoView({ behavior: "smooth" });
+      });
+
+      // follow icons interaction: playful toasts
+      const socialIcons = document.querySelectorAll(".follow-icons i");
+      socialIcons.forEach((icon) => {
+        icon.addEventListener("click", () => {
+          const social = icon.getAttribute("data-social") || "channel";
+          showToast(
+            `🐾 Follow MAD DOGS on ${social.toUpperCase()} — coming soon!`,
+          );
+        });
+      });
+
+      // additional hover effects & dynamic cart count updates on load
+      renderProducts();
+      loadCart();
+
+      // manual close on escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay.classList.contains("open")) {
+          closeCart();
+        }
+      });
+
+      // subtle background parallax? just for spice
+      console.log("MAD DOGS STUDIO — RAW LANDING ACTIVE");
+    </script>
+  </body>
+</html>
