@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>MAD DOGS STUDIO | Raw Digital Edge</title>
-    <!-- Google Fonts for a modern, bold grotesk style -->
+    <title>New Something Footies | Footwear Archive</title>
+    <!-- Google Fonts: Modern & Clean -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
     />
     <!-- Font Awesome 6 (free icons) -->
@@ -25,451 +25,366 @@
       }
 
       body {
-        background-color: #050505;
-        font-family: "Space Grotesk", sans-serif;
-        color: #e5e5e5;
+        background-color: #faf7f2;
+        font-family: "Inter", sans-serif;
+        color: #1e1e2a;
         line-height: 1.4;
         scroll-behavior: smooth;
       }
 
-      /* custom aggressive yet minimal container */
       .container {
-        max-width: 1300px;
+        max-width: 1280px;
         margin: 0 auto;
         padding: 0 2rem;
       }
 
       /* header / navigation */
       .site-header {
-        padding: 1.8rem 0 1.2rem 0;
-        border-bottom: 1px solid rgba(255, 70, 85, 0.3);
-        margin-bottom: 3rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        margin-bottom: 2rem;
       }
 
       .nav-wrapper {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         flex-wrap: wrap;
         gap: 1rem;
       }
 
       .logo-area {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: 700;
         letter-spacing: -0.02em;
       }
 
-      .logo-area .mad {
-        color: #ff4655;
-        text-shadow: 0 0 6px rgba(255, 70, 85, 0.4);
+      .logo-brand {
+        background: linear-gradient(135deg, #2b2b2b, #6b3e2c);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
 
-      .logo-area .dogs {
-        color: #f0f0f0;
-      }
-
-      .logo-area .studio {
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: 1px;
-        color: #aaa;
-        margin-left: 6px;
+      .logo-brand span {
+        font-weight: 800;
+        font-style: italic;
       }
 
       .nav-links {
         display: flex;
-        gap: 2.2rem;
+        gap: 2rem;
         align-items: center;
-        flex-wrap: wrap;
       }
 
       .nav-links a {
-        color: #ddd;
+        color: #2c2c2c;
         text-decoration: none;
         font-weight: 500;
-        font-size: 1rem;
-        transition: 0.2s ease;
-        letter-spacing: 0.3px;
+        font-size: 0.95rem;
+        transition: 0.2s;
       }
 
       .nav-links a:hover {
-        color: #ff4655;
-        transform: translateY(-1px);
+        color: #b45f3b;
       }
 
-      .cart-icon {
-        position: relative;
-        cursor: pointer;
-        font-size: 1.3rem;
-      }
-
-      /* hero section with MADDOGS central energy */
+      /* hero section */
       .hero {
         text-align: center;
-        padding: 3rem 0 4rem 0;
-        border-bottom: 1px solid rgba(255, 70, 85, 0.25);
-        margin-bottom: 3rem;
+        padding: 2rem 0 2.5rem;
       }
 
       .hero h1 {
-        font-size: 6rem;
+        font-size: 3.8rem;
         font-weight: 800;
-        letter-spacing: -0.03em;
-        background: linear-gradient(135deg, #ffffff 30%, #ff4655 80%);
+        letter-spacing: -0.02em;
+        background: linear-gradient(to right, #3a2c29, #c97e5a);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-        line-height: 1.1;
-        text-shadow: 0 2px 10px rgba(255, 70, 85, 0.2);
       }
 
       .hero-tagline {
-        font-size: 1.2rem;
-        color: #bbb;
-        max-width: 600px;
-        margin: 0 auto;
-        border-top: 1px dashed #ff465580;
-        display: inline-block;
-        padding-top: 0.8rem;
+        font-size: 1.1rem;
+        color: #5e5e6e;
+        margin-top: 0.5rem;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      /* featured section — SHOP ALL vibe */
-      .featured-products {
-        margin-bottom: 5rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
+      /* filter / category pills */
+      .filter-bar {
         display: flex;
-        align-items: center;
-        gap: 12px;
-        border-left: 4px solid #ff4655;
-        padding-left: 1rem;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0 2rem;
+        flex-wrap: wrap;
       }
 
+      .filter-pill {
+        background: #ece7e0;
+        padding: 0.4rem 1.2rem;
+        border-radius: 60px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .filter-pill.active,
+      .filter-pill:hover {
+        background: #c97e5a;
+        color: white;
+      }
+
+      /* product grid */
       .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
         gap: 2rem;
+        margin: 2rem 0 4rem;
       }
 
       .product-card {
-        background: #111111;
-        border-radius: 24px;
+        background: white;
+        border-radius: 28px;
         overflow: hidden;
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.2s;
-        border: 1px solid #2a2a2a;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.25s ease;
         cursor: pointer;
+        border: 1px solid #ede6dd;
       }
 
       .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 30px -12px rgba(255, 70, 85, 0.2);
-        border-color: #ff4655;
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+        border-color: #d9b48b;
       }
 
       .product-img {
-        background: linear-gradient(145deg, #1f1f1f, #0a0a0a);
-        height: 220px;
+        background: #f4efe9;
+        height: 260px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 4rem;
-        color: #ff4655;
+        overflow: hidden;
+      }
+
+      .product-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover .product-img img {
+        transform: scale(1.05);
       }
 
       .product-info {
-        padding: 1.5rem;
+        padding: 1.2rem 1.2rem 1.5rem;
       }
 
       .product-info h3 {
-        font-size: 1.4rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+
+      .product-category {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #b45f3b;
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
 
-      .price {
-        font-size: 1.3rem;
+      .price-tag {
+        font-size: 1.2rem;
         font-weight: 700;
-        color: #ff4655;
+        color: #2c2c2c;
+      }
+
+      .view-detail {
+        margin-top: 0.8rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #b45f3b;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-bottom: 1px dashed #d9b48b;
+      }
+
+      /* MODAL / POPUP (product details) */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(5px);
+        z-index: 2000;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .modal-container {
+        background: #ffffff;
+        max-width: 520px;
+        width: 90%;
+        border-radius: 36px;
+        overflow: hidden;
+        box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
+        transform: scale(0.96);
+        transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+
+      .modal-overlay.active .modal-container {
+        transform: scale(1);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid #f0e5db;
+      }
+
+      .modal-header h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #7b6e63;
+        transition: 0.2s;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+      }
+
+      .modal-img {
+        background: #f7f2ec;
+        border-radius: 28px;
+        padding: 0;
+        text-align: center;
+        overflow: hidden;
+        margin-bottom: 1.2rem;
+        height: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .detail-price {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #2e2e2e;
         margin: 0.5rem 0;
       }
 
-      .btn-add {
-        background: transparent;
-        border: 1.5px solid #ff4655;
-        color: #ff4655;
-        padding: 0.6rem 1rem;
-        font-weight: 600;
-        font-family: inherit;
+      .detail-gender {
+        background: #f0ebe4;
+        display: inline-block;
+        padding: 0.2rem 1rem;
         border-radius: 60px;
-        cursor: pointer;
-        transition: 0.2s;
-        width: 100%;
-        font-size: 0.9rem;
-        margin-top: 0.8rem;
-      }
-
-      .btn-add:hover {
-        background: #ff4655;
-        color: #0a0a0a;
-        box-shadow: 0 0 8px #ff4655;
-      }
-
-      /* INFO SECTION (studio vibe) */
-      .info-section {
-        background: #0b0b0b;
-        border-radius: 32px;
-        padding: 3rem 2rem;
-        margin-bottom: 4rem;
-        border: 1px solid #2a2a2a;
-      }
-
-      .info-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: space-between;
-      }
-
-      .info-card {
-        flex: 1;
-        min-width: 200px;
-      }
-
-      .info-card h3 {
-        color: #ff4655;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 0.8rem;
         font-weight: 600;
+        margin: 0.5rem 0;
       }
 
-      .info-card p,
-      .info-card a {
-        color: #ccc;
+      .detail-description {
+        color: #4a4a5a;
         line-height: 1.5;
-        text-decoration: none;
+        margin: 1rem 0;
       }
 
-      .info-card a:hover {
-        color: #ff4655;
-        text-decoration: underline;
+      .specs-list {
+        list-style: none;
+        margin-top: 1rem;
+        background: #faf7f2;
+        padding: 0.8rem 1rem;
+        border-radius: 20px;
       }
 
-      .contact-email {
-        font-weight: 500;
-        word-break: break-all;
+      .specs-list li {
+        padding: 0.3rem 0;
+        font-size: 0.9rem;
+        display: flex;
+        gap: 0.8rem;
       }
 
-      /* FOLLOW section with icons */
-      .follow-section {
+      .specs-list i {
+        color: #c97e5a;
+        width: 1.4rem;
+      }
+
+      .info-badge {
+        font-size: 0.7rem;
+        background: #e6dfd7;
+        display: inline-block;
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
+        margin-top: 1rem;
+      }
+
+      /* footer */
+      .site-footer {
+        border-top: 1px solid #e9e2d9;
+        padding: 2rem 0 2rem;
+        margin-top: 2rem;
         text-align: center;
-        margin: 3rem 0 4rem;
+        font-size: 0.8rem;
+        color: #7b6e63;
       }
 
       .follow-icons {
         display: flex;
         justify-content: center;
-        gap: 2rem;
-        margin-top: 1rem;
-        font-size: 2.8rem;
+        gap: 1.8rem;
+        margin: 1rem 0;
+        font-size: 1.3rem;
       }
 
       .follow-icons i {
-        cursor: pointer;
-        transition: all 0.2s ease;
-        color: #ddd;
+        cursor: default;
+        color: #8b7a6b;
+        transition: 0.2s;
       }
 
       .follow-icons i:hover {
-        color: #ff4655;
-        transform: scale(1.1);
-        text-shadow: 0 0 12px #ff4655;
-      }
-
-      /* cart side panel (JS interactive) */
-      .cart-overlay {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(4px);
-        z-index: 1000;
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.25s ease;
-      }
-
-      .cart-overlay.open {
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .cart-panel {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 90%;
-        max-width: 420px;
-        height: 100%;
-        background: #0f0f0f;
-        border-left: 2px solid #ff4655;
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.6);
-        display: flex;
-        flex-direction: column;
-        z-index: 1001;
-        transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      }
-
-      .cart-overlay.open .cart-panel {
-        transform: translateX(0);
-      }
-
-      .cart-header {
-        padding: 1.5rem;
-        border-bottom: 1px solid #2a2a2a;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .cart-header h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
-
-      .close-cart {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-
-      .cart-items {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1rem 1.2rem;
-      }
-
-      .cart-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid #222;
-      }
-
-      .cart-item-info {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .cart-item-title {
-        font-weight: 500;
-      }
-
-      .cart-item-price {
-        color: #ff4655;
-        font-size: 0.9rem;
-      }
-
-      .remove-item {
-        background: none;
-        border: none;
-        color: #888;
-        cursor: pointer;
-        font-size: 1rem;
-      }
-
-      .remove-item:hover {
-        color: #ff4655;
-      }
-
-      .cart-total {
-        padding: 1.2rem;
-        border-top: 2px solid #2a2a2a;
-        font-size: 1.3rem;
-        font-weight: 700;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .checkout-btn {
-        background: #ff4655;
-        color: black;
-        font-weight: bold;
-        border: none;
-        padding: 1rem;
-        margin: 1rem;
-        border-radius: 40px;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 1rem;
-        transition: 0.2s;
-      }
-
-      .checkout-btn:hover {
-        background: #ff6a77;
-        transform: scale(0.98);
-      }
-
-      .empty-cart-msg {
-        text-align: center;
-        color: #aaa;
-        margin-top: 2rem;
-      }
-
-      /* footer */
-      .site-footer {
-        border-top: 1px solid #2a2a2a;
-        padding: 2rem 0 2.5rem;
-        margin-top: 2rem;
-        font-size: 0.85rem;
-        text-align: center;
-        color: #888;
-      }
-
-      .footer-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      /* toast message */
-      .toast-msg {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #1e1e1e;
-        color: #ff4655;
-        padding: 10px 20px;
-        border-radius: 60px;
-        font-weight: 500;
-        border-left: 3px solid #ff4655;
-        z-index: 1100;
-        opacity: 0;
-        transition: 0.2s;
-        pointer-events: none;
-        backdrop-filter: blur(8px);
-        font-size: 0.9rem;
+        color: #b45f3b;
       }
 
       @media (max-width: 700px) {
         .hero h1 {
-          font-size: 3.2rem;
+          font-size: 2.4rem;
         }
         .container {
           padding: 0 1.2rem;
@@ -477,10 +392,6 @@
         .nav-wrapper {
           flex-direction: column;
           align-items: center;
-          gap: 0.8rem;
-        }
-        .section-title {
-          font-size: 1.6rem;
         }
       }
 
@@ -495,406 +406,581 @@
       <header class="site-header">
         <div class="nav-wrapper">
           <div class="logo-area">
-            <span class="mad">MAD</span><span class="dogs">DOGS</span
-            ><span class="studio"> STUDIO</span>
+            <span class="logo-brand">NEW SOMETHING <span>FOOTIES</span></span>
           </div>
           <div class="nav-links">
             <a href="#" id="nav-home">HOME</a>
-            <a href="#" id="nav-shop-all">SHOP ALL</a>
-            <a href="#" id="nav-info">INFO</a>
-            <div class="cart-icon" id="cart-icon-btn">
-              <i class="fas fa-shopping-bag"></i>
-              <span
-                id="cart-count"
-                style="
-                  font-size: 0.75rem;
-                  background: #ff4655;
-                  color: black;
-                  border-radius: 40px;
-                  padding: 0px 6px;
-                  margin-left: 4px;
-                "
-                >0</span
-              >
-            </div>
+            <a href="#" id="nav-collection">COLLECTION</a>
+            <a href="#" id="nav-about">INFO</a>
           </div>
         </div>
       </header>
 
       <section class="hero">
-        <h1>MADDOGS</h1>
+        <h1>New Something Footies</h1>
         <div class="hero-tagline">
-          RAW ENERGY // LIMITED DROPS // DIGITAL HOUNDS
+          Where comfort meets raw expression — footwear for the renegade spirit.
         </div>
       </section>
 
-      <!-- SHOP ALL section (product showcase) -->
-      <section class="featured-products" id="shop-section">
-        <div class="section-title">
-          <i class="fas fa-fire-flame" style="color: #ff4655"></i> SHOP ALL —
-          LATEST DROPS
-        </div>
-        <div class="products-grid" id="products-container"></div>
-      </section>
+      <!-- Filter section (women / men / unisex) -->
+      <div class="filter-bar">
+        <div class="filter-pill active" data-filter="all">ALL</div>
+        <div class="filter-pill" data-filter="Women">WOMEN</div>
+        <div class="filter-pill" data-filter="Men">MEN</div>
+        <div class="filter-pill" data-filter="Unisex">UNISEX</div>
+      </div>
 
-      <!-- INFO area combined: Contact + misc info (as per mockup) -->
-      <div class="info-section" id="info-area">
-        <div class="info-grid">
-          <div class="info-card">
-            <h3><i class="fas fa-envelope"></i> CONTACT</h3>
-            <p class="contact-email">maddogstudios27@gmail.com</p>
-            <p style="margin-top: 0.5rem">Studio inquiries / wholesale</p>
-          </div>
-          <div class="info-card">
-            <h3><i class="fas fa-compass"></i> INFO</h3>
-            <p>
-              Limited-run apparel & accessories. Handcrafted with brutalist
-              aesthetics.<br />Shipping worldwide — every drop is a statement.
+      <!-- Product grid will be injected here -->
+      <div id="products-grid-container" class="products-grid"></div>
+
+      <!-- Info / brand story section -->
+      <div
+        id="about-info"
+        style="
+          margin: 2rem 0 3rem;
+          background: #fff7f0;
+          border-radius: 32px;
+          padding: 2rem;
+          border: 1px solid #f0e2d6;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+          "
+        >
+          <div style="flex: 1; min-width: 180px">
+            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
+              <i class="fas fa-envelope"></i> CONTACT
+            </h3>
+            <p style="color: #3d3d4a">
+              omoloyehassan12@gmail.com<br />+234 703 362 3329
             </p>
           </div>
-          <div class="info-card">
-            <h3><i class="fas fa-asterisk"></i> MANIFESTO</h3>
+          <div style="flex: 1; min-width: 180px">
+            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
+              <i class="fas fa-leaf"></i> OUR ETHOS
+            </h3>
             <p>
-              Unleash the madness. No compromises, raw design, street culture
-              DNA.
+              Handcrafted silhouettes, vegan leather options & limited edition
+              drops. Every pair tells a story.
+            </p>
+          </div>
+          <div style="flex: 1; min-width: 180px">
+            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
+              <i class="fas fa-shoe-prints"></i> BESPOKE SERVICE
+            </h3>
+            <p>
+              Explore our lookbook — no checkout, pure inspiration. Contact for
+              exclusive releases.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- FOLLOW section with icons 🖥️ ✂️ 🎵 but also social -->
-      <div class="follow-section">
-        <div
-          class="section-title"
-          style="
-            justify-content: center;
-            border-left: none;
-            border-bottom: 2px solid #ff4655;
-            display: inline-flex;
-            padding: 0 0 0.5rem 0;
-          "
-        >
-          FOLLOW THE PACK
-        </div>
+      <!-- FOLLOW section -->
+      <div style="text-align: center; margin: 2rem 0 1rem">
+        <h3 style="font-weight: 600; letter-spacing: -0.2px">
+          FOLLOW THE PACE
+        </h3>
         <div class="follow-icons">
-          <i class="fab fa-twitch" data-social="twitch"></i>
-          <i class="fas fa-desktop" data-social="desktop"></i>
-          <!-- 🖥️ represented -->
-          <i class="fas fa-cut" data-social="scissors"></i>
-          <!-- ✂️ -->
-          <i class="fas fa-music" data-social="music"></i>
-          <!-- 🎵 -->
-          <i class="fab fa-instagram" data-social="ig"></i>
-          <i class="fab fa-tiktok" data-social="tiktok"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-tiktok"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fas fa-headphones"></i>
+          <i class="fas fa-scissors"></i>
         </div>
-        <p style="margin-top: 1.2rem; font-size: 0.8rem; color: #777">
-          #MADDOGSSTUDIO // UNLEASH THE RAW
-        </p>
       </div>
 
       <footer class="site-footer">
-        <div class="footer-content">
-          <span>© 2026 MAD DOGS STUDIO . ALL RIGHTS RESERVED.</span>
-          <span style="letter-spacing: 2px">🖥️ ✂️ 🎵</span>
-        </div>
+        <span>© 2026 NEW SOUL FOOTIES . ALL RIGHTS RESERVED.</span>
+        <div style="margin-top: 0.5rem">🖥️ ✂️ 🎵</div>
       </footer>
     </div>
 
-    <!-- cart side panel -->
-    <div id="cart-overlay" class="cart-overlay">
-      <div class="cart-panel">
-        <div class="cart-header">
-          <h2><i class="fas fa-shopping-cart"></i> YOUR CAGE</h2>
-          <button class="close-cart" id="close-cart-btn">&times;</button>
+    <!-- MODAL POPUP STRUCTURE (product details) -->
+    <div id="product-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="modal-product-name">Product Name</h3>
+          <button class="close-modal" id="close-modal-btn">&times;</button>
         </div>
-        <div class="cart-items" id="cart-items-list">
-          <div class="empty-cart-msg">Your cart is growling... empty.</div>
+        <div class="modal-body">
+          <div class="modal-img" id="modal-icon-area">
+            <img src="" alt="Product image" id="modal-product-image" />
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+            "
+          >
+            <span class="detail-price" id="modal-price">$0</span>
+            <span class="detail-gender" id="modal-gender">Women</span>
+          </div>
+          <p class="detail-description" id="modal-description">
+            Premium comfort meets bold design.
+          </p>
+          <ul class="specs-list" id="modal-specs">
+            <li>
+              <i class="fas fa-ruler-combined"></i>
+              <span>True to size / Premium materials</span>
+            </li>
+            <li>
+              <i class="fas fa-palette"></i> <span>Exclusive colorway</span>
+            </li>
+          </ul>
+          <div class="info-badge">
+            <i class="fas fa-info-circle"></i> Browse only — for inquiries,
+            contact us.
+          </div>
         </div>
-        <div class="cart-total">
-          <span>TOTAL</span>
-          <span id="cart-total-price">$0</span>
-        </div>
-        <button class="checkout-btn" id="checkout-action">CHECKOUT →</button>
       </div>
     </div>
 
-    <div id="toast-message" class="toast-msg"></div>
-
     <script>
-      // -------- PRODUCT DATA (MAD DOGS STUDIO collection) --------
-      const products = [
+      // - For online images: "https://yourwebsite.com/shoe.jpg"
+      // - Free placeholder: "https://placehold.co/400x400/e8dccc/8b5a3c?text=Your+Shoe"
+
+      const footwearCollection = [
         {
           id: 1,
-          name: "RUST BITE HOODIE",
-          price: 89,
-          icon: "fa-tshirt",
-          emoji: "👕",
+          name: "Black cross palm slippers",
+          gender: "Men",
+          price: 15000,
+          description:
+            "Breathable mesh upper with responsive cushioning. Perfect for daily runs and street style.",
+          specs: [
+            "Weight: 210g",
+            "Drop: 8mm",
+            "Recycled knit upper",
+            "Arch support insole",
+          ],
+          imageUrl: "images/shoe2.jpg",
         },
         {
           id: 2,
-          name: "CHAINSAW TEETH TEE",
-          price: 49,
-          icon: "fa-shirt",
-          emoji: "👕",
+          name: "Black Braided classic",
+          gender: "Women",
+          price: 8000,
+          description:
+            "Minimalist leather loafers with a modern twist. Hand-stitched detailing, sustainable leather.",
+          specs: [
+            "Soft calf leather",
+            "Cork footbed",
+            "Stacked heel",
+            "Made in Nigeria",
+          ],
+          imageUrl: "images/shoe3.jpg",
         },
         {
           id: 3,
-          name: "MAD CAP (SNAPBACK)",
-          price: 39,
-          icon: "fa-hat-cowboy",
-          emoji: "🧢",
+          name: "Urban Breeze",
+          gender: "Women",
+          price: 8000,
+          description:
+            "Chunky platform bootie with zipper detail — bold and edgy for all-day wear.",
+          specs: [
+            "Platform height: 4cm",
+            "Lug sole",
+            "Pull tab",
+            "Breathable lining",
+          ],
+          imageUrl: "images/shoe4.jpg",
         },
         {
           id: 4,
-          name: "FANG PATCH DENIM",
-          price: 129,
-          icon: "fa-jeans",
-          emoji: "👖",
+          name: "Black Design-style strap",
+          gender: "Men",
+          price: 12000,
+          description:
+            "High-top silhouette with premium canvas and reinforced toe cap. Urban durability.",
+          specs: [
+            "Cotton canvas",
+            "Rubber cupsole",
+            "Padded collar",
+            "Ventilation grommets",
+          ],
+          imageUrl: "images/shoe7.jpg",
+        },
+        {
+          id: 5,
+          name: "Eclipse Slip-On",
+          gender: "Unisex",
+          price: 99,
+          description:
+            "Effortless slip-on sneakers for everyday movement. Elastic gore panels, eco-foam insole.",
+          specs: [
+            "Vegan friendly",
+            "Machine washable",
+            "Anti-odor lining",
+            "Flat lace system",
+          ],
+          imageUrl: "images/shoe6.jpg",
+        },
+        {
+          id: 6,
+          name: "Mirage Sandal Clog",
+          gender: "Women",
+          price: 79,
+          description:
+            "Retro-inspired comfort clog with adjustable strap. Lightweight EVA + cork blend.",
+          specs: [
+            "Water resistant",
+            "Contoured footbed",
+            "2 adjustable straps",
+            "Outdoor ready",
+          ],
+          imageUrl:
+            "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop",
+        },
+        {
+          id: 7,
+          name: "Drift Runner Pro",
+          gender: "Men",
+          price: 139,
+          description:
+            "Performance runner with dynamic lace cage and breathable mesh. Ideal for active lifestyles.",
+          specs: [
+            "Energy return foam",
+            "Durable rubber outsole",
+            "Reflective accents",
+            "Breathable mesh",
+          ],
+          imageUrl:
+            "https://i.pinimg.com/736x/57/6f/4e/576f4e96ce0ee48b24195fdd6dbe06c5.jpg",
+        },
+        {
+          id: 8,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 9,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 10,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 11,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 12,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 13,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 14,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 15,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 16,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 17,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
+        },
+        {
+          id: 18,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "Plush velvet slide with memory foam padding — lounge in luxury.",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "images/shoe1.jpg",
         },
       ];
 
-      // Shopping cart state
-      let cart = []; // each item: { id, name, price, quantity }
+      // DOM elements
+      const productsContainer = document.getElementById(
+        "products-grid-container",
+      );
+      const modalOverlay = document.getElementById("product-modal");
+      const closeModalBtn = document.getElementById("close-modal-btn");
+      const modalName = document.getElementById("modal-product-name");
+      const modalPrice = document.getElementById("modal-price");
+      const modalGender = document.getElementById("modal-gender");
+      const modalDescription = document.getElementById("modal-description");
+      const modalSpecsList = document.getElementById("modal-specs");
+      const modalProductImage = document.getElementById("modal-product-image");
 
-      // Helper functions
-      function saveCart() {
-        localStorage.setItem("maddogs_cart", JSON.stringify(cart));
+      let currentFilter = "all";
+
+      // Helper function to handle image errors (shows fallback)
+      function handleImageError(imgElement) {
+        imgElement.onerror = null;
+        imgElement.src =
+          "https://placehold.co/400x400/e8dccc/8b5a3c?text=Image+Not+Found";
       }
 
-      function loadCart() {
-        const stored = localStorage.getItem("maddogs_cart");
-        if (stored) {
-          try {
-            cart = JSON.parse(stored);
-          } catch (e) {
-            cart = [];
-          }
-        } else {
-          cart = [];
+      // Render products dynamically based on filter
+      function renderProducts() {
+        if (!productsContainer) return;
+        let filteredProducts = footwearCollection;
+        if (currentFilter !== "all") {
+          filteredProducts = footwearCollection.filter(
+            (p) => p.gender === currentFilter,
+          );
         }
-        updateCartUI();
-      }
 
-      function addToCart(productId) {
-        const product = products.find((p) => p.id === productId);
-        if (!product) return;
-        const existing = cart.find((item) => item.id === productId);
-        if (existing) {
-          existing.quantity += 1;
-        } else {
-          cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: 1,
-          });
-        }
-        saveCart();
-        updateCartUI();
-        showToast(`+1 ${product.name} added to cart`);
-      }
-
-      function removeCartItem(productId) {
-        const index = cart.findIndex((item) => item.id === productId);
-        if (index !== -1) {
-          const removed = cart[index];
-          cart.splice(index, 1);
-          saveCart();
-          updateCartUI();
-          showToast(`Removed ${removed.name}`);
-        }
-      }
-
-      function updateCartUI() {
-        const cartItemsContainer = document.getElementById("cart-items-list");
-        const cartTotalSpan = document.getElementById("cart-total-price");
-        const cartCountSpan = document.getElementById("cart-count");
-
-        let totalItems = 0;
-        let totalPrice = 0;
-
-        if (!cartItemsContainer) return;
-
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML = `<div class="empty-cart-msg"><i class="fas fa-paw"></i> Cart empty — add some madness.</div>`;
-          cartTotalSpan.innerText = "$0";
-          cartCountSpan.innerText = "0";
+        if (filteredProducts.length === 0) {
+          productsContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding: 3rem;">No footies found for this category — explore all styles!</div>`;
           return;
         }
 
-        let itemsHtml = "";
-        cart.forEach((item) => {
-          totalItems += item.quantity;
-          totalPrice += item.price * item.quantity;
-          itemsHtml += `
-        <div class="cart-item" data-id="${item.id}">
-          <div class="cart-item-info">
-            <span class="cart-item-title">${item.name} <span style="font-size:0.75rem;">x${item.quantity}</span></span>
-            <span class="cart-item-price">$${item.price}</span>
-          </div>
-          <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
-        </div>
-      `;
-        });
-        cartItemsContainer.innerHTML = itemsHtml;
-        cartTotalSpan.innerText = `$${totalPrice}`;
-        cartCountSpan.innerText = totalItems;
-
-        // attach remove events
-        document.querySelectorAll(".remove-item").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.getAttribute("data-id"));
-            removeCartItem(id);
-          });
-        });
-      }
-
-      function showToast(message) {
-        const toast = document.getElementById("toast-message");
-        toast.textContent = message;
-        toast.style.opacity = "1";
-        setTimeout(() => {
-          toast.style.opacity = "0";
-        }, 2000);
-      }
-
-      // render products grid
-      function renderProducts() {
-        const container = document.getElementById("products-container");
-        if (!container) return;
-        container.innerHTML = "";
-        products.forEach((product) => {
-          const card = document.createElement("div");
-          card.className = "product-card";
-          card.setAttribute("data-id", product.id);
-          card.innerHTML = `
+        productsContainer.innerHTML = filteredProducts
+          .map(
+            (product) => `
+      <div class="product-card" data-product-id="${product.id}">
         <div class="product-img">
-          <i class="fas ${product.icon}" style="font-size: 3.5rem;"></i> <span style="margin-left: 10px; font-size: 2.5rem;">${product.emoji}</span>
+          <img src="${product.imageUrl}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e8dccc/8b5a3c?text=No+Image';">
         </div>
         <div class="product-info">
+          <div class="product-category">${product.gender}</div>
           <h3>${product.name}</h3>
-          <div class="price">$${product.price}</div>
-          <button class="btn-add add-to-cart-btn" data-id="${product.id}">ADD TO CAGE</button>
+          <div class="price-tag">₦${product.price}</div>
+          <div class="view-detail">
+            <i class="fas fa-eye"></i> click for details
+          </div>
         </div>
-      `;
-          container.appendChild(card);
-        });
-        // attach add to cart events
-        document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.getAttribute("data-id"));
-            addToCart(id);
+      </div>
+    `,
+          )
+          .join("");
+
+        // attach click event to each product card
+        document.querySelectorAll(".product-card").forEach((card) => {
+          card.addEventListener("click", (e) => {
+            const id = parseInt(card.getAttribute("data-product-id"));
+            const product = footwearCollection.find((p) => p.id === id);
+            if (product) {
+              openProductModal(product);
+            }
           });
         });
       }
 
-      // CART PANEL logic
-      const overlay = document.getElementById("cart-overlay");
-      const openCartBtn = document.getElementById("cart-icon-btn");
-      const closeCartBtn = document.getElementById("close-cart-btn");
-      const checkoutBtn = document.getElementById("checkout-action");
+      // MODAL POPUP with product full details
+      function openProductModal(product) {
+        // set all text content
+        modalName.innerText = product.name;
+        modalPrice.innerText = `₦${product.price}`;
+        modalGender.innerText = product.gender;
+        modalDescription.innerText = product.description;
 
-      function openCart() {
-        overlay.classList.add("open");
+        // set image with error handling
+        modalProductImage.src = product.imageUrl;
+        modalProductImage.alt = product.name;
+        modalProductImage.onerror = function () {
+          this.onerror = null;
+          this.src = "https://placehold.co/400x400/e8dccc/8b5a3c?text=No+Image";
+        };
+
+        // dynamic specs
+        let specsHtml = `
+      <li><i class="fas fa-venus-mars"></i> <span>Designed for: ${product.gender}</span></li>
+      <li><i class="fas fa-tag"></i> <span>Price: ₦${product.price}</span></li>
+    `;
+        // add custom specs from array
+        if (product.specs && product.specs.length) {
+          product.specs.forEach((spec) => {
+            specsHtml += `<li><i class="fas fa-check-circle"></i> <span>${spec}</span></li>`;
+          });
+        } else {
+          specsHtml += `<li><i class="fas fa-shoe-prints"></i> <span>Premium comfort outsole</span></li>`;
+        }
+        specsHtml += `<li><i class="fas fa-box"></i> <span>Lookbook item — for inspiration</span></li>`;
+        modalSpecsList.innerHTML = specsHtml;
+
+        // show modal
+        modalOverlay.classList.add("active");
         document.body.style.overflow = "hidden";
       }
 
-      function closeCart() {
-        overlay.classList.remove("open");
+      function closeModal() {
+        modalOverlay.classList.remove("active");
         document.body.style.overflow = "";
       }
 
-      if (openCartBtn) openCartBtn.addEventListener("click", openCart);
-      if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
-      if (overlay) {
-        overlay.addEventListener("click", (e) => {
-          if (e.target === overlay) closeCart();
-        });
-      }
-      if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", () => {
-          if (cart.length === 0) {
-            showToast("Cart is empty, add some goods first.");
+      // Event listeners for filters
+      const filterPills = document.querySelectorAll(".filter-pill");
+      filterPills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          filterPills.forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          const filterValue = pill.getAttribute("data-filter");
+          if (filterValue === "all") {
+            currentFilter = "all";
           } else {
-            showToast("Checkout demo — thank you for supporting MAD DOGS!");
-            // optional: clear cart for demo (comment to keep realistic)
-            // but we only reset if they'd like? We'll just show message.
-            // For UX we do not clear automatically, but we can simulate.
-            // (better to keep, but optionally reset after "purchase")
-            // I'll add a playful clear after 2sec with confirm? just a demo alert.
-            setTimeout(() => {
-              showToast(
-                "🛒 Order placed (demo). Your items remain, refresh to reset?",
-              );
-            }, 400);
+            currentFilter = filterValue;
           }
+          renderProducts();
         });
-      }
+      });
 
-      // navigation smooth scroll to sections (HOME, SHOP ALL, INFO)
-      function scrollToSection(sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          if (sectionId === "shop-section")
-            document
-              .getElementById("shop-section")
-              ?.scrollIntoView({ behavior: "smooth" });
-          else if (sectionId === "info-area")
-            document
-              .getElementById("info-area")
-              ?.scrollIntoView({ behavior: "smooth" });
-          else if (sectionId === "home")
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      }
-
+      // Navigation smooth scroll
       document.getElementById("nav-home")?.addEventListener("click", (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
       document
-        .getElementById("nav-shop-all")
+        .getElementById("nav-collection")
         ?.addEventListener("click", (e) => {
           e.preventDefault();
-          document
-            .getElementById("shop-section")
-            ?.scrollIntoView({ behavior: "smooth" });
+          const grid = document.getElementById("products-grid-container");
+          if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
         });
-      document.getElementById("nav-info")?.addEventListener("click", (e) => {
+      document.getElementById("nav-about")?.addEventListener("click", (e) => {
         e.preventDefault();
-        document
-          .getElementById("info-area")
-          ?.scrollIntoView({ behavior: "smooth" });
+        const aboutDiv = document.getElementById("about-info");
+        if (aboutDiv)
+          aboutDiv.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
-      // follow icons interaction: playful toasts
-      const socialIcons = document.querySelectorAll(".follow-icons i");
-      socialIcons.forEach((icon) => {
-        icon.addEventListener("click", () => {
-          const social = icon.getAttribute("data-social") || "channel";
-          showToast(
-            `🐾 Follow MAD DOGS on ${social.toUpperCase()} — coming soon!`,
-          );
-        });
+      // close modal events
+      if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) closeModal();
       });
-
-      // additional hover effects & dynamic cart count updates on load
-      renderProducts();
-      loadCart();
-
-      // manual close on escape key
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && overlay.classList.contains("open")) {
-          closeCart();
+        if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
+          closeModal();
         }
       });
 
-      // subtle background parallax? just for spice
-      console.log("MAD DOGS STUDIO — RAW LANDING ACTIVE");
+      // initial render
+      renderProducts();
     </script>
   </body>
 </html>
