@@ -28,6 +28,7 @@
           <div class="nav-links">
             <a href="#" id="nav-home">HOME</a>
             <a href="#" id="nav-collection">COLLECTION</a>
+            <a href="#" id="nav-gallery">GALLERY</a>
             <a href="#" id="nav-about">INFO</a>
           </div>
         </div>
@@ -49,7 +50,15 @@
       </div>
 
       <!-- Product grid will be injected here -->
-      <div id="products-grid-container" class="products-grid"></div>
+      <div id="products-section">
+        <div id="products-grid-container" class="products-grid"></div>
+      </div>
+
+      <!-- GALLERY SECTION (Hidden by default) -->
+      <div id="gallery-section" class="gallery-section" style="display: none;">
+        <h2 class="gallery-title">Gallery</h2>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
 
       <!-- Info / brand story section -->
       <div
@@ -156,6 +165,31 @@
             <i class="fas fa-info-circle"></i> Browse only — for inquiries,
             contact us.
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY MODAL OVERLAY -->
+    <div id="gallery-modal" class="gallery-modal-overlay">
+      <div class="gallery-modal-container">
+        <button class="gallery-close-btn" id="gallery-close-btn">&times;</button>
+        <div class="gallery-modal-content">
+          <img id="gallery-modal-image" src="" alt="Shoe image" />
+        </div>
+        <div class="gallery-modal-footer">
+          <button id="gallery-whatsapp-btn" class="whatsapp-message-btn">
+            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL IMAGE VIEWER MODAL -->
+    <div id="image-viewer-modal" class="image-viewer-modal">
+      <div class="image-viewer-container">
+        <button class="image-viewer-close" id="image-viewer-close">&times;</button>
+        <div class="image-viewer-content">
+          <img id="image-viewer-image" src="" alt="Full image view" />
         </div>
       </div>
     </div>
