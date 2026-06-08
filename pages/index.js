@@ -321,7 +321,7 @@
           .map(
             (product) => `
       <div class="product-card" data-product-id="${product.id}">
-        <div class="product-img">
+        <div class="product-img" data-image-url="${product.imageUrl}" data-product-name="${product.name}">
           <img src="${product.imageUrl}" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e8dccc/8b5a3c?text=No+Image';">
         </div>
         <div class="product-info">
@@ -337,9 +337,21 @@
           )
           .join("");
 
-        // attach click event to each product card
+        // attach click event to product images for full view
+        document.querySelectorAll(".product-img").forEach((img) => {
+          img.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const imageUrl = img.getAttribute("data-image-url");
+            const productName = img.getAttribute("data-product-name");
+            openImageViewer(imageUrl, productName);
+          });
+        });
+
+        // attach click event to each product card for details modal
         document.querySelectorAll(".product-card").forEach((card) => {
           card.addEventListener("click", (e) => {
+            // Don't open modal if clicking on the image (already handled)
+            if (e.target.closest(".product-img")) return;
             const id = parseInt(card.getAttribute("data-product-id"));
             const product = footwearCollection.find((p) => p.id === id);
             if (product) {
@@ -410,17 +422,43 @@
       // Navigation smooth scroll
       document.getElementById("nav-home")?.addEventListener("click", (e) => {
         e.preventDefault();
+        // Hide gallery section if visible
+        const gallerySection = document.getElementById("gallery-section");
+        const productsSection = document.getElementById("products-section");
+        if (gallerySection) gallerySection.style.display = "none";
+        if (productsSection) productsSection.style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
       document
         .getElementById("nav-collection")
         ?.addEventListener("click", (e) => {
           e.preventDefault();
+          // Hide gallery section if visible
+          const gallerySection = document.getElementById("gallery-section");
+          const productsSection = document.getElementById("products-section");
+          if (gallerySection) gallerySection.style.display = "none";
+          if (productsSection) productsSection.style.display = "block";
           const grid = document.getElementById("products-grid-container");
           if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
         });
+      document.getElementById("nav-gallery")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Hide products section and show gallery section
+        const gallerySection = document.getElementById("gallery-section");
+        const productsSection = document.getElementById("products-section");
+        if (productsSection) productsSection.style.display = "none";
+        if (gallerySection) {
+          gallerySection.style.display = "block";
+          gallerySection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
       document.getElementById("nav-about")?.addEventListener("click", (e) => {
         e.preventDefault();
+        // Hide gallery section if visible
+        const gallerySection = document.getElementById("gallery-section");
+        const productsSection = document.getElementById("products-section");
+        if (gallerySection) gallerySection.style.display = "none";
+        if (productsSection) productsSection.style.display = "block";
         const aboutDiv = document.getElementById("about-info");
         if (aboutDiv)
           aboutDiv.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -436,6 +474,134 @@
           closeModal();
         }
       });
+
+      // ======================== IMAGE VIEWER (Full size images) ========================
+      const imageViewerModal = document.getElementById("image-viewer-modal");
+      const imageViewerClose = document.getElementById("image-viewer-close");
+      const imageViewerImage = document.getElementById("image-viewer-image");
+
+      function openImageViewer(imageUrl, productName) {
+        imageViewerImage.src = imageUrl;
+        imageViewerImage.alt = productName;
+        imageViewerImage.onerror = function () {
+          this.onerror = null;
+          this.src = "https://placehold.co/600x600/e8dccc/8b5a3c?text=No+Image";
+        };
+        imageViewerModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImageViewer() {
+        imageViewerModal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      imageViewerClose.addEventListener("click", closeImageViewer);
+      imageViewerModal.addEventListener("click", (e) => {
+        if (e.target === imageViewerModal) closeImageViewer();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && imageViewerModal.classList.contains("active")) {
+          closeImageViewer();
+        }
+      });
+
+      // ======================== GALLERY SECTION ========================
+      // Gallery items data - using shoe images from collection
+      const galleryImages = footwearCollection.map((product) => ({
+        id: product.id,
+        name: product.name,
+        imageUrl: product.imageUrl,
+      }));
+
+      const galleryGrid = document.getElementById("gallery-grid");
+      const galleryModal = document.getElementById("gallery-modal");
+      const galleryCloseBtn = document.getElementById("gallery-close-btn");
+      const galleryModalImage = document.getElementById("gallery-modal-image");
+      const galleryWhatsappBtn = document.getElementById("gallery-whatsapp-btn");
+
+      let currentGalleryImage = null;
+
+      // Render gallery grid
+      function renderGallery() {
+        if (!galleryGrid) return;
+
+        galleryGrid.innerHTML = galleryImages
+          .map(
+            (img) => `
+          <div class="gallery-item" data-gallery-id="${img.id}">
+            <img src="${img.imageUrl}" alt="${img.name}" onerror="this.onerror=null; this.src='https://placehold.co/220x220/e8dccc/8b5a3c?text=No+Image';">
+          </div>
+        `,
+          )
+          .join("");
+
+        // Attach click events to gallery items
+        document.querySelectorAll(".gallery-item").forEach((item) => {
+          item.addEventListener("click", () => {
+            const id = parseInt(item.getAttribute("data-gallery-id"));
+            const image = galleryImages.find((img) => img.id === id);
+            if (image) {
+              openGalleryModal(image);
+            }
+          });
+        });
+      }
+
+      // Open gallery modal
+      function openGalleryModal(image) {
+        currentGalleryImage = image;
+        galleryModalImage.src = image.imageUrl;
+        galleryModalImage.alt = image.name;
+        galleryModalImage.onerror = function () {
+          this.onerror = null;
+          this.src = "https://placehold.co/400x400/e8dccc/8b5a3c?text=No+Image";
+        };
+        galleryModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      // Close gallery modal
+      function closeGalleryModal() {
+        galleryModal.classList.remove("active");
+        document.body.style.overflow = "";
+        currentGalleryImage = null;
+      }
+
+      // Generate WhatsApp message link
+      galleryWhatsappBtn.addEventListener("click", () => {
+        if (!currentGalleryImage) return;
+
+        const phoneNumber = "2347033623329"; // +234 703 362 3329
+        const shoeName = currentGalleryImage.name;
+        const shoeImageUrl = `https://pixies-sama.github.io/newsomethingshoes.git.io/${currentGalleryImage.imageUrl}`;
+
+        // WhatsApp message template
+        const message = `Hi! I'm interested in the *${shoeName}* shoe. 👟\n\nImage: ${shoeImageUrl}`;
+
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+
+        // Create WhatsApp link
+        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        // Open in new tab
+        window.open(whatsappLink, "_blank");
+      });
+
+      // Gallery modal close events
+      galleryCloseBtn.addEventListener("click", closeGalleryModal);
+      galleryModal.addEventListener("click", (e) => {
+        if (e.target === galleryModal) closeGalleryModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && galleryModal.classList.contains("active")) {
+          closeGalleryModal();
+        }
+      });
+
+      // Render gallery on page load
+      renderGallery();
 
       // initial render
       renderProducts();
