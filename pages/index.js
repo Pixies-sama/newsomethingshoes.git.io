@@ -113,7 +113,7 @@
         {
           id: 8,
           name: "Velvet Puff Slide",
-          gender: "Women",
+          gender: "Unisex",
           price: 69,
           description:
             "Plush velvet slide with memory foam padding — lounge in luxury.",
@@ -123,7 +123,7 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/b2/c8/64/b2c8641deef3d672b3baf91f606c60e2.jpg",
         },
         {
           id: 9,
@@ -176,7 +176,7 @@
         {
           id: 12,
           name: "Velvet Puff Slide",
-          gender: "Women",
+          gender: "Men",
           price: 69,
           description:
             "Plush velvet slide with memory foam padding — lounge in luxury.",
@@ -186,12 +186,12 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/474x/d2/b8/20/d2b82036023a8b4c6953cf30bdce32a1.jpg",
         },
         {
           id: 13,
           name: "Velvet Puff Slide",
-          gender: "Women",
+          gender: "Men",
           price: 69,
           description:
             "Plush velvet slide with memory foam padding — lounge in luxury.",
@@ -201,7 +201,7 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/2f/76/47/2f76478500de8a1e275a92c7fef7140e.jpg",
         },
         {
           id: 14,
@@ -216,7 +216,7 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/88/2a/1a/882a1a6129d0fc777719b0914d5e2592.jpg",
         },
         {
           id: 15,
@@ -231,7 +231,7 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/b8/fb/28/b8fb28da53e2a85cee56554974f7c7f6.jpg",
         },
         {
           id: 16,
@@ -246,12 +246,12 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/d9/f8/39/d9f8397ddd4302a0667299ec34fe8488.jpg",
         },
         {
           id: 17,
           name: "Velvet Puff Slide",
-          gender: "Women",
+          gender: "Unisex",
           price: 69,
           description:
             "Plush velvet slide with memory foam padding — lounge in luxury.",
@@ -261,7 +261,7 @@
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/a5/de/e0/a5dee0ad0119f4c5b923ff43f91fbab4.jpg",
         },
         {
           id: 18,
@@ -269,14 +269,74 @@
           gender: "Women",
           price: 69,
           description:
-            "Plush velvet slide with memory foam padding — lounge in luxury.",
+            "A double foreign x shoe full of comfort and eligiance",
           specs: [
             "Memory foam footbed",
             "Velvet upper",
             "Indoor/outdoor sole",
             "Slip-resistant",
           ],
-          imageUrl: "images/shoe1.webp",
+          imageUrl: "https://i.pinimg.com/736x/fe/23/83/fe23835f9bd716f30aa57fe6e9f8d789.jpg",
+        },
+        {
+          id: 18,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "A double foreign x shoe full of comfort and eligiance",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "https://i.pinimg.com/736x/2f/ee/1d/2fee1dd2a08c978cc0a44db24dc36de1.jpg",
+        },
+        {
+          id: 18,
+          name: "Velvet Puff Slide",
+          gender: "Mem",
+          price: 69,
+          description:
+            "A double foreign x shoe full of comfort and eligiance",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "https://i.pinimg.com/736x/7a/d0/b9/7ad0b927c387acf5cc621d2c27a5d1c9.jpg",
+        },
+        {
+          id: 18,
+          name: "Velvet Puff Slide",
+          gender: "Women",
+          price: 69,
+          description:
+            "A double foreign x shoe full of comfort and eligiance",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "https://i.pinimg.com/1200x/58/4b/67/584b679a75530553597588db96f0af53.jpg",
+        },
+        {
+          id: 18,
+          name: "Velvet Puff Slide",
+          gender: "Mem",
+          price: 69,
+          description:
+            "A double foreign x shoe full of comfort and eligiance",
+          specs: [
+            "Memory foam footbed",
+            "Velvet upper",
+            "Indoor/outdoor sole",
+            "Slip-resistant",
+          ],
+          imageUrl: "https://i.pinimg.com/736x/b3/4d/f2/b34df2c82beecc3971e34df7c6a910f9.jpg",
         },
       ];
 
@@ -574,7 +634,7 @@
 
         const phoneNumber = "2347033623329"; // +234 703 362 3329
         const shoeName = currentGalleryImage.name;
-        const shoeImageUrl = `https://pixies-sama.github.io/newsomethingshoes.git.io/${currentGalleryImage.imageUrl}`;
+        const shoeImageUrl = `https://newshoes-zeta.vercel.app/${currentGalleryImage.imageUrl}`;
 
         // WhatsApp message template
         const message = `Hi! I'm interested in the *${shoeName}* shoe. 👟\n\nImage: ${shoeImageUrl}`;

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>New Something Footies | Footwear Archive</title>
+    <title>New Something Shoes | Footwear Archive</title>
     <link rel="icon" href="./images/logo.webp" />
     <link rel="stylesheet" href="./style/index.css" />
     <link
@@ -23,7 +23,7 @@
       <header class="site-header">
         <div class="nav-wrapper">
           <div class="logo-area">
-            <span class="logo-brand">NEW SOMETHING <span>FOOTIES</span></span>
+            <span class="logo-brand">NEW SOMETHING <span>Shoes</span></span>
           </div>
           <div class="nav-links">
             <a href="#" id="nav-home">HOME</a>
@@ -35,13 +35,12 @@
       </header>
 
       <section class="hero">
-        <h1>New Something Footies</h1>
+        <h1>New Something Shoes</h1>
         <div class="hero-tagline">
           Where comfort meets raw expression — footwear for the renegade spirit.
         </div>
       </section>
 
-      <!-- Filter section (women / men / unisex) -->
       <div class="filter-bar">
         <div class="filter-pill active" data-filter="all">ALL</div>
         <div class="filter-pill" data-filter="Women">WOMEN</div>
@@ -49,58 +48,35 @@
         <div class="filter-pill" data-filter="Unisex">UNISEX</div>
       </div>
 
-      <!-- Product grid will be injected here -->
       <div id="products-section">
         <div id="products-grid-container" class="products-grid"></div>
       </div>
 
-      <!-- GALLERY SECTION (Hidden by default) -->
-      <div id="gallery-section" class="gallery-section" style="display: none;">
+      <div id="gallery-section" class="gallery-section" style="display: none">
         <h2 class="gallery-title">Gallery</h2>
         <div id="gallery-grid" class="gallery-grid"></div>
       </div>
 
-      <!-- Info / brand story section -->
-      <div
-        id="about-info"
-        style="
-          margin: 2rem 0 3rem;
-          background: #fff7f0;
-          border-radius: 32px;
-          padding: 2rem;
-          border: 1px solid #f0e2d6;
-        "
-      >
-        <div
-          style="
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: space-between;
-          "
-        >
-          <div style="flex: 1; min-width: 180px">
-            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
-              <i class="fas fa-envelope"></i> CONTACT
-            </h3>
-            <p style="color: #3d3d4a">
+      <div id="about-info" class="ethos-section">
+        <div class="ethos-container">
+          <div class="ethos-column">
+            <h3 class="ethos-title"><i class="fas fa-envelope"></i> CONTACT</h3>
+            <p class="ethos-text">
               omoloyehassan12@gmail.com<br />+234 703 362 3329
             </p>
           </div>
-          <div style="flex: 1; min-width: 180px">
-            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
-              <i class="fas fa-leaf"></i> OUR ETHOS
-            </h3>
-            <p>
+          <div class="ethos-column">
+            <h3 class="ethos-title"><i class="fas fa-leaf"></i> OUR ETHOS</h3>
+            <p class="ethos-text">
               Handcrafted silhouettes, vegan leather options & limited edition
               drops. Every pair tells a story.
             </p>
           </div>
-          <div style="flex: 1; min-width: 180px">
-            <h3 style="color: #b45f3b; margin-bottom: 0.7rem">
+          <div class="ethos-column">
+            <h3 class="ethos-title">
               <i class="fas fa-shoe-prints"></i> BESPOKE SERVICE
             </h3>
-            <p>
+            <p class="ethos-text">
               Explore our lookbook — no checkout, pure inspiration. Contact for
               exclusive releases.
             </p>
@@ -108,11 +84,8 @@
         </div>
       </div>
 
-      <!-- FOLLOW section -->
-      <div style="text-align: center; margin: 2rem 0 1rem">
-        <h3 style="font-weight: 600; letter-spacing: -0.2px">
-          FOLLOW THE PACE
-        </h3>
+      <div class="follow-section">
+        <h3 class="follow-title">FOLLOW THE PACE</h3>
         <div class="follow-icons">
           <i class="fab fa-instagram"></i>
           <i class="fab fa-tiktok"></i>
@@ -123,12 +96,13 @@
       </div>
 
       <footer class="site-footer">
-        <span>© 2026 NEW SOUL FOOTIES . ALL RIGHTS RESERVED.</span>
-        <div style="margin-top: 0.5rem">🖥️ ✂️ 🎵</div>
+        <span class="footer-rights"
+          >© 2026 NEW SOUL FOOTIES . ALL RIGHTS RESERVED.</span
+        >
+        <div class="footer-emojis">🖥️ ✂️ 🎵</div>
       </footer>
     </div>
 
-    <!-- MODAL POPUP STRUCTURE (product details) -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-container">
         <div class="modal-header">
@@ -139,13 +113,7 @@
           <div class="modal-img" id="modal-icon-area">
             <img src="" alt="Product image" id="modal-product-image" />
           </div>
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: baseline;
-            "
-          >
+          <div class="modal-meta-row">
             <span class="detail-price" id="modal-price">$0</span>
             <span class="detail-gender" id="modal-gender">Women</span>
           </div>
@@ -169,10 +137,11 @@
       </div>
     </div>
 
-    <!-- GALLERY MODAL OVERLAY -->
     <div id="gallery-modal" class="gallery-modal-overlay">
       <div class="gallery-modal-container">
-        <button class="gallery-close-btn" id="gallery-close-btn">&times;</button>
+        <button class="gallery-close-btn" id="gallery-close-btn">
+          &times;
+        </button>
         <div class="gallery-modal-content">
           <img id="gallery-modal-image" src="" alt="Shoe image" />
         </div>
@@ -184,10 +153,11 @@
       </div>
     </div>
 
-    <!-- FULL IMAGE VIEWER MODAL -->
     <div id="image-viewer-modal" class="image-viewer-modal">
       <div class="image-viewer-container">
-        <button class="image-viewer-close" id="image-viewer-close">&times;</button>
+        <button class="image-viewer-close" id="image-viewer-close">
+          &times;
+        </button>
         <div class="image-viewer-content">
           <img id="image-viewer-image" src="" alt="Full image view" />
         </div>
