@@ -6,162 +6,188 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>New Something Shoes | Footwear Archive</title>
-    <link rel="icon" href="./images/logo.webp" />
-    <link rel="stylesheet" href="./style/index.css" />
+    <title>NEW SOMETHING Shoes | Premium Footwear Collection</title>
+    <link rel="icon" href="./images/newshoecrop-removebg-preview (1).png" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="stylesheet" href="./style/index.css" />
   </head>
   <body>
-    <div class="container">
-      <header class="site-header">
-        <div class="nav-wrapper">
-          <div class="logo-area">
-            <span class="logo-brand">NEW SOMETHING <span>Shoes</span></span>
-          </div>
-          <div class="nav-links">
-            <a href="#" id="nav-home">HOME</a>
-            <a href="#" id="nav-collection">COLLECTION</a>
-            <a href="#" id="nav-gallery">GALLERY</a>
-            <a href="#" id="nav-about">INFO</a>
-          </div>
+    <div class="luxury-container">
+      <header class="luxury-header">
+        <div class="brand-logo-area">
+          <img
+            src="./images/newshoecrop-removebg-preview (1).png"
+            alt="NS ARCHIVE LOGO"
+            class="ns-archive-brand-logo"
+          />
+          <a href="#" id="nav-home" class="brand-title-link"
+            >NEW SOMETHING <span>Shoes</span></a
+          >
         </div>
+        <nav class="nav-links">
+          <a href="#" id="nav-collection">SIGNATURES</a>
+          <a href="#" id="nav-gallery">GALLERY</a>
+          <a href="#" id="nav-about">INFO DESK</a>
+        </nav>
       </header>
 
-      <section class="hero">
-        <h1>New Something Shoes</h1>
-        <div class="hero-tagline">
-          Where comfort meets raw expression — footwear for the renegade spirit.
+      <main id="products-section" class="showcase-view">
+        <div class="editorial-slider-grid">
+          <div class="slider-visual-column">
+            <div class="main-image-viewport">
+              <div id="image-skeleton" class="skeleton-shimmer"></div>
+              <img
+                id="slider-main-image"
+                src=""
+                alt="Footwear Presentation"
+                class="fade-element"
+              />
+            </div>
+
+            <div class="slider-arrows">
+              <button
+                id="prev-slide-btn"
+                class="nav-arrow-btn"
+                aria-label="Previous Slide"
+              >
+                &larr;
+              </button>
+              <button
+                id="next-slide-btn"
+                class="nav-arrow-btn"
+                aria-label="Next Slide"
+              >
+                &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="slider-details-column fade-element"
+            id="slider-details-tray"
+          >
+            <span id="slider-category" class="luxury-meta-tag"
+              >SIGNATURE SERIE</span
+            >
+            <h1 id="slider-title" class="luxury-item-title">Loading...</h1>
+            <div id="slider-price" class="luxury-item-price">₦0</div>
+
+            <hr class="divider-line" />
+
+            <p id="slider-description" class="luxury-item-description"></p>
+            <ul id="slider-specs" class="luxury-spec-list"></ul>
+
+            <div class="action-integration-row">
+              <button id="slider-inquire-btn" class="editorial-action-btn">
+                INQUIRE VIA WHATSAPP <i class="fab fa-whatsapp"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <section class="lookbook-strip-section">
+          <h3 class="strip-section-title">THE SIGNATURE SPOTLIGHT (TOP 5)</h3>
+          <div id="thumbnail-strip-container" class="thumbnail-strip"></div>
+        </section>
+      </main>
+
+      <section id="gallery-grid-section" class="luxury-gallery-section">
+        <div class="section-header-minimal">
+          <h2>THE FULL GALLERY COLLECTION</h2>
+          <p>
+            Tap any preview canvas below to scale the visual workspace into an
+            expanded review frame with direct WhatsApp connections.
+          </p>
+        </div>
+
+        <div class="filter-menu-bar">
+          <button class="filter-tab active" data-filter="all">
+            ALL DESIGNS
+          </button>
+          <button class="filter-tab" data-filter="Men">MEN</button>
+          <button class="filter-tab" data-filter="Women">WOMEN</button>
+          <button class="filter-tab" data-filter="Unisex">UNISEX</button>
+        </div>
+
+        <div id="gallery-cards-grid" class="boutique-lookbook-grid"></div>
+
+        <div id="expansion-trigger-box" class="expansion-wrapper">
+          <button id="show-all-btn" class="secondary-expand-btn">
+            SHOW MORE DESIGNS
+          </button>
         </div>
       </section>
 
-      <div class="filter-bar">
-        <div class="filter-pill active" data-filter="all">ALL</div>
-        <div class="filter-pill" data-filter="Women">WOMEN</div>
-        <div class="filter-pill" data-filter="Men">MEN</div>
-        <div class="filter-pill" data-filter="Unisex">UNISEX</div>
-      </div>
-
-      <div id="products-section">
-        <div id="products-grid-container" class="products-grid"></div>
-      </div>
-
-      <div id="gallery-section" class="gallery-section" style="display: none">
-        <h2 class="gallery-title">Gallery</h2>
-        <div id="gallery-grid" class="gallery-grid"></div>
-      </div>
-
-      <div id="about-info" class="ethos-section">
-        <div class="ethos-container">
-          <div class="ethos-column">
-            <h3 class="ethos-title"><i class="fas fa-envelope"></i> CONTACT</h3>
-            <p class="ethos-text">
-              omoloyehassan12@gmail.com<br />+234 703 362 3329
-            </p>
-          </div>
-          <div class="ethos-column">
-            <h3 class="ethos-title"><i class="fas fa-leaf"></i> OUR ETHOS</h3>
-            <p class="ethos-text">
-              Handcrafted silhouettes, vegan leather options & limited edition
-              drops. Every pair tells a story.
-            </p>
-          </div>
-          <div class="ethos-column">
-            <h3 class="ethos-title">
-              <i class="fas fa-shoe-prints"></i> BESPOKE SERVICE
-            </h3>
-            <p class="ethos-text">
-              Explore our lookbook — no checkout, pure inspiration. Contact for
-              exclusive releases.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="follow-section">
-        <h3 class="follow-title">FOLLOW THE PACE</h3>
-        <div class="follow-icons">
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-tiktok"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fas fa-headphones"></i>
-          <i class="fas fa-scissors"></i>
-        </div>
-      </div>
-
-      <footer class="site-footer">
-        <span class="footer-rights"
-          >© 2026 NEW SOUL FOOTIES . ALL RIGHTS RESERVED.</span
-        >
-        <div class="footer-emojis">🖥️ ✂️ 🎵</div>
-      </footer>
-    </div>
-
-    <div id="product-modal" class="modal-overlay">
-      <div class="modal-container">
-        <div class="modal-header">
-          <h3 id="modal-product-name">Product Name</h3>
-          <button class="close-modal" id="close-modal-btn">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-img" id="modal-icon-area">
-            <img src="" alt="Product image" id="modal-product-image" />
-          </div>
-          <div class="modal-meta-row">
-            <span class="detail-price" id="modal-price">$0</span>
-            <span class="detail-gender" id="modal-gender">Women</span>
-          </div>
-          <p class="detail-description" id="modal-description">
-            Premium comfort meets bold design.
-          </p>
-          <ul class="specs-list" id="modal-specs">
-            <li>
-              <i class="fas fa-ruler-combined"></i>
-              <span>True to size / Premium materials</span>
-            </li>
-            <li>
-              <i class="fas fa-palette"></i> <span>Exclusive colorway</span>
-            </li>
-          </ul>
-          <div class="info-badge">
-            <i class="fas fa-info-circle"></i> Browse only — for inquiries,
-            contact us.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="gallery-modal" class="gallery-modal-overlay">
-      <div class="gallery-modal-container">
-        <button class="gallery-close-btn" id="gallery-close-btn">
-          &times;
-        </button>
-        <div class="gallery-modal-content">
-          <img id="gallery-modal-image" src="" alt="Shoe image" />
-        </div>
-        <div class="gallery-modal-footer">
-          <button id="gallery-whatsapp-btn" class="whatsapp-message-btn">
-            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+      <div id="product-modal" class="modal-overlay">
+        <div class="minimal-viewer-container">
+          <button
+            class="close-modal"
+            id="close-modal-btn"
+            aria-label="Close details"
+          >
+            &times;
           </button>
-        </div>
-      </div>
-    </div>
 
-    <div id="image-viewer-modal" class="image-viewer-modal">
-      <div class="image-viewer-container">
-        <button class="image-viewer-close" id="image-viewer-close">
-          &times;
-        </button>
-        <div class="image-viewer-content">
-          <img id="image-viewer-image" src="" alt="Full image view" />
+          <div class="minimal-image-stage">
+            <img
+              id="modal-product-image"
+              src=""
+              alt="Expanded View Workspace"
+            />
+          </div>
+
+          <div class="minimal-action-stage">
+            <button class="btn-minimal-whatsapp" id="modal-inquire-btn">
+              <span>INQUIRE ABOUT THIS DESIGN VIA WHATSAPP</span>
+              <i class="fab fa-whatsapp"></i>
+            </button>
+          </div>
         </div>
       </div>
+
+      <section id="about-info" class="brand-manifesto">
+        <div class="manifesto-grid">
+          <div class="manifesto-col">
+            <h3>DIRECT INQUIRIES</h3>
+            <p>omoloyehassan12@gmail.com</p>
+            <p>+234 703 362 3329</p>
+          </div>
+          <div class="manifesto-col">
+            <h3>OUR PHILOSOPHY</h3>
+            <p>
+              Handcrafted footwear configurations, exceptional treatments, and
+              durable compositions. Every model serves as a direct personal
+              story piece.
+            </p>
+          </div>
+          <div class="manifesto-col">
+            <h3>CONCIERGE DESK</h3>
+            <p>
+              Pure visual selection without noisy checkout cards. Tap any detail
+              card link to message our service line on WhatsApp to check stock
+              levels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="boutique-footer">
+        <div class="editorial-socials">
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>© 2026 NEW SOMETHING SHOES. ALL RIGHTS RESERVED.</p>
+      </footer>
     </div>
 
     <script src="./pages/index.js"></script>
