@@ -58,11 +58,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        // secure must be true over HTTPS so browsers don't block the cookie
-        secure: isProduction, 
-        // none allows cross-site tracking between your Vercel frontend and live backend domain
-        sameSite: isProduction ? 'none' : 'lax', 
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week duration
+        // MUST be true on Render to allow HTTPS transmission
+        secure: true, 
+        // MUST be 'none' to let Vercel read the cookie from your Render backend
+        sameSite: 'none', 
+        maxAge: 1000 * 60 * 60 * 24 * 7 
     }
 }));
 
