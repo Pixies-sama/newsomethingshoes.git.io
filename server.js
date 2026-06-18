@@ -28,11 +28,13 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
+// UPDATED CORS CONFIGURATION FOR LOCALSTORAGE & HEADERS
 app.use(cors({
     origin: process.env.ALLOWED_DASHBOARD_ORIGIN, 
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    // CRITICAL: You must explicitly add 'Authorization' here so the browser allows the Bearer token!
+    allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
 app.use(express.json());
