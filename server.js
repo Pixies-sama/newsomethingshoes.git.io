@@ -29,12 +29,7 @@ const pool = new Pool({
 });
 
 // COMPLETELY UNLOCKED CORS FOR DUAL FRONTENDS (Dashboard & Main Site)
-app.use(cors({
-    origin: true, // Dynamically allows any incoming origin to bypass CORS blocks
-    credentials: true,
-    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'] // Whitelists your Bearer auth tokens
-}));
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
