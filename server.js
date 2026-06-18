@@ -28,12 +28,8 @@ const pool = new Pool({
 });
 
 // Basic, clean CORS configuration
-app.use(cors({
-    origin: true, 
-    credentials: true,
-    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'] // Only basic headers needed, no Authorization header!
-}));
+// Clean, wide-open CORS for public data access
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
