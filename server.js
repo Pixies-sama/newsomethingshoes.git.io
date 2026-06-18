@@ -1,177 +1,198 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
+const { Pool } = require('pg');
 const session = require('express-session');
+const PostgresStore = require('connect-pg-simple')(session);
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+const bcrypt = require('bcrypt');
+
+// ENVIRONMENT VARIABLES CHECK
+const REQUIRED_ENV_VARS = [
+    'DATABASE_URL', 
+    'SESSION_SECRET',
+    'CLOUDINARY_CLOUD_NAME', 
+    'CLOUDINARY_API_KEY', 
+    'CLOUDINARY_API_SECRET',
+    'ALLOWED_DASHBOARD_ORIGIN'
+];
+REQUIRED_ENV_VARS.forEach(varName => {
+    if (!process.env[varName]) {
+        console.error(`CRITICAL CONFIGURATION ERROR: Missing variable [${varName}] in .env`);
+        process.exit(1);
+    }
+});
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
-// Set up directory references
-const uploadDir = path.join(__dirname, 'public/uploads');
-const dbPath = path.join(__dirname, 'database.json');
-
-if (!fs.existsSync(uploadDir)){
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Database Read/Write Utility Helpers
-const readDatabase = () => {
-  try {
-    if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, JSON.stringify([]));
-    return JSON.parse(fs.readFileSync(dbPath, 'utf8') || '[]');
-  } catch (err) {
-    return [];
-  }
-};
-
-const writeDatabase = (data) => {
-  fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf8');
-};
-
-// Multer Image Configuration Engine (Handles multiple uploads flawlessly)
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'footwear-' + uniqueSuffix + path.extname(file.originalname));
-  }
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
-const upload = multer({ storage });
 
-// Parsing & Static Asset Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'fallback-secret-key-keep-it-safe',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 1000 * 60 * 60 * 2 }
+// CORS CONFIGURATION FOR PRODUCTION COOKIES
+app.use(cors({
+    origin: process.env.ALLOWED_DASHBOARD_ORIGIN, 
+    credentials: true,
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Route Protection Guard
-const requireAuth = (req, res, next) => {
-  if (req.session && req.session.isAdmin) return next();
-  res.redirect('/admin');
+// Required to pass secure cookies when deployed on cloud infrastructure (Render, Railway, Heroku, etc.)
+app.set('trust proxy', 1); 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// COOKIE SESSION ENGINE FOR PRODUCTION
+const isProduction = process.env.NODE_ENV === 'production';
+
+app.use(session({
+    store: new PostgresStore({
+        pool: pool,
+        tableName: 'session'
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        // secure must be true over HTTPS so browsers don't block the cookie
+        secure: isProduction, 
+        // none allows cross-site tracking between your Vercel frontend and live backend domain
+        sameSite: isProduction ? 'none' : 'lax', 
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week duration
+    }
+}));
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// Guard Middleware
+const requireSessionAuth = (req, res, next) => {
+    if (req.session && req.session.adminId) {
+        return next();
+    }
+    return res.status(401).json({ success: false, message: "Unauthorized dashboard request." });
 };
 
-// ==================== VIEW ROUTING ====================
-app.get('/admin', (req, res) => {
-  if (req.session && req.session.isAdmin) return res.redirect('/admin/dashboard');
-  res.sendFile(path.join(__dirname, 'src/views/login.html'));
-});
+// ==================== ADMINISTRATIVE ROUTING ====================
 
-app.get('/admin/dashboard', requireAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/views/dashboard.html'));
-});
-
-// ==================== REST API ENDPOINTS ====================
-app.post('/api/auth/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
-    req.session.isAdmin = true;
-    return res.json({ success: true });
-  }
-  res.status(401).json({ success: false, message: "Invalid administrator credentials." });
-});
-
-app.get('/admin/logout', (req, res) => {
-  req.session.destroy(() => res.redirect('/admin'));
-});
-
-// Fetch all elements for UI mapping
-app.get('/api/products', (req, res) => {
-  res.json(readDatabase());
-});
-
-// ACTIVE MULTI-UPLOAD CONTROLLER
-app.post('/api/products/upload', requireAuth, upload.array('footwearImages', 5), (req, res) => {
-  try {
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ success: false, message: "At least one display image is required." });
+// LOGIN ROUTE (Creates Secure Session)
+app.post('/api/auth/login', async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(400).json({ success: false, message: "Credentials missing." });
     }
+    try {
+        const query = 'SELECT * FROM admins WHERE username = $1';
+        const result = await pool.query(query, [username.trim()]);
 
-    const { name, gender, price, description, specs } = req.body;
-    const localDb = readDatabase();
-    
-    // Map multiple upload entries into accessible URL array chains
-    const filePaths = req.files.map(file => `/uploads/${file.filename}`);
+        if (result.rows.length === 0) {
+            return res.status(401).json({ success: false, message: "Invalid credentials." });
+        }
 
-    const newProduct = {
-      id: localDb.length > 0 ? localDb[localDb.length - 1].id + 1 : 1,
-      name: name.toUpperCase(),
-      gender,
-      price: parseFloat(price) || 0,
-      description,
-      specs: specs ? specs.split('\n').map(s => s.trim()).filter(Boolean) : [],
-      imageUrls: filePaths,
-      clicks: 0
-    };
+        const adminRecord = result.rows[0];
+        const match = await bcrypt.compare(password, adminRecord.password_hash);
 
-    localDb.push(newProduct);
-    writeDatabase(localDb);
-    
-    res.json({ success: true, data: newProduct });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Upload formatting processing failure." });
-  }
+        if (!match) {
+            return res.status(401).json({ success: false, message: "Invalid credentials." });
+        }
+
+        req.session.adminId = adminRecord.id;
+        res.json({ success: true, message: "Authenticated successfully." });
+    } catch (err) {
+        res.status(500).json({ success: false, message: "Server connection failure." });
+    }
 });
 
-// ACTIVE METRIC: Track Outbound WhatsApp Inquiry Clicks
-app.post('/api/products/:id/click', (req, res) => {
-  const localDb = readDatabase();
-  const product = localDb.find(p => p.id === parseInt(req.params.id));
-  
-  if (product) {
-    product.clicks = (product.clicks || 0) + 1;
-    writeDatabase(localDb);
-    return res.json({ success: true, clicks: product.clicks });
-  }
-  res.status(404).json({ success: false, message: "Item row not found." });
+// CHECK STATUS ROUTE (With explicit cache busting headers)
+app.get('/api/auth/status', (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    if (req.session && req.session.adminId) {
+        return res.json({ authenticated: true });
+    }
+    res.json({ authenticated: false });
 });
 
-// ACTIVE METRIC CONFIGURATION: Reset tracking history back to zero
-app.post('/api/products/:id/reset', requireAuth, (req, res) => {
-  const localDb = readDatabase();
-  const product = localDb.find(p => p.id === parseInt(req.params.id));
-  
-  if (product) {
-    product.clicks = 0;
-    writeDatabase(localDb);
-    return res.json({ success: true, message: "Metrics cleared." });
-  }
-  res.status(404).json({ success: false, message: "Item not found." });
-});
-
-// REMOVE ASSET: Complete permanent row drop and server image file wipe
-app.delete('/api/products/:id', requireAuth, (req, res) => {
-  let localDb = readDatabase();
-  const product = localDb.find(p => p.id === parseInt(req.params.id));
-  
-  if (!product) {
-    return res.status(404).json({ success: false, message: "Item not found." });
-  }
-
-  // Erase associated image files from local disk directory space
-  if (product.imageUrls && Array.isArray(product.imageUrls)) {
-    product.imageUrls.forEach(imgPath => {
-      const fullPath = path.join(__dirname, 'public', imgPath);
-      if (fs.existsSync(fullPath)) {
-        try { fs.unlinkSync(fullPath); } catch (e) { console.warn(`Could not drop file: ${fullPath}`); }
-      }
+// LOGOUT ROUTE
+app.post('/api/auth/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({ success: false });
+        res.clearCookie('connect.sid', {
+            secure: isProduction,
+            sameSite: isProduction ? 'none' : 'lax'
+        });
+        res.json({ success: true, message: "Logged out completely." });
     });
-  }
-
-  localDb = localDb.filter(p => p.id !== parseInt(req.params.id));
-  writeDatabase(localDb);
-
-  res.json({ success: true, message: "Asset completely deleted." });
 });
 
-app.listen(PORT, () => {
-  console.log(`\nServer active at http://localhost:${PORT}`);
-  console.log(`Admin panel: http://localhost:${PORT}/admin\n`);
+// ==================== CATALOG REST ENDPOINTS ====================
+
+app.get('/api/products', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM products ORDER BY id DESC');
+        res.json(result.rows.map(row => ({
+            id: row.id, name: row.name, gender: row.gender, price: parseFloat(row.price),
+            description: row.description, specs: row.specs || [], imageUrls: row.image_urls || [], clicks: row.clicks
+        })));
+    } catch (err) { res.status(500).json({ success: false }); }
 });
+
+app.post('/api/products/upload', requireSessionAuth, upload.array('footwearImages', 5), async (req, res) => {
+    try {
+        if (!req.files || req.files.length === 0) return res.status(400).json({ success: false, message: "Assets missing." });
+        const { name, gender, price, description, specs } = req.body;
+
+        const uploadPromises = req.files.map(file => {
+            return new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream({ folder: 'showroom' }, (error, result) => {
+                    if (error) return reject(error);
+                    resolve(result.secure_url);
+                });
+                uploadStream.end(file.buffer);
+            });
+        });
+        const cloudinaryUrls = await Promise.all(uploadPromises);
+        const specsArray = specs ? specs.split('\n').map(s => s.trim()).filter(Boolean) : [];
+
+        const result = await pool.query(
+            `INSERT INTO products (name, gender, price, description, specs, image_urls, clicks) VALUES ($1, $2, $3, $4, $5, $6, 0) RETURNING *`,
+            [name.toUpperCase(), gender || 'Unisex', parseFloat(price), description || '', specsArray, cloudinaryUrls]
+        );
+        res.json({ success: true, data: result.rows[0] });
+    } catch (error) { res.status(500).json({ success: false }); }
+});
+
+app.post('/api/products/:id/click', async (req, res) => {
+    try {
+        const result = await pool.query('UPDATE products SET clicks = clicks + 1 WHERE id = $1 RETURNING clicks', [parseInt(req.params.id)]);
+        res.json({ success: true, clicks: result.rows[0]?.clicks });
+    } catch (err) { res.status(500).json({ success: false }); }
+});
+
+app.post('/api/products/:id/reset', requireSessionAuth, async (req, res) => {
+    try {
+        await pool.query('UPDATE products SET clicks = 0 WHERE id = $1', [parseInt(req.params.id)]);
+        res.json({ success: true });
+    } catch (err) { res.status(500).json({ success: false }); }
+});
+
+app.delete('/api/products/:id', requireSessionAuth, async (req, res) => {
+    try {
+        const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [parseInt(req.params.id)]);
+        res.json({ success: !!result.rows.length });
+    } catch (err) { res.status(500).json({ success: false }); }
+});
+
+app.listen(PORT, () => console.log(`🚀 Live Production Engine active on port ${PORT}`));
