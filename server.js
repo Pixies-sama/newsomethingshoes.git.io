@@ -29,7 +29,12 @@ const pool = new Pool({
 });
 
 // COMPLETELY UNLOCKED CORS FOR DUAL FRONTENDS (Dashboard & Main Site)
-app.use(cors());
+app.use(cors({
+    origin: true, 
+    credentials: true,
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'] 
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,10 +48,20 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+// Runtime memory store for the active bcrypt token string
+let currentSessionToken = null;
+
 // Security Middleware checking the Header Bearer Token
 const requireBearerAuth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    if (authHeader === 'Bearer newsomething_secure_admin_prod_session_token') {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ success: false, message: "Missing token authorization header." });
+    }
+    
+    const token = authHeader.split(' ')[1];
+    
+    // Validate if token matches our current live memory token
+    if (currentSessionToken && token === currentSessionToken) {
         return next();
     }
     return res.status(401).json({ success: false, message: "Unauthorized dashboard request." });
@@ -54,7 +69,7 @@ const requireBearerAuth = (req, res, next) => {
 
 // ==================== ADMINISTRATIVE ROUTING ====================
 
-// LOGIN ROUTE
+// LOGIN ROUTE (Generates Bcrypt Token String)
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -75,8 +90,15 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
 
-        // Returns authorization token string straight to client localStorage
-        res.json({ success: true, token: "newsomething_secure_admin_prod_session_token" });
+        // Create a unique salt seed string using timestamp
+        const seedPayload = `${username.trim()}-${Date.now()}`;
+        const tokenHash = await bcrypt.hash(seedPayload, 10);
+        
+        // Save token to server memory
+        currentSessionToken = tokenHash;
+
+        // Send token string back to frontend JSON packet
+        res.json({ success: true, token: tokenHash });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server connection failure." });
     }
@@ -85,7 +107,12 @@ app.post('/api/auth/login', async (req, res) => {
 // CHECK STATUS ROUTE
 app.get('/api/auth/status', (req, res) => {
     const authHeader = req.headers['authorization'];
-    if (authHeader === 'Bearer newsomething_secure_admin_prod_session_token') {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.json({ authenticated: false });
+    }
+    
+    const token = authHeader.split(' ')[1];
+    if (currentSessionToken && token === currentSessionToken) {
         return res.json({ authenticated: true });
     }
     res.json({ authenticated: false });
@@ -93,6 +120,7 @@ app.get('/api/auth/status', (req, res) => {
 
 // LOGOUT ROUTE
 app.post('/api/auth/logout', (req, res) => {
+    currentSessionToken = null; // Clear server memory token
     res.json({ success: true, message: "Logged out completely." });
 });
 
@@ -154,4 +182,4 @@ app.delete('/api/products/:id', requireBearerAuth, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 Unlocked Open-CORS Production Engine active on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Secure Bcrypt-Token Engine running on port ${PORT}`));
