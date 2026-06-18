@@ -5,7 +5,6 @@ const { Pool } = require('pg');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const bcrypt = require('bcrypt');
-const crypto = require('crypto'); // Built-in node utility
 
 const REQUIRED_ENV_VARS = [
     'DATABASE_URL', 
@@ -28,22 +27,13 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
-// STABLE CORS SETUP FOR PREFLIGHT OPTIONS
+// Basic, clean CORS configuration
 app.use(cors({
     origin: true, 
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'] 
+    allowedHeaders: ['Content-Type'] // Only basic headers needed, no Authorization header!
 }));
-
-// Hand-coded OPTIONS preflight handler to explicitly catch and approve incoming checks instantly
-app.options('*', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    return res.sendStatus(204);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -57,24 +47,23 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Single master fallback runtime token 
-let staticRuntimeToken = "newsomething_master_admin_session_token_prod";
+// Static master text session token
+const masterTextToken = "newsomething_master_admin_session_token_prod";
 
-const requireBearerAuth = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ success: false, message: "Missing token authorization header." });
-    }
+// Security Middleware reading token directly from request text body or text query parameters
+const requireTextAuth = (req, res, next) => {
+    // Check query string (for GET/DELETE) or body payload (for POST)
+    const token = req.query.token || req.body.token;
     
-    const token = authHeader.split(' ')[1];
-    if (token === staticRuntimeToken) {
+    if (token === masterTextToken) {
         return next();
     }
-    return res.status(401).json({ success: false, message: "Unauthorized dashboard request." });
+    return res.status(401).json({ success: false, message: "Unauthorized dashboard text session." });
 };
 
 // ==================== ADMINISTRATIVE ROUTING ====================
 
+// LOGIN ROUTE
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -95,28 +84,25 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
 
-        // Instantly generate static string token instead of grinding CPU on bcrypt hashing
-        res.json({ success: true, token: staticRuntimeToken });
+        // Send back the plain text token in the JSON body response
+        res.json({ success: true, token: masterTextToken });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server connection failure." });
     }
 });
 
+// CHECK STATUS ROUTE - Parses the token completely out of the URL text parameters
 app.get('/api/auth/status', (req, res) => {
-    const authHeader = req.headers['authorization'];
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.json({ authenticated: false });
-    }
-    
-    const token = authHeader.split(' ')[1];
-    if (token === staticRuntimeToken) {
+    const token = req.query.token;
+    if (token === masterTextToken) {
         return res.json({ authenticated: true });
     }
     res.json({ authenticated: false });
 });
 
+// LOGOUT ROUTE
 app.post('/api/auth/logout', (req, res) => {
-    res.json({ success: true, message: "Logged out completely." });
+    res.json({ success: true, message: "Logged out." });
 });
 
 // ==================== CATALOG REST ENDPOINTS ====================
@@ -131,7 +117,11 @@ app.get('/api/products', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.post('/api/products/upload', requireBearerAuth, upload.array('footwearImages', 5), async (req, res) => {
+// Protected upload route (Reads token from multi-part body fields)
+app.post('/api/products/upload', upload.array('footwearImages', 5), (req, res, next) => {
+    // Multer populates req.body before running validation fields
+    requireTextAuth(req, res, next);
+}, async (req, res) => {
     try {
         if (!req.files || req.files.length === 0) return res.status(400).json({ success: false, message: "Assets missing." });
         const { name, gender, price, description, specs } = req.body;
@@ -163,18 +153,18 @@ app.post('/api/products/:id/click', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.post('/api/products/:id/reset', requireBearerAuth, async (req, res) => {
+app.post('/api/products/:id/reset', requireTextAuth, async (req, res) => {
     try {
         await pool.query('UPDATE products SET clicks = 0 WHERE id = $1', [parseInt(req.params.id)]);
         res.json({ success: true });
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.delete('/api/products/:id', requireBearerAuth, async (req, res) => {
+app.delete('/api/products/:id', requireTextAuth, async (req, res) => {
     try {
         const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [parseInt(req.params.id)]);
         res.json({ success: !!result.rows.length });
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 Stable Instant-Token Engine active on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Text-Based Session Engine active on port ${PORT}`));
