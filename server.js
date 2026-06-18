@@ -2,16 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-const session = require('express-session');
-const PostgresStore = require('connect-pg-simple')(session);
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const bcrypt = require('bcrypt');
 
-// ENVIRONMENT VARIABLES CHECK
 const REQUIRED_ENV_VARS = [
     'DATABASE_URL', 
-    'SESSION_SECRET',
     'CLOUDINARY_CLOUD_NAME', 
     'CLOUDINARY_API_KEY', 
     'CLOUDINARY_API_SECRET',
@@ -32,7 +28,6 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
-// CORS CONFIGURATION FOR PRODUCTION COOKIES
 app.use(cors({
     origin: process.env.ALLOWED_DASHBOARD_ORIGIN, 
     credentials: true,
@@ -40,31 +35,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Required to pass secure cookies when deployed on cloud infrastructure (Render, Railway, Heroku, etc.)
-app.set('trust proxy', 1); 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// COOKIE SESSION ENGINE FOR PRODUCTION
-const isProduction = process.env.NODE_ENV === 'production';
-
-app.use(session({
-    store: new PostgresStore({
-        pool: pool,
-        tableName: 'session'
-    }),
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        // MUST be true on Render to allow HTTPS transmission
-        secure: true, 
-        // MUST be 'none' to let Vercel read the cookie from your Render backend
-        sameSite: 'none', 
-        maxAge: 1000 * 60 * 60 * 24 * 7 
-    }
-}));
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -75,9 +47,10 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Guard Middleware
-const requireSessionAuth = (req, res, next) => {
-    if (req.session && req.session.adminId) {
+// Security Middleware Guard checking the Header Bearer Token
+const requireBearerAuth = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    if (authHeader === 'Bearer newsomething_secure_admin_prod_session_token') {
         return next();
     }
     return res.status(401).json({ success: false, message: "Unauthorized dashboard request." });
@@ -85,7 +58,7 @@ const requireSessionAuth = (req, res, next) => {
 
 // ==================== ADMINISTRATIVE ROUTING ====================
 
-// LOGIN ROUTE (Creates Secure Session)
+// LOGIN ROUTE
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -106,20 +79,17 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
 
-        req.session.adminId = adminRecord.id;
-        res.json({ success: true, message: "Authenticated successfully." });
+        // Return token directly in JSON body for localStorage storage
+        res.json({ success: true, token: "newsomething_secure_admin_prod_session_token" });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server connection failure." });
     }
 });
 
-// CHECK STATUS ROUTE (With explicit cache busting headers)
+// CHECK STATUS ROUTE
 app.get('/api/auth/status', (req, res) => {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-
-    if (req.session && req.session.adminId) {
+    const authHeader = req.headers['authorization'];
+    if (authHeader === 'Bearer newsomething_secure_admin_prod_session_token') {
         return res.json({ authenticated: true });
     }
     res.json({ authenticated: false });
@@ -127,14 +97,7 @@ app.get('/api/auth/status', (req, res) => {
 
 // LOGOUT ROUTE
 app.post('/api/auth/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) return res.status(500).json({ success: false });
-        res.clearCookie('connect.sid', {
-            secure: isProduction,
-            sameSite: isProduction ? 'none' : 'lax'
-        });
-        res.json({ success: true, message: "Logged out completely." });
-    });
+    res.json({ success: true, message: "Logged out completely." });
 });
 
 // ==================== CATALOG REST ENDPOINTS ====================
@@ -149,7 +112,7 @@ app.get('/api/products', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.post('/api/products/upload', requireSessionAuth, upload.array('footwearImages', 5), async (req, res) => {
+app.post('/api/products/upload', requireBearerAuth, upload.array('footwearImages', 5), async (req, res) => {
     try {
         if (!req.files || req.files.length === 0) return res.status(400).json({ success: false, message: "Assets missing." });
         const { name, gender, price, description, specs } = req.body;
@@ -181,18 +144,18 @@ app.post('/api/products/:id/click', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.post('/api/products/:id/reset', requireSessionAuth, async (req, res) => {
+app.post('/api/products/:id/reset', requireBearerAuth, async (req, res) => {
     try {
         await pool.query('UPDATE products SET clicks = 0 WHERE id = $1', [parseInt(req.params.id)]);
         res.json({ success: true });
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.delete('/api/products/:id', requireSessionAuth, async (req, res) => {
+app.delete('/api/products/:id', requireBearerAuth, async (req, res) => {
     try {
         const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [parseInt(req.params.id)]);
         res.json({ success: !!result.rows.length });
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 Live Production Engine active on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Bearer Token Production Engine active on port ${PORT}`));
