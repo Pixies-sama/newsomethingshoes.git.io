@@ -6,12 +6,12 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const bcrypt = require('bcrypt');
 
+// ENVIRONMENT VARIABLES VALIDATION CHECK
 const REQUIRED_ENV_VARS = [
     'DATABASE_URL', 
     'CLOUDINARY_CLOUD_NAME', 
     'CLOUDINARY_API_KEY', 
-    'CLOUDINARY_API_SECRET',
-    'ALLOWED_DASHBOARD_ORIGIN'
+    'CLOUDINARY_API_SECRET'
 ];
 REQUIRED_ENV_VARS.forEach(varName => {
     if (!process.env[varName]) {
@@ -28,13 +28,12 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
-// UPDATED CORS CONFIGURATION FOR LOCALSTORAGE & HEADERS
+// COMPLETELY UNLOCKED CORS FOR DUAL FRONTENDS (Dashboard & Main Site)
 app.use(cors({
-    origin: process.env.ALLOWED_DASHBOARD_ORIGIN, 
+    origin: true, // Dynamically allows any incoming origin to bypass CORS blocks
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    // CRITICAL: You must explicitly add 'Authorization' here so the browser allows the Bearer token!
-    allowedHeaders: ['Content-Type', 'Authorization'] 
+    allowedHeaders: ['Content-Type', 'Authorization'] // Whitelists your Bearer auth tokens
 }));
 
 app.use(express.json());
@@ -49,7 +48,7 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Security Middleware Guard checking the Header Bearer Token
+// Security Middleware checking the Header Bearer Token
 const requireBearerAuth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (authHeader === 'Bearer newsomething_secure_admin_prod_session_token') {
@@ -81,7 +80,7 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
 
-        // Return token directly in JSON body for localStorage storage
+        // Returns authorization token string straight to client localStorage
         res.json({ success: true, token: "newsomething_secure_admin_prod_session_token" });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server connection failure." });
@@ -160,4 +159,4 @@ app.delete('/api/products/:id', requireBearerAuth, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 Bearer Token Production Engine active on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Unlocked Open-CORS Production Engine active on port ${PORT}`));
