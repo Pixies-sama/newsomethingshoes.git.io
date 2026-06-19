@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>NEW SOMETHING Shoes | Premium Footwear Collection</title>
+    <link rel="icon" href="newshoecrop-removebg-preview.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="luxury-container">
+      <header class="luxury-header">
+        <div class="brand-logo-area">
+          <img
+            src="newshoecrop-removebg-preview.png"
+            alt="NS ARCHIVE LOGO"
+            class="ns-archive-brand-logo"
+          />
+          <a href="#" id="nav-home" class="brand-title-link"
+            >NEW SOMETHING <span>Shoes</span></a
+          >
+        </div>
+        <nav class="nav-links">
+          <a href="#products-section" id="nav-collection">SIGNATURES</a>
+          <a href="#gallery-grid-section" id="nav-gallery">GALLERY</a>
+          <a href="#about-info" id="nav-about">INFO DESK</a>
+        </nav>
+      </header>
+
+      <main id="products-section" class="showcase-view">
+        <div class="editorial-slider-grid">
+          <div class="slider-visual-column">
+            <div class="main-image-viewport">
+              <div id="image-skeleton" class="skeleton-shimmer"></div>
+              <img
+                id="slider-main-image"
+                src=""
+                alt="Footwear Presentation Workspace Master Frame"
+                class="fade-element"
+              />
+            </div>
+
+            <div class="slider-arrows">
+              <button
+                id="prev-slide-btn"
+                class="nav-arrow-btn"
+                aria-label="Previous Slide"
+              >
+                &larr;
+              </button>
+              <button
+                id="next-slide-btn"
+                class="nav-arrow-btn"
+                aria-label="Next Slide"
+              >
+                &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="slider-details-column fade-element"
+            id="slider-details-tray"
+          >
+            <span id="slider-category" class="luxury-meta-tag"
+              >SIGNATURE SERIE</span
+            >
+            <h1 id="slider-title" class="luxury-item-title">
+              Loading Layout...
+            </h1>
+            <div id="slider-price" class="luxury-item-price">₦0</div>
+
+            <hr class="divider-line" />
+
+            <p id="slider-description" class="luxury-item-description"></p>
+            <ul id="slider-specs" class="luxury-spec-list"></ul>
+
+            <div class="action-integration-row">
+              <button id="slider-inquire-btn" class="editorial-action-btn">
+                INQUIRE VIA WHATSAPP <i class="fab fa-whatsapp"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <section class="lookbook-strip-section">
+          <h3 class="strip-section-title">THE SIGNATURE SPOTLIGHT (TOP 5)</h3>
+          <div id="thumbnail-strip-container" class="thumbnail-strip"></div>
+        </section>
+      </main>
+
+      <section id="gallery-grid-section" class="luxury-gallery-section">
+        <div class="section-header-minimal">
+          <h2>THE FULL GALLERY COLLECTION</h2>
+          <p>
+            Tap any preview canvas below to scale the visual workspace into an
+            expanded multi-angle review slider carousel.
+          </p>
+        </div>
+
+        <div class="filter-menu-bar">
+          <button class="filter-tab active" data-filter="all">
+            ALL DESIGNS
+          </button>
+          <button class="filter-tab" data-filter="Men">MEN</button>
+          <button class="filter-tab" data-filter="Women">WOMEN</button>
+          <button class="filter-tab" data-filter="Unisex">UNISEX</button>
+        </div>
+
+        <div id="gallery-cards-grid" class="boutique-lookbook-grid"></div>
+
+        <div id="expansion-trigger-box" class="expansion-wrapper">
+          <button id="show-all-btn" class="secondary-expand-btn">
+            SHOW MORE DESIGNS
+          </button>
+        </div>
+      </section>
+
+      <div id="product-modal" class="modal-overlay">
+        <div class="minimal-viewer-container">
+          <button
+            class="close-modal"
+            id="close-modal-btn"
+            aria-label="Close details"
+          >
+            &times;
+          </button>
+
+          <div
+            class="minimal-image-stage"
+            style="
+              position: relative;
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img
+              id="modal-product-image"
+              src=""
+              alt="Expanded View Workspace Matrix Image"
+              style="transition: opacity 0.2s ease-in-out"
+            />
+
+            <button
+              id="modal-prev-btn"
+              style="
+                position: absolute;
+                left: 15px;
+                background: rgba(250, 249, 246, 0.9);
+                border: 1px solid var(--border-light);
+                width: 42px;
+                height: 42px;
+                cursor: pointer;
+                font-family: monospace;
+                font-size: 1.2rem;
+                display: none;
+                z-index: 15;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              &larr;
+            </button>
+            <button
+              id="modal-next-btn"
+              style="
+                position: absolute;
+                right: 15px;
+                background: rgba(250, 249, 246, 0.9);
+                border: 1px solid var(--border-light);
+                width: 42px;
+                height: 42px;
+                cursor: pointer;
+                font-family: monospace;
+                font-size: 1.2rem;
+                display: none;
+                z-index: 15;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              &rarr;
+            </button>
+          </div>
+
+          <div
+            id="modal-carousel-dots"
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 8px;
+              padding: 14px 0;
+              background: var(--bg-surface);
+              border-top: 1px solid var(--border-light);
+            "
+          ></div>
+
+          <div class="minimal-action-stage">
+            <button class="btn-minimal-whatsapp" id="modal-inquire-btn">
+              <span>INQUIRE ABOUT THIS DESIGN VIA WHATSAPP</span>
+              <i class="fab fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section id="about-info" class="brand-manifesto">
+        <div class="manifesto-grid">
+          <div class="manifesto-col">
+            <h3>DIRECT INQUIRIES</h3>
+            <p>omoloyehassan12@gmail.com</p>
+            <p>+234 703 362 3329</p>
+          </div>
+          <div class="manifesto-col">
+            <h3>OUR PHILOSOPHY</h3>
+            <p>
+              Handcrafted footwear configurations, exceptional treatments, and
+              durable compositions. Every model serves as a direct personal
+              story piece.
+            </p>
+          </div>
+          <div class="manifesto-col">
+            <h3>CONCIERGE DESK</h3>
+            <p>
+              Pure visual selection without noisy checkout cards. Tap any detail
+              card link to message our service line on WhatsApp to check stock
+              levels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="boutique-footer">
+        <div class="editorial-socials">
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>© 2026 NEW SOMETHING SHOES. ALL RIGHTS RESERVED.</p>
+      </footer>
+    </div>
+
+    <script>
+      // =========================================================================
+      // MANUAL LOCAL JSON DATABASE
+      // Add, remove, or swap items here. Supports absolute multi-image arrays.
+      // =========================================================================
+      const globalInventory = [
+        {
+          id: 1,
+          name: "TRAVIS SCOTT RETRO LOW",
+          gender: "Men",
+          price: 85000,
+          description:
+            "Premium suede configurations featuring inverted oversized branding checks and clean earth-toned textures.",
+          specs: [
+            "Premium Italian Suede",
+            "Inverted Logo Stitching",
+            "Deconstructed Foam Tongue",
+          ],
+          imageUrls: [
+            "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+            "https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face/sample.jpg",
+          ],
+        },
+        {
+          id: 2,
+          name: "VELVET SLIPSTREAM RUNNER",
+          gender: "Unisex",
+          price: 92000,
+          description:
+            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+          specs: [
+            "Responsive EVA Midsole",
+            "Reflective Carbon Accents",
+            "Breathable Matrix Weave",
+          ],
+          imageUrls: [
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+          ],
+        },
+      ];
+
+      let activeSliderIndex = 0;
+      let currentFilterMode = "all";
+      let displayLimitCount = 8;
+      const WHATSAPP_NUMBER = "2347033623329";
+
+      // Document Object Elements Mapping
+      const skeleton = document.getElementById("image-skeleton");
+      const sliderImg = document.getElementById("slider-main-image");
+      const sliderTitle = document.getElementById("slider-title");
+      const sliderPrice = document.getElementById("slider-price");
+      const sliderDesc = document.getElementById("slider-description");
+      const sliderSpecs = document.getElementById("slider-specs");
+      const sliderCategory = document.getElementById("slider-category");
+      const sliderInquireBtn = document.getElementById("slider-inquire-btn");
+      const stripContainer = document.getElementById(
+        "thumbnail-strip-container",
+      );
+      const galleryGrid = document.getElementById("gallery-cards-grid");
+      const showMoreBtn = document.getElementById("show-all-btn");
+
+      const modal = document.getElementById("product-modal");
+      const modalImg = document.getElementById("modal-product-image");
+      const modalInquireBtn = document.getElementById("modal-inquire-btn");
+      const closeModalBtn = document.getElementById("close-modal-btn");
+
+      let modalImageArrayTrack = [];
+      let modalImageIndexPointer = 0;
+
+      function initializeSystemGallery() {
+        if (globalInventory.length === 0) {
+          sliderTitle.innerText = "NO DESIGNS CURRENTLY IN REGISTRY STOCK";
+          return;
+        }
+        renderTopSliderElement(activeSliderIndex);
+        buildHorizontalRibbonStrip();
+        buildGridShowcaseMatrix();
+      }
+
+      // SPOTLIGHT: Render Main Display Unit
+      function renderTopSliderElement(index) {
+        if (!globalInventory[index]) return;
+        const item = globalInventory[index];
+
+        skeleton.classList.add("loading");
+        sliderImg.style.opacity = "0";
+
+        const mainImgUrl =
+          item.imageUrls && item.imageUrls.length > 0
+            ? item.imageUrls[0]
+            : "https://via.placeholder.com/400";
+        sliderImg.src = mainImgUrl;
+        sliderImg.alt = item.name;
+
+        sliderImg.onload = () => {
+          skeleton.classList.remove("loading");
+          sliderImg.style.opacity = "1";
+        };
+
+        sliderTitle.innerText = item.name;
+        sliderCategory.innerText = `COLLECTION: ${item.gender.toUpperCase()}`;
+        sliderPrice.innerText = `₦${Number(item.price).toLocaleString()}`;
+        sliderDesc.innerText = item.description;
+
+        sliderSpecs.innerHTML = item.specs
+          .map(
+            (spec) =>
+              `<li><i class="fas fa-circle"></i> <span>${spec}</span></li>`,
+          )
+          .join("");
+
+        sliderInquireBtn.onclick = () => {
+          // Included image layout link directly in the message template line
+          const msg = encodeURIComponent(
+            `Hello, I want to inquire about the signature design:\n\nModel: ${item.name}\nPrice: ₦${Number(item.price).toLocaleString()}\nReference Image: ${mainImgUrl}\n\nIs this size run available?`,
+          );
+          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+        };
+      }
+
+      // SPOTLIGHT: Build Horizontal Strip Ribbon
+      function buildHorizontalRibbonStrip() {
+        const spotlightItems = globalInventory.slice(0, 10);
+        stripContainer.innerHTML = spotlightItems
+          .map(
+            (item, idx) => `
+            <div class="strip-thumb-item ${idx === activeSliderIndex ? "active" : ""}" data-index="${idx}">
+              <img src="${item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : "https://via.placeholder.com/60"}" alt="">
+            </div>
+          `,
+          )
+          .join("");
+
+        document.querySelectorAll(".strip-thumb-item").forEach((thumb) => {
+          thumb.addEventListener("click", (e) => {
+            activeSliderIndex = parseInt(
+              e.currentTarget.getAttribute("data-index"),
+            );
+            renderTopSliderElement(activeSliderIndex);
+            updateActiveRibbonIndicator();
+          });
+        });
+      }
+
+      // SPOTLIGHT: Navigation Controls
+      document
+        .getElementById("next-slide-btn")
+        .addEventListener("click", () => {
+          const limitRange = Math.min(globalInventory.length, 10);
+          if (limitRange === 0) return;
+          activeSliderIndex = (activeSliderIndex + 1) % limitRange;
+          renderTopSliderElement(activeSliderIndex);
+          updateActiveRibbonIndicator();
+        });
+
+      document
+        .getElementById("prev-slide-btn")
+        .addEventListener("click", () => {
+          const limitRange = Math.min(globalInventory.length, 10);
+          if (limitRange === 0) return;
+          activeSliderIndex = (activeSliderIndex - 1 + limitRange) % limitRange;
+          renderTopSliderElement(activeSliderIndex);
+          updateActiveRibbonIndicator();
+        });
+
+      function updateActiveRibbonIndicator() {
+        document.querySelectorAll(".strip-thumb-item").forEach((t, idx) => {
+          if (idx === activeSliderIndex) t.classList.add("active");
+          else t.classList.remove("active");
+        });
+      }
+
+      // GALLERY: Grid Display Matrix
+      function buildGridShowcaseMatrix() {
+        const galleryPool =
+          globalInventory.length > 10
+            ? globalInventory.slice(10)
+            : globalInventory;
+
+        const filtered = galleryPool.filter((item) => {
+          if (currentFilterMode === "all") return true;
+          return item.gender.toLowerCase() === currentFilterMode.toLowerCase();
+        });
+
+        const sliceRender = filtered.slice(0, displayLimitCount);
+
+        if (sliceRender.length === 0) {
+          galleryGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 5rem 0; font-size: 0.85rem; letter-spacing:0.05em;">ADDITIONAL ARCHIVE STOCKS UNAVAILABLE.</div>`;
+          showMoreBtn.style.display = "none";
+          return;
+        }
+
+        galleryGrid.innerHTML = sliceRender
+          .map(
+            (item) => `
+            <div class="lookbook-item-card" data-id="${item.id}">
+              <img src="${item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : "https://via.placeholder.com/400"}" alt="${item.name}">
+            </div>
+          `,
+          )
+          .join("");
+
+        showMoreBtn.style.display =
+          filtered.length > displayLimitCount ? "inline-block" : "none";
+
+        document.querySelectorAll(".lookbook-item-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const productID = parseInt(card.getAttribute("data-id"));
+            const selectedItem = globalInventory.find(
+              (p) => p.id === productID,
+            );
+            if (selectedItem) openCarouselModalStage(selectedItem);
+          });
+        });
+      }
+
+      // LOOKBOOK MODAL CAROUSEL ENGINE
+      function openCarouselModalStage(item) {
+        modalImageArrayTrack = item.imageUrls || [];
+        modalImageIndexPointer = 0;
+
+        synchronizeModalImageState();
+
+        const prevBtn = document.getElementById("modal-prev-btn");
+        const nextBtn = document.getElementById("modal-next-btn");
+
+        if (modalImageArrayTrack.length > 1) {
+          prevBtn.style.display = "flex";
+          nextBtn.style.display = "flex";
+          buildModalCarouselIndicators();
+        } else {
+          prevBtn.style.display = "none";
+          nextBtn.style.display = "none";
+          document.getElementById("modal-carousel-dots").innerHTML = "";
+        }
+
+        modal.classList.add("active");
+
+        modalInquireBtn.onclick = () => {
+          // Grabs the image matching the current viewpoint context inside the gallery popup modal overlay
+          const modalActiveImgUrl =
+            modalImageArrayTrack[modalImageIndexPointer] ||
+            "https://via.placeholder.com/400";
+          const queryMsg = encodeURIComponent(
+            `Hello, I am tracking lookbook model:\n\nModel: ${item.name}\nPrice: ₦${Number(item.price).toLocaleString()}\nReference Image: ${modalActiveImgUrl}\n\nIs this size run available?`,
+          );
+          window.open(
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${queryMsg}`,
+            "_blank",
+          );
+        };
+      }
+
+      function synchronizeModalImageState() {
+        modalImg.style.opacity = "0";
+        setTimeout(() => {
+          modalImg.src =
+            modalImageArrayTrack[modalImageIndexPointer] ||
+            "https://via.placeholder.com/400";
+          modalImg.style.opacity = "1";
+        }, 150);
+
+        document
+          .querySelectorAll(".modal-indicator-circle")
+          .forEach((dot, idx) => {
+            dot.style.background =
+              idx === modalImageIndexPointer
+                ? "var(--text-primary)"
+                : "rgba(26,20,18,0.15)";
+          });
+      }
+
+      function buildModalCarouselIndicators() {
+        const container = document.getElementById("modal-carousel-dots");
+        container.innerHTML = modalImageArrayTrack
+          .map(
+            () =>
+              `<span class="modal-indicator-circle" style="width: 7px; height: 7px; border-radius: 50%; background: rgba(26,20,18,0.15); transition: all 0.25s ease;"></span>`,
+          )
+          .join("");
+      }
+
+      document
+        .getElementById("modal-next-btn")
+        .addEventListener("click", (e) => {
+          e.stopPropagation();
+          modalImageIndexPointer =
+            (modalImageIndexPointer + 1) % modalImageArrayTrack.length;
+          synchronizeModalImageState();
+        });
+
+      document
+        .getElementById("modal-prev-btn")
+        .addEventListener("click", (e) => {
+          e.stopPropagation();
+          modalImageIndexPointer =
+            (modalImageIndexPointer - 1 + modalImageArrayTrack.length) %
+            modalImageArrayTrack.length;
+          synchronizeModalImageState();
+        });
+
+      // Filtering Configuration Tabs
+      document.querySelectorAll(".filter-tab").forEach((tab) => {
+        tab.addEventListener("click", (e) => {
+          document
+            .querySelectorAll(".filter-tab")
+            .forEach((t) => t.classList.remove("active"));
+          e.currentTarget.classList.add("active");
+          currentFilterMode = e.currentTarget.getAttribute("data-filter");
+          displayLimitCount = 8;
+          buildGridShowcaseMatrix();
+        });
+      });
+
+      showMoreBtn.addEventListener("click", () => {
+        displayLimitCount += 8;
+        buildGridShowcaseMatrix();
+      });
+
+      closeModalBtn.addEventListener("click", () =>
+        modal.classList.remove("active"),
+      );
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("active");
+      });
+
+      initializeSystemGallery();
+    </script>
+  </body>
+</html>
