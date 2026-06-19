@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const { Pool } = require('pg');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
@@ -27,9 +26,20 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false }
 });
 
-// Basic, clean CORS configuration
-// Clean, wide-open CORS for public data access
-app.use(cors());
+// ==================== MASTER OPEN-ACCESS CORS MIDDLEWARE ====================
+app.use((req, res, next) => {
+    // Blow the doors open for any domain (localhost, Vercel, production storefronts)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    
+    // Intercept browser preflight OPTIONS probes immediately and force pass them
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+// ============================================================================
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,12 +53,11 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Static master text session token
+// Master text token string matching frontend local storage handles
 const masterTextToken = "newsomething_master_admin_session_token_prod";
 
-// Security Middleware reading token directly from request text body or text query parameters
+// Security Gatekeeper reading text tokens out of query params or request bodies
 const requireTextAuth = (req, res, next) => {
-    // Check query string (for GET/DELETE) or body payload (for POST)
     const token = req.query.token || req.body.token;
     
     if (token === masterTextToken) {
@@ -59,7 +68,7 @@ const requireTextAuth = (req, res, next) => {
 
 // ==================== ADMINISTRATIVE ROUTING ====================
 
-// LOGIN ROUTE
+// Administrative Verification Login
 app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -80,14 +89,14 @@ app.post('/api/auth/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
 
-        // Send back the plain text token in the JSON body response
+        // Return token directly as clear text inside JSON mapping
         res.json({ success: true, token: masterTextToken });
     } catch (err) {
         res.status(500).json({ success: false, message: "Server connection failure." });
     }
 });
 
-// CHECK STATUS ROUTE - Parses the token completely out of the URL text parameters
+// Heartbeat Status Route matching frontend query parameter checking
 app.get('/api/auth/status', (req, res) => {
     const token = req.query.token;
     if (token === masterTextToken) {
@@ -96,13 +105,14 @@ app.get('/api/auth/status', (req, res) => {
     res.json({ authenticated: false });
 });
 
-// LOGOUT ROUTE
+// Dashboard Disconnect Router
 app.post('/api/auth/logout', (req, res) => {
     res.json({ success: true, message: "Logged out." });
 });
 
 // ==================== CATALOG REST ENDPOINTS ====================
 
+// Public endpoint reading all products
 app.get('/api/products', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM products ORDER BY id DESC');
@@ -113,9 +123,8 @@ app.get('/api/products', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-// Protected upload route (Reads token from multi-part body fields)
+// Protected Multi-file Upload Channel (Checks token inside multer text body parameters)
 app.post('/api/products/upload', upload.array('footwearImages', 5), (req, res, next) => {
-    // Multer populates req.body before running validation fields
     requireTextAuth(req, res, next);
 }, async (req, res) => {
     try {
@@ -142,6 +151,7 @@ app.post('/api/products/upload', upload.array('footwearImages', 5), (req, res, n
     } catch (error) { res.status(500).json({ success: false }); }
 });
 
+// Public click accumulation metric pulse tracker
 app.post('/api/products/:id/click', async (req, res) => {
     try {
         const result = await pool.query('UPDATE products SET clicks = clicks + 1 WHERE id = $1 RETURNING clicks', [parseInt(req.params.id)]);
@@ -149,6 +159,7 @@ app.post('/api/products/:id/click', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
+// Protected click clearing path
 app.post('/api/products/:id/reset', requireTextAuth, async (req, res) => {
     try {
         await pool.query('UPDATE products SET clicks = 0 WHERE id = $1', [parseInt(req.params.id)]);
@@ -156,6 +167,7 @@ app.post('/api/products/:id/reset', requireTextAuth, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
+// Protected collection asset erasure endpoint
 app.delete('/api/products/:id', requireTextAuth, async (req, res) => {
     try {
         const result = await pool.query('DELETE FROM products WHERE id = $1 RETURNING *', [parseInt(req.params.id)]);
@@ -163,4 +175,4 @@ app.delete('/api/products/:id', requireTextAuth, async (req, res) => {
     } catch (err) { res.status(500).json({ success: false }); }
 });
 
-app.listen(PORT, () => console.log(`🚀 Text-Based Session Engine active on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Wide-Open Global Access Engine active on port ${PORT}`));
