@@ -8,7 +8,7 @@
           id: 1,
           name: "TRAVIS SCOTT RETRO LOW",
           gender: "Men",
-          price: 85000,
+          price:18000,
           description:
             "Premium suede configurations featuring inverted oversized branding checks and clean earth-toned textures.",
           specs: [
@@ -17,8 +17,8 @@
             "Deconstructed Foam Tongue",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
-            "https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_crop,g_face/sample.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
           ],
         },
         {
@@ -34,7 +34,7 @@
             "Breathable Matrix Weave",
           ],
           imageUrls: [
-            "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064670/IMG_9110_s0mfvy.jpg",
           ],
         },
         {
@@ -74,7 +74,7 @@
         {
           id: 3,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
+          gender: "Women",
           price: 92000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
@@ -84,8 +84,8 @@
             "Breathable Matrix Weave",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064442/IMG_9095_xrb89l.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064624/IMG_9094_zw9dxx.jpg",
           ],
         },
         {
