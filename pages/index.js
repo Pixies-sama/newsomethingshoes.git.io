@@ -632,4 +632,160 @@
       });
 
       initializeSystemGallery();
+
+
+      // ==================== SCROLL REVEAL ANIMATIONS ====================
+function setupScrollReveal() {
+  const revealElements = document.querySelectorAll('.lookbook-item-card, .manifesto-col, .section-header-minimal');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Add staggered delay
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 80);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  revealElements.forEach((el, i) => {
+    el.classList.add('reveal-on-scroll');
+    // Stagger initial visibility
+    el.style.transitionDelay = `${i * 0.05}s`;
+    observer.observe(el);
+  });
+}
+
+// ==================== SMOOTH IMAGE LOADING ====================
+function setupImageLoading() {
+  const images = document.querySelectorAll('img');
+  
+  images.forEach(img => {
+    if (!img.complete) {
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      
+      img.addEventListener('load', () => {
+        img.style.opacity = '1';
+      });
+      
+      // Fallback for cached images
+      setTimeout(() => {
+        if (img.complete) {
+          img.style.opacity = '1';
+        }
+      }, 100);
+    } else {
+      img.style.opacity = '1';
+    }
+  });
+}
+
+// ==================== ENHANCED MODAL TRANSITIONS ====================
+// Replace your existing modal open function with this enhanced version
+function openCarouselModalStage(item) {
+  modalImageArrayTrack = item.imageUrls || [];
+  modalImageIndexPointer = 0;
+
+  synchronizeModalImageState();
+
+  const prevBtn = document.getElementById("modal-prev-btn");
+  const nextBtn = document.getElementById("modal-next-btn");
+
+  if (modalImageArrayTrack.length > 1) {
+    prevBtn.style.display = "flex";
+    nextBtn.style.display = "flex";
+    buildModalCarouselIndicators();
+  } else {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    document.getElementById("modal-carousel-dots").innerHTML = "";
+  }
+
+  // Reset modal image for smooth transition
+  modalImg.style.opacity = "0";
+  modal.classList.add("active");
+  
+  // Small delay for smooth image load
+  setTimeout(() => {
+    modalImg.src = modalImageArrayTrack[0] || "https://via.placeholder.com/400";
+    modalImg.style.opacity = "1";
+  }, 150);
+
+  modalInquireBtn.onclick = () => {
+    const modalActiveImgUrl =
+      modalImageArrayTrack[modalImageIndexPointer] ||
+      "https://via.placeholder.com/400";
+    const queryMsg = encodeURIComponent(
+      `Hello, I am tracking lookbook model:\n\nModel: ${item.name}\nPrice: ₦${Number(item.price).toLocaleString()}\nReference Image: ${modalActiveImgUrl}\n\nIs this size run available?`,
+    );
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${queryMsg}`,
+      "_blank",
+    );
+  };
+}
+
+// ==================== SMOOTH NAVIGATION SCROLL ====================
+function setupSmoothNav() {
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+}
+
+// ==================== INITIALIZE ENHANCEMENTS ====================
+// Call these after your existing initialization
+document.addEventListener('DOMContentLoaded', () => {
+  setupScrollReveal();
+  setupImageLoading();
+  setupSmoothNav();
+});
+
+// Also add a subtle parallax effect to the main image
+function setupParallax() {
+  const viewport = document.querySelector('.main-image-viewport');
+  if (viewport) {
+    viewport.addEventListener('mousemove', (e) => {
+      const rect = viewport.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const img = viewport.querySelector('img');
+      if (img && img.style) {
+        img.style.transform = `scale(1.02) translate(${x * 6}px, ${y * 6}px)`;
+      }
+    });
+    
+    viewport.addEventListener('mouseleave', () => {
+      const img = viewport.querySelector('img');
+      if (img && img.style) {
+        img.style.transform = 'scale(1) translate(0, 0)';
+      }
+    });
+  }
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupParallax();
+});
     
