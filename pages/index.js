@@ -6,15 +6,15 @@
       const globalInventory = [
         {
           id: 1,
-          name: "TRAVIS SCOTT RETRO LOW",
+          name: "The Nero Cross-Strap Slide",
           gender: "Men",
           price:18000,
           description:
-            "Premium suede configurations featuring inverted oversized branding checks and clean earth-toned textures.",
+            "A sleek, premium palm slipper designed for effortless everyday luxury. It features overlapping matte and textured black leather straps, anchored by a polished silver-tone metallic emblem and paired with a deeply contoured, comfortable footbed.",
           specs: [
-            "Premium Italian Suede",
-            "Inverted Logo Stitching",
-            "Deconstructed Foam Tongue",
+            "Premium matte and textured black leather straps.",
+            "Polished silver-tone signature arrow accent.",
+            "Ergonomic, cushioned footbed for all-day comfort.",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
@@ -23,18 +23,19 @@
         },
         {
           id: 2,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          name: "The Earth-Tone Textured Thong Slide",
+          gender: "Women",
+          price: 7000,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "An everyday casual palm slipper blending rustic textures with modern minimalism. It features a woven, burlap-style brown textile footbed paired with slim, flexible black thong straps and a smooth leather-look heel patch for subtle contrast and comfort.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
+            "Textured brown woven fabric for a natural, rustic aesthetic.",
+            "Soft, flexible black faux-leather thong design with a knotted center detail.",
             "Breathable Matrix Weave",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064670/IMG_9110_s0mfvy.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064400/IMG_9114_oyehbd.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064400/IMG_9114_oyehbd.jpg",
           ],
         },
         {
@@ -56,32 +57,31 @@
         },
         {
           id: 4,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          name: "The Suede Monk-Strap Slide",
+          gender: "Men",
+          price: 25000,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "A premium, minimalist palm slipper crafted with a wide, tan suede upper. It features a modern side-buckle detail, a plush contoured footbed, and a contrasting stitched welt sole for a refined, upscale casual look.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
+            "Soft, premium tan suede with a wide-strap wrap design.",
+            "Polished silver-tone rectangular buckle accent.",
+            "Dual-tone platform with a cushioned neutral insole and a sturdy white rubber outsole.",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782335030/576f4e96ce0ee48b24195fdd6dbe06c5_vw5qfd.jpg",
           ],
         },
         {
           id: 5,
-          name: "VELVET SLIPSTREAM RUNNER",
+          name: "The Nomad Two-Tone Slide",
           gender: "Women",
-          price: 92000,
+          price: 8000,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "A minimalist, modern palm slipper featuring a layered, dual-tone leather strap in beige and tan. Designed with a clean square-toe profile and precise edge stitching for a refined look.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
+            "Premium layered leather in a beige and tan color block.",
+            "Clean, contemporary square-toe footbed silhouette.",
+            "Slim, durable black outsole with contrasting perimeter stitching.",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064442/IMG_9095_xrb89l.jpg",
@@ -89,54 +89,19 @@
           ],
         },
         {
-          id: 4,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
-          description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
-          specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
-          ],
-          imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916174/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
-          ],
-        },
-        {
-          id: 5,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
-          description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
-          specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
-          ],
-          imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
-          ],
-        },
-        {
           id: 6,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          name: "The Chestnut Suede Cross-Slide",
+          gender: "Men",
+          price: 25000,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "A premium, minimalist palm slipper featuring overlapping chestnut brown suede straps accented with a geometric silver emblem. Built with a smooth, neutral-toned contoured footbed and a durable black outsole for a refined casual look.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
+            "Soft, textured chestnut brown suede in a classic cross-strap design.",
+            "Minimalist geometric silver-tone metallic emblem.",
+            "Cushioned tan leather-look insole paired with a sturdy black rubber outsole.",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782335028/2f76478500de8a1e275a92c7fef7140e_vvfkjj.jpg",
           ],
         },
         {
@@ -164,9 +129,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -181,9 +143,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -198,9 +157,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -215,9 +171,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1782335030/576f4e96ce0ee48b24195fdd6dbe06c5_vw5qfd.jpg",
@@ -232,9 +185,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://i.pinimg.com/736x/22/cd/10/22cd108cca646a59235f3d48c4ab620a.jpg",
@@ -249,9 +199,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://i.pinimg.com/736x/ab/92/66/ab92662838d9c6ea61298fb556d642a6.jpg",
@@ -266,9 +213,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://i.pinimg.com/1200x/88/54/e3/8854e3b5234e03cffc202f88cb4958f3.jpg",
@@ -284,9 +228,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -301,9 +242,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -318,9 +256,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
@@ -335,9 +270,6 @@
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
-            "Responsive EVA Midsole",
-            "Reflective Carbon Accents",
-            "Breathable Matrix Weave",
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",

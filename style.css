@@ -1,163 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+     --bg-color: #FAF9F6;
+     /* Premium Clean Gallery Alabaster Warm Tint */
+     --text-primary: #1A1412;
+     /* Deep Matte Espresso Dark Black */
+     --text-muted: #615855;
+     /* Structural Soft Muted Charcoal Grey */
+     --border-light: #ECE6DF;
+     /* Ultra Fine Layout Invisible Border Lines */
+     --accent-tan: #9E5A42;
+     /* Luxury Soft Leather Tan Trim Accent */
+     --serif-font: 'Playfair Display', serif;
+     --sans-font: 'Inter', sans-serif;
+     --poppins: 'poppins';
+
+     /* Structural Admin Variables maintained for continuity */
+     --bg-surface: #F4F0EA;
+     --border-color: #ECE6DF;
+     --radius-md: 0px;
+     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * {
      scroll-behavior: smooth;
      margin: 0;
      padding: 0;
      box-sizing: border-box;
 }
-/*
-:root {
-    
-     --bg-color: #FAF9F6;
-     
-     --text-primary: #1A1412;
-    
-     --text-muted: #615855;
-     
-     --border-light: #ECE6DF;
-     
-     --accent-tan: #9E5A42;
-     
-     --serif-font: 'Playfair Display', serif;
-     --sans-font: 'Inter', sans-serif;
 
-     
-     --bg-surface: #F4F0EA;
-     --border-color: #ECE6DF;
-     --radius-md: 0px;
-     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-*/
-/* 
-:root {
-     --bg-color: #FAF9F6;
-     --text-primary: #1A1412;
-     --text-muted: #615855;
-     --border-light: #E8E2DB;
-     
-     --accent-tan: #A66B4F;
-    
-     --shadow-soft: 0 10px 40px rgba(26, 20, 18, 0.06);
-}
-
-.editorial-action-btn {
-     box-shadow: 0 4px 15px rgba(26, 20, 18, 0.05);
-}
-
-.editorial-action-btn:hover {
-     box-shadow: 0 8px 30px rgba(26, 20, 18, 0.15);
-     transform: translateY(-2px);
-} */
-
-
-
-
-/* body {
+body {
      background-color: var(--bg-color);
-     font-family: var(--sans-font);
+     font-family: "Poppins", sans-serif;;
      color: var(--text-primary);
      line-height: 1.5;
      scroll-behavior: smooth;
      -webkit-font-smoothing: antialiased;
-} */
-
-/* ==================== DARK LUXURY THEME ==================== */
-:root {
-     --bg-color: #12100E;
-     --bg-surface: #1C1917;
-     --text-primary: #F0EBE6;
-     --text-muted: #A89F98;
-     --border-light: #2D2A27;
-     --accent-tan: #C49B8A;
-     --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-body {
-     background: linear-gradient(145deg,
-               #12100E 0%,
-               #1A1715 50%,
-               #12100E 100%);
-}
-
-/* Subtle glow for dark mode */
-body::before {
-     content: '';
-     position: fixed;
-     top: -50%;
-     left: -50%;
-     width: 200%;
-     height: 200%;
-     background: radial-gradient(circle at 30% 40%,
-               rgba(196, 155, 138, 0.03) 0%,
-               transparent 60%);
-     pointer-events: none;
-     z-index: 0;
-}
-
-/* Cards with dark glass effect */
-.lookbook-item-card,
-.main-image-viewport,
-.minimal-image-stage {
-     background: rgba(28, 25, 23, 0.8);
-     backdrop-filter: blur(20px);
-     -webkit-backdrop-filter: blur(20px);
-     border: 1px solid rgba(255, 255, 255, 0.06);
-     box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* Thumbnails in dark mode */
-.strip-thumb-item {
-     background: rgba(28, 25, 23, 0.6);
-     border-color: rgba(255, 255, 255, 0.06);
-}
-
-.strip-thumb-item:hover {
-     border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Buttons for dark mode */
-.editorial-action-btn {
-     background: #F0EBE6;
-     color: #12100E;
-}
-
-.editorial-action-btn:hover {
-     background: #FFFFFF;
-     color: #12100E;
-}
-
-/* Nav links dark */
-.nav-links a {
-     color: rgba(255, 255, 255, 0.5);
-}
-
-.nav-links a:hover {
-     color: #F0EBE6;
-}
-
-/* Filter tabs dark */
-.filter-tab {
-     color: rgba(255, 255, 255, 0.5);
-}
-
-.filter-tab:hover,
-.filter-tab.active {
-     color: #F0EBE6;
-}
-
-.filter-tab::after {
-     background: #F0EBE6;
-}
-
-/* Social icons dark */
-.editorial-socials a {
-     color: rgba(255, 255, 255, 0.4);
-}
-
-.editorial-socials a:hover {
-     color: #F0EBE6;
-}
 .luxury-container {
      max-width: 1400px;
      margin: 0 auto;
@@ -172,8 +51,8 @@ h1,
 h2,
 h3,
 .brand-title-link {
-     font-family: var(--sans-font);
-     font-weight: 500;
+     font-family: "Poppins";
+     font-weight: 600;
      letter-spacing: -0.03em;
 }
 
@@ -729,6 +608,7 @@ h3,
      color: var(--text-muted);
      font-size: 0.9rem;
      transition: color 0.2s ease;
+     font-family: "Poppins";
 }
 
 .editorial-socials a:hover {
@@ -825,356 +705,5 @@ h3,
 
      .strip-thumb-item.active img {
           opacity: 1 !important;
-     }
-}
-
-/* ==================== PREMIUM ANIMATIONS & TRANSITIONS ==================== */
-
-/* Page load fade-in */
-@keyframes fadeInUp {
-     from {
-          opacity: 0;
-          transform: translateY(30px);
-     }
-
-     to {
-          opacity: 1;
-          transform: translateY(0);
-     }
-}
-
-.luxury-container {
-     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Stagger children animations */
-.editorial-slider-grid>* {
-     opacity: 0;
-     animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.editorial-slider-grid .slider-visual-column {
-     animation-delay: 0.1s;
-}
-
-.editorial-slider-grid .slider-details-column {
-     animation-delay: 0.25s;
-}
-
-/* Image zoom on hover for gallery cards */
-.lookbook-item-card {
-     position: relative;
-     overflow: hidden;
-     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.lookbook-item-card img {
-     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
-}
-
-.lookbook-item-card:hover {
-     transform: translateY(-8px);
-     box-shadow: 0 20px 40px rgba(26, 20, 18, 0.08);
-}
-
-.lookbook-item-card:hover img {
-     transform: scale(1.08);
-}
-
-/* Premium glow overlay on card hover */
-.lookbook-item-card::after {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: linear-gradient(135deg, rgba(250, 249, 246, 0.2) 0%, transparent 60%);
-     opacity: 0;
-     transition: opacity 0.5s ease;
-     pointer-events: none;
-}
-
-.lookbook-item-card:hover::after {
-     opacity: 1;
-}
-
-/* Thumbnail strip smooth transitions */
-.strip-thumb-item {
-     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-     position: relative;
-     overflow: hidden;
-}
-
-.strip-thumb-item img {
-     transition: transform 0.5s ease, filter 0.4s ease;
-}
-
-.strip-thumb-item:hover img {
-     transform: scale(1.05);
-     filter: grayscale(0%) brightness(1.05);
-}
-
-.strip-thumb-item.active {
-     transform: translateY(-6px);
-     box-shadow: 0 8px 20px rgba(26, 20, 18, 0.12);
-     border-color: var(--text-primary);
-}
-
-/* Main image smooth transitions */
-.main-image-viewport img {
-     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s ease;
-}
-
-.main-image-viewport img.loading-state {
-     opacity: 0;
-     transform: scale(0.95);
-}
-
-/* Navigation arrows with glow */
-.nav-arrow-btn {
-     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-     position: relative;
-     overflow: hidden;
-}
-
-.nav-arrow-btn::before {
-     content: '';
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     width: 0;
-     height: 0;
-     background: rgba(26, 20, 18, 0.05);
-     border-radius: 50%;
-     transform: translate(-50%, -50%);
-     transition: width 0.5s ease, height 0.5s ease;
-}
-
-.nav-arrow-btn:hover::before {
-     width: 120%;
-     height: 120%;
-}
-
-.nav-arrow-btn:hover {
-     transform: scale(1.05);
-}
-
-/* Editorial action button pulse on hover */
-.editorial-action-btn {
-     position: relative;
-     overflow: hidden;
-     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.editorial-action-btn::after {
-     content: '';
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     width: 0;
-     height: 0;
-     background: rgba(255, 255, 255, 0.1);
-     border-radius: 50%;
-     transform: translate(-50%, -50%);
-     transition: width 0.6s ease, height 0.6s ease;
-}
-
-.editorial-action-btn:hover::after {
-     width: 200%;
-     height: 200%;
-}
-
-.editorial-action-btn i {
-     transition: transform 0.3s ease;
-}
-
-.editorial-action-btn:hover i {
-     transform: scale(1.15) rotate(-5deg);
-}
-
-/* Filter tabs with underline animation */
-.filter-tab {
-     position: relative;
-     transition: color 0.3s ease;
-}
-
-.filter-tab::after {
-     content: '';
-     position: absolute;
-     bottom: -2px;
-     left: 50%;
-     width: 0;
-     height: 2px;
-     background: var(--text-primary);
-     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-     transform: translateX(-50%);
-}
-
-.filter-tab:hover::after,
-.filter-tab.active::after {
-     width: 100%;
-}
-
-.filter-tab.active {
-     color: var(--text-primary);
-}
-
-/* Secondary button with hover lift */
-.secondary-expand-btn {
-     position: relative;
-     overflow: hidden;
-     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.secondary-expand-btn::before {
-     content: '';
-     position: absolute;
-     top: 0;
-     left: -100%;
-     width: 100%;
-     height: 100%;
-     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-     transition: left 0.6s ease;
-}
-
-.secondary-expand-btn:hover::before {
-     left: 100%;
-}
-
-.secondary-expand-btn:hover {
-     transform: translateY(-2px);
-     box-shadow: 0 8px 25px rgba(26, 20, 18, 0.15);
-}
-
-/* Modal transitions */
-.modal-overlay {
-     transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s ease;
-}
-
-.modal-overlay.active {
-     backdrop-filter: blur(8px);
-     -webkit-backdrop-filter: blur(8px);
-}
-
-.minimal-viewer-container {
-     transform: scale(0.92) translateY(20px);
-     opacity: 0;
-     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.modal-overlay.active .minimal-viewer-container {
-     transform: scale(1) translateY(0);
-     opacity: 1;
-}
-
-/* Modal image transitions */
-.minimal-image-stage img {
-     transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Modal navigation buttons with hover effects */
-#modal-prev-btn,
-#modal-next-btn {
-     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-#modal-prev-btn:hover,
-#modal-next-btn:hover {
-     background: var(--text-primary) !important;
-     color: #fff !important;
-     transform: scale(1.08);
-}
-
-/* Social icons hover */
-.editorial-socials a {
-     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-     display: inline-block;
-}
-
-.editorial-socials a:hover {
-     transform: translateY(-3px) scale(1.1);
-     color: var(--text-primary);
-}
-
-.editorial-socials a i {
-     transition: transform 0.3s ease;
-}
-
-.editorial-socials a:hover i {
-     transform: rotate(-5deg) scale(1.15);
-}
-
-/* Nav links with subtle underline */
-.nav-links a {
-     position: relative;
-     transition: color 0.3s ease;
-}
-
-.nav-links a::after {
-     content: '';
-     position: absolute;
-     bottom: -4px;
-     left: 0;
-     width: 0;
-     height: 1.5px;
-     background: var(--text-primary);
-     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-links a:hover::after {
-     width: 100%;
-}
-
-/* Brand logo pulse on hover */
-.ns-archive-brand-logo {
-     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-}
-
-.ns-archive-brand-logo:hover {
-     transform: scale(1.08) rotate(-3deg);
-}
-
-/* Responsive refinements */
-@media (max-width: 768px) {
-     .lookbook-item-card:hover {
-          transform: translateY(-4px);
-     }
-
-     .lookbook-item-card:hover img {
-          transform: scale(1.04);
-     }
-
-     .strip-thumb-item.active {
-          transform: translateY(-3px);
-     }
-}
-
-/* Scroll-triggered reveal animation */
-.reveal-on-scroll {
-     opacity: 0;
-     transform: translateY(40px);
-     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-on-scroll.visible {
-     opacity: 1;
-     transform: translateY(0);
-}
-
-/* Skeleton shimmer refined */
-.skeleton-shimmer {
-     background: linear-gradient(90deg, #f0eee9 25%, #e8e4de 50%, #f0eee9 75%);
-     background-size: 200% 100%;
-     animation: loading-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes loading-pulse {
-     0% {
-          background-position: 200% 0;
-     }
-
-     100% {
-          background-position: -200% 0;
      }
 }
