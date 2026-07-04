@@ -40,9 +40,9 @@
         },
         {
           id: 3,
-          name: "VELVET SLIPSTREAM RUNNER",
+          name: "Unisex palm slippers",
           gender: "Unisex",
-          price: 92000,
+          price: 8000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
@@ -51,8 +51,8 @@
             "Breathable Matrix Weave",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064643/IMG_9103_q7lpjx.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064600/IMG_9106_gzdo4j.jpg",
           ],
         },
         {
@@ -85,7 +85,7 @@
           ],
           imageUrls: [
             "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064442/IMG_9095_xrb89l.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782064624/IMG_9094_zw9dxx.jpg",
+
           ],
         },
         {
@@ -107,8 +107,8 @@
         {
           id: 7,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          gender: "Women",
+          price: 10000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
@@ -117,59 +117,59 @@
             "Breathable Matrix Weave",
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1783117648/20260506_165456_aokbgo.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1783117644/20260506_165446_vus31k.jpg",
+             "https://res.cloudinary.com/ddrorad1f/image/upload/v1783117653/20260506_165451_wkvnz9.jpg",
           ],
         },
         {
           id: 8,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          gender: "Men",
+          price: 25000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782335025/4336191a4b662d4b47b6b707da74716e_cgmlpe.jpg",
+           
           ],
         },
         {
           id: 9,
           name: "VELVET SLIPSTREAM RUNNER",
           gender: "Unisex",
-          price: 92000,
+          price: 15000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1782335030/dff63f42b33218866c0372c1415b179d_rkyjfz.jpg",
           ],
         },
         {
           id: 10,
           name: "VELVET SLIPSTREAM RUNNER",
           gender: "Unisex",
-          price: 92000,
+          price: 10000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://res.cloudinary.com/ddrorad1f/image/upload/v1783117628/20260506_165313_ikmxwo.jpg",
+            
           ],
         },
         {
           id: 11,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          gender: "Men",
+          price: 0,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "",
           specs: [
           ],
           imageUrls: [
@@ -180,7 +180,7 @@
         {
           id: 12,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
+          gender: "Men",
           price: 92000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
@@ -194,10 +194,10 @@
         {
           id: 13,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
+          gender: "Women",
           price: 92000,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "",
           specs: [
           ],
           imageUrls: [
@@ -208,10 +208,10 @@
         {
           id: 14,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
+          gender: "Women",
+          price: 0,
           description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+            "",
           specs: [
           ],
           imageUrls: [
@@ -221,7 +221,35 @@
           ],
         },
         {
-          id: 3,
+          id: 15,
+          name: "VELVET SLIPSTREAM RUNNER",
+          gender: "Women",
+          price: 0,
+          description:
+            "",
+          specs: [
+          ],
+          imageUrls: [
+            "https://i.pinimg.com/736x/84/73/19/84731995c8bd7129c75edeb13ed4ea3c.jpg",
+          ],
+        },
+       
+        {
+          id: 16,
+          name: "VELVET SLIPSTREAM RUNNER",
+          gender: "Men",
+          price: 92000,
+          description:
+            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+          specs: [
+          ],
+          imageUrls: [
+            "https://i.pinimg.com/736x/ab/f0/ec/abf0ec99513b2e96681727a46d2b3c2e.jpg",
+           "https://i.pinimg.com/1200x/4b/c8/9f/4bc89fef294ab8c2a6136d4cdc09cd27.jpg"
+          ],
+        },
+         {
+          id: 17,
           name: "VELVET SLIPSTREAM RUNNER",
           gender: "Unisex",
           price: 92000,
@@ -230,50 +258,53 @@
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://i.pinimg.com/736x/7f/5a/6c/7f5a6c49eb84f0b4de28c972d88a69e0.jpg",
+           "https://i.pinimg.com/736x/cc/53/9b/cc539bbb12a2b9a3ebbe90ee57d9974c.jpg"
+          ],
+        },
+         {
+          id: 18,
+          name: "VELVET SLIPSTREAM RUNNER",
+          gender: "Unisex",
+          price: 92000,
+          description:
+            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
+          specs: [
+          ],
+          imageUrls: [
+            "https://i.pinimg.com/1200x/94/0e/56/940e56561e7d5b4b720007d63f02d3d6.jpg",
+           "https://i.pinimg.com/1200x/ba/48/c6/ba48c6e753192b1ba4b65ca0f5135cc4.jpg",
+           "https://i.pinimg.com/1200x/16/2c/6a/162c6a6a6f920ff0bc3c626b8a602d0c.jpg"
           ],
         },
         {
-          id: 3,
+          id: 19,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
+          gender: "Women",
           price: 92000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://i.pinimg.com/736x/ab/92/66/ab92662838d9c6ea61298fb556d642a6.jpg",
+           "https://i.pinimg.com/736x/ce/0a/2e/ce0a2e11b3ab97f1caa1752b81350944.jpg",
+           "https://i.pinimg.com/1200x/d0/30/04/d03004e303f3341c2bc9761152fc0cdc.jpg"
           ],
         },
         {
-          id: 3,
+          id: 20,
           name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
+          gender: "Women",
           price: 92000,
           description:
             "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
           specs: [
           ],
           imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
-          ],
-        },
-        {
-          id: 3,
-          name: "VELVET SLIPSTREAM RUNNER",
-          gender: "Unisex",
-          price: 92000,
-          description:
-            "Sleek aerodynamic curves molded with high-performance mesh lines and luxurious nubuck overlays.",
-          specs: [
-          ],
-          imageUrls: [
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916173/20260521_144451_rljt82.jpg",
-            "https://res.cloudinary.com/ddrorad1f/image/upload/v1781916059/20260521_144431_yl0kfp.jpg",
+            "https://i.pinimg.com/736x/5d/b0/a5/5db0a524c046d583244df58444cfd668.jpg",
+           "https://i.pinimg.com/736x/a8/b4/df/a8b4dfb5e53fe7cd1535becf450862b2.jpg",
+           "https://i.pinimg.com/1200x/65/68/0a/65680ae02104e892236393ca4b02fc33.jpg"
           ],
         },
       ];
