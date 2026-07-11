@@ -1,4 +1,4 @@
- 
+
       // =========================================================================
       // MANUAL LOCAL JSON DATABASE
       // Add, remove, or swap items here. Supports absolute multi-image arrays.
@@ -394,7 +394,7 @@
         stripContainer.innerHTML = spotlightItems
           .map(
             (item, idx) => `
-            <div class="strip-thumb-item ${idx === activeSliderIndex ? "active" : ""}" data-index="${idx}">
+            <div class="strip-thumb-item glass-panel ${idx === activeSliderIndex ? "active" : ""}" data-index="${idx}">
               <img src="${item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : "https://via.placeholder.com/60"}" alt="">
             </div>
           `,
@@ -463,7 +463,7 @@
         galleryGrid.innerHTML = sliceRender
           .map(
             (item) => `
-            <div class="lookbook-item-card" data-id="${item.id}">
+            <div class="lookbook-item-card glass-panel" data-id="${item.id}">
               <img src="${item.imageUrls && item.imageUrls.length > 0 ? item.imageUrls[0] : "https://via.placeholder.com/400"}" alt="${item.name}">
             </div>
           `,
@@ -482,45 +482,12 @@
             if (selectedItem) openCarouselModalStage(selectedItem);
           });
         });
+
+        setupImageLoading();
+        setupScrollReveal();
       }
 
       // LOOKBOOK MODAL CAROUSEL ENGINE
-      function openCarouselModalStage(item) {
-        modalImageArrayTrack = item.imageUrls || [];
-        modalImageIndexPointer = 0;
-
-        synchronizeModalImageState();
-
-        const prevBtn = document.getElementById("modal-prev-btn");
-        const nextBtn = document.getElementById("modal-next-btn");
-
-        if (modalImageArrayTrack.length > 1) {
-          prevBtn.style.display = "flex";
-          nextBtn.style.display = "flex";
-          buildModalCarouselIndicators();
-        } else {
-          prevBtn.style.display = "none";
-          nextBtn.style.display = "none";
-          document.getElementById("modal-carousel-dots").innerHTML = "";
-        }
-
-        modal.classList.add("active");
-
-        modalInquireBtn.onclick = () => {
-          // Grabs the image matching the current viewpoint context inside the gallery popup modal overlay
-          const modalActiveImgUrl =
-            modalImageArrayTrack[modalImageIndexPointer] ||
-            "https://via.placeholder.com/400";
-          const queryMsg = encodeURIComponent(
-            `Hello, I am tracking lookbook model:\n\nModel: ${item.name}\nPrice: ₦${Number(item.price).toLocaleString()}\nReference Image: ${modalActiveImgUrl}\n\nIs this size run available?`,
-          );
-          window.open(
-            `https://wa.me/${WHATSAPP_NUMBER}?text=${queryMsg}`,
-            "_blank",
-          );
-        };
-      }
-
       function synchronizeModalImageState() {
         modalImg.style.opacity = "0";
         setTimeout(() => {
@@ -535,8 +502,8 @@
           .forEach((dot, idx) => {
             dot.style.background =
               idx === modalImageIndexPointer
-                ? "var(--text-primary)"
-                : "rgba(26,20,18,0.15)";
+                ? "var(--accent-tan)"
+                : "rgba(128,128,128,0.3)";
           });
       }
 
@@ -545,7 +512,7 @@
         container.innerHTML = modalImageArrayTrack
           .map(
             () =>
-              `<span class="modal-indicator-circle" style="width: 7px; height: 7px; border-radius: 50%; background: rgba(26,20,18,0.15); transition: all 0.25s ease;"></span>`,
+              `<span class="modal-indicator-circle" style="width: 7px; height: 7px; border-radius: 50%; background: rgba(128,128,128,0.3); transition: all 0.25s ease;"></span>`,
           )
           .join("");
       }
@@ -599,13 +566,13 @@
 
       // ==================== SCROLL REVEAL ANIMATIONS ====================
 function setupScrollReveal() {
-  const revealElements = document.querySelectorAll('.lookbook-item-card, .manifesto-col, .section-header-minimal');
-  
+  const revealElements = document.querySelectorAll('.lookbook-item-card:not(.reveal-on-scroll), .manifesto-col:not(.reveal-on-scroll), .section-header-minimal:not(.reveal-on-scroll)');
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
@@ -613,12 +580,12 @@ function setupScrollReveal() {
         setTimeout(() => {
           entry.target.classList.add('visible');
         }, index * 80);
-        
+
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
-  
+
   revealElements.forEach((el, i) => {
     el.classList.add('reveal-on-scroll');
     // Stagger initial visibility
@@ -630,16 +597,16 @@ function setupScrollReveal() {
 // ==================== SMOOTH IMAGE LOADING ====================
 function setupImageLoading() {
   const images = document.querySelectorAll('img');
-  
+
   images.forEach(img => {
     if (!img.complete) {
       img.style.opacity = '0';
       img.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      
+
       img.addEventListener('load', () => {
         img.style.opacity = '1';
       });
-      
+
       // Fallback for cached images
       setTimeout(() => {
         if (img.complete) {
@@ -653,12 +620,9 @@ function setupImageLoading() {
 }
 
 // ==================== ENHANCED MODAL TRANSITIONS ====================
-// Replace your existing modal open function with this enhanced version
 function openCarouselModalStage(item) {
   modalImageArrayTrack = item.imageUrls || [];
   modalImageIndexPointer = 0;
-
-  synchronizeModalImageState();
 
   const prevBtn = document.getElementById("modal-prev-btn");
   const nextBtn = document.getElementById("modal-next-btn");
@@ -676,11 +640,12 @@ function openCarouselModalStage(item) {
   // Reset modal image for smooth transition
   modalImg.style.opacity = "0";
   modal.classList.add("active");
-  
+
   // Small delay for smooth image load
   setTimeout(() => {
     modalImg.src = modalImageArrayTrack[0] || "https://via.placeholder.com/400";
     modalImg.style.opacity = "1";
+    synchronizeModalImageState();
   }, 150);
 
   modalInquireBtn.onclick = () => {
@@ -716,15 +681,62 @@ function setupSmoothNav() {
   });
 }
 
+// ==================== LIGHT / DARK THEME TOGGLE ====================
+function setupThemeToggle() {
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const knobIcon = document.getElementById('toggle-knob-icon');
+  if (!toggleBtn) return;
+
+  function applyThemeUI(theme) {
+    const isDark = theme === 'dark';
+    toggleBtn.setAttribute('aria-pressed', String(isDark));
+    toggleBtn.setAttribute(
+      'aria-label',
+      isDark ? 'Switch to light theme' : 'Switch to dark theme',
+    );
+    if (knobIcon) {
+      knobIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+  }
+
+  // Sync UI with whatever theme was set in the pre-paint inline script
+  applyThemeUI(root.getAttribute('data-theme') || 'light');
+
+  toggleBtn.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('ns-theme', next);
+    } catch (err) {
+      /* localStorage unavailable — theme still applies for this session */
+    }
+    applyThemeUI(next);
+  });
+
+  // Follow the OS theme if the visitor hasn't picked one explicitly
+  if (window.matchMedia) {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    media.addEventListener('change', (e) => {
+      if (localStorage.getItem('ns-theme')) return; // explicit choice wins
+      const next = e.matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      applyThemeUI(next);
+    });
+  }
+}
+
 // ==================== INITIALIZE ENHANCEMENTS ====================
-// Call these after your existing initialization
 document.addEventListener('DOMContentLoaded', () => {
   setupScrollReveal();
   setupImageLoading();
   setupSmoothNav();
+  setupParallax();
+  setupThemeToggle();
 });
 
-// Also add a subtle parallax effect to the main image
+// Subtle parallax effect on the main image viewport
 function setupParallax() {
   const viewport = document.querySelector('.main-image-viewport');
   if (viewport) {
@@ -737,7 +749,7 @@ function setupParallax() {
         img.style.transform = `scale(1.02) translate(${x * 6}px, ${y * 6}px)`;
       }
     });
-    
+
     viewport.addEventListener('mouseleave', () => {
       const img = viewport.querySelector('img');
       if (img && img.style) {
@@ -746,9 +758,3 @@ function setupParallax() {
     });
   }
 }
-
-// Add to DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  setupParallax();
-});
-    

@@ -7,7 +7,6 @@
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
     <title>NEW SOMETHING Shoes | Premium Footwear Collection</title>
-    <!-- <link rel="icon" href="newshoecrop-removebg-preview.png" /> -->
     <link
       rel="icon"
       type="image/png"
@@ -22,9 +21,29 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      /* Set theme before first paint to avoid a flash of the wrong theme */
+      (function () {
+        var saved = localStorage.getItem("ns-theme");
+        var theme =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
   </head>
   <body>
+    <!-- Ambient animated background -->
+    <div class="ambient-bg" aria-hidden="true">
+      <span class="floating-shape shape-a"></span>
+      <span class="floating-shape shape-b"></span>
+      <span class="floating-shape shape-c"></span>
+      <span class="floating-shape shape-d"></span>
+    </div>
+
     <div class="luxury-container">
       <header class="luxury-header">
         <div class="brand-logo-area">
@@ -37,17 +56,42 @@
             >NEW SOMETHING <span>Shoes</span></a
           >
         </div>
-        <nav class="nav-links">
-          <a href="#products-section" id="nav-collection">SIGNATURES</a>
-          <a href="#gallery-grid-section" id="nav-gallery">GALLERY</a>
-          <a href="#about-info" id="nav-about">INFO DESK</a>
-        </nav>
+        <div class="header-controls">
+          <nav class="nav-links">
+            <a href="#products-section" id="nav-collection">SIGNATURES</a>
+            <a href="#gallery-grid-section" id="nav-gallery">GALLERY</a>
+            <a href="#about-info" id="nav-about">INFO DESK</a>
+          </nav>
+          <button
+            id="theme-toggle"
+            class="theme-toggle-pill"
+            type="button"
+            aria-label="Switch to dark theme"
+            aria-pressed="false"
+          >
+            <i
+              class="fas fa-sun toggle-track-icon icon-sun"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="fas fa-moon toggle-track-icon icon-moon"
+              aria-hidden="true"
+            ></i>
+            <span class="theme-toggle-knob" id="theme-toggle-knob">
+              <i
+                class="fas fa-sun"
+                id="toggle-knob-icon"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </button>
+        </div>
       </header>
 
       <main id="products-section" class="showcase-view">
         <div class="editorial-slider-grid">
           <div class="slider-visual-column">
-            <div class="main-image-viewport">
+            <div class="main-image-viewport glass-panel">
               <div id="image-skeleton" class="skeleton-shimmer"></div>
               <img
                 id="slider-main-image"
@@ -60,14 +104,14 @@
             <div class="slider-arrows">
               <button
                 id="prev-slide-btn"
-                class="nav-arrow-btn"
+                class="nav-arrow-btn glass-panel"
                 aria-label="Previous Slide"
               >
                 &larr;
               </button>
               <button
                 id="next-slide-btn"
-                class="nav-arrow-btn"
+                class="nav-arrow-btn glass-panel"
                 aria-label="Next Slide"
               >
                 &rarr;
@@ -76,7 +120,7 @@
           </div>
 
           <div
-            class="slider-details-column fade-element"
+            class="slider-details-column glass-panel fade-element"
             id="slider-details-tray"
           >
             <span id="slider-category" class="luxury-meta-tag"
@@ -144,7 +188,7 @@
           </button>
 
           <div
-            class="minimal-image-stage"
+            class="minimal-image-stage glass-panel"
             style="
               position: relative;
               overflow: hidden;
@@ -162,11 +206,11 @@
 
             <button
               id="modal-prev-btn"
+              class="glass-panel"
               style="
                 position: absolute;
                 left: 15px;
-                background: rgba(250, 249, 246, 0.9);
-                border: 1px solid var(--border-light);
+                border-radius: 50%;
                 width: 42px;
                 height: 42px;
                 cursor: pointer;
@@ -176,17 +220,18 @@
                 z-index: 15;
                 align-items: center;
                 justify-content: center;
+                color: var(--text-primary);
               "
             >
               &larr;
             </button>
             <button
               id="modal-next-btn"
+              class="glass-panel"
               style="
                 position: absolute;
                 right: 15px;
-                background: rgba(250, 249, 246, 0.9);
-                border: 1px solid var(--border-light);
+                border-radius: 50%;
                 width: 42px;
                 height: 42px;
                 cursor: pointer;
@@ -196,6 +241,7 @@
                 z-index: 15;
                 align-items: center;
                 justify-content: center;
+                color: var(--text-primary);
               "
             >
               &rarr;
@@ -204,13 +250,16 @@
 
           <div
             id="modal-carousel-dots"
+            class="glass-panel"
             style="
               display: flex;
               justify-content: center;
               gap: 8px;
               padding: 14px 0;
-              background: var(--bg-surface);
-              border-top: 1px solid var(--border-light);
+              border-top: none;
+              border-radius: 0;
+              border-left: none;
+              border-right: none;
             "
           ></div>
 
@@ -225,12 +274,12 @@
 
       <section id="about-info" class="brand-manifesto">
         <div class="manifesto-grid">
-          <div class="manifesto-col">
+          <div class="manifesto-col glass-panel">
             <h3>DIRECT INQUIRIES</h3>
             <p>omoloyehassan12@gmail.com</p>
             <p>+234 703 362 3329</p>
           </div>
-          <div class="manifesto-col">
+          <div class="manifesto-col glass-panel">
             <h3>OUR PHILOSOPHY</h3>
             <p>
               Handcrafted footwear configurations, exceptional treatments, and
@@ -238,7 +287,7 @@
               story piece.
             </p>
           </div>
-          <div class="manifesto-col">
+          <div class="manifesto-col glass-panel">
             <h3>CONCIERGE DESK</h3>
             <p>
               Pure visual selection without noisy checkout cards. Tap any detail

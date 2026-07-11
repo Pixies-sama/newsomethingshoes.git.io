@@ -1,24 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ==================== DESIGN TOKENS / THEME SYSTEM ==================== */
 :root {
+     /* Light theme (default) */
      --bg-color: #FAF9F6;
-     /* Premium Clean Gallery Alabaster Warm Tint */
+     --bg-color-alt: #F0E9DE;
      --text-primary: #1A1412;
-     /* Deep Matte Espresso Dark Black */
-     --text-muted: #615855;
-     /* Structural Soft Muted Charcoal Grey */
-     --border-light: #ECE6DF;
-     /* Ultra Fine Layout Invisible Border Lines */
-     --accent-tan: #9E5A42;
-     /* Luxury Soft Leather Tan Trim Accent */
+     --text-muted: #57504C;
+     /* Darkened slightly from original for WCAG AA on small caption text */
+     --border-light: #E4DCD2;
+     --accent-tan: #8C4E38;
+     /* Darkened from #9E5A42 so it clears 4.5:1 on both bg-color and glass surfaces */
      --serif-font: 'Playfair Display', serif;
      --sans-font: 'Inter', sans-serif;
      --poppins: 'poppins';
 
-     /* Structural Admin Variables maintained for continuity */
+     /* Glass surfaces */
+     --glass-bg: rgba(255, 255, 255, 0.5);
+     --glass-bg-strong: rgba(255, 255, 255, 0.72);
+     --glass-border: rgba(255, 255, 255, 0.7);
+     --glass-blur: 22px;
+     --glass-shadow: 0 8px 40px rgba(26, 18, 14, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+     /* Buttons (deliberately separate from text tokens so contrast holds in both themes) */
+     --btn-bg: #1A1412;
+     --btn-bg-hover: #3A2E29;
+     --btn-text: #FFFFFF;
+
+     /* Floating shape palette */
+     --shape-1: rgba(140, 78, 56, 0.30);
+     --shape-2: rgba(220, 199, 172, 0.55);
+     --shape-3: rgba(97, 88, 83, 0.16);
+
      --bg-surface: #F4F0EA;
      --border-color: #ECE6DF;
-     --radius-md: 0px;
+     --radius-lg: 26px;
+     --radius-md: 16px;
+     --radius-sm: 10px;
+     --radius-pill: 999px;
      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+     --bg-color: #14100D;
+     --bg-color-alt: #1D1712;
+     --text-primary: #F6F1EA;
+     --text-muted: #C7BDB4;
+     /* 8.7:1+ against --bg-color, comfortably WCAG AAA */
+     --border-light: rgba(255, 255, 255, 0.10);
+     --accent-tan: #E3987A;
+     /* lightened tan clears 4.5:1 on dark glass + dark bg */
+
+     --glass-bg: rgba(38, 30, 25, 0.55);
+     --glass-bg-strong: rgba(38, 30, 25, 0.78);
+     --glass-border: rgba(255, 255, 255, 0.10);
+     --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+     --btn-bg: #F6F1EA;
+     --btn-bg-hover: #FFFFFF;
+     --btn-text: #14100D;
+
+     --shape-1: rgba(227, 152, 122, 0.20);
+     --shape-2: rgba(90, 70, 55, 0.35);
+     --shape-3: rgba(255, 255, 255, 0.05);
+
+     --bg-surface: #1D1712;
+     --border-color: rgba(255, 255, 255, 0.10);
 }
 
 * {
@@ -28,13 +75,123 @@
      box-sizing: border-box;
 }
 
+html {
+     background-color: var(--bg-color);
+}
+
 body {
      background-color: var(--bg-color);
-     font-family: "Poppins", sans-serif;;
+     font-family: "Poppins", sans-serif;
      color: var(--text-primary);
      line-height: 1.5;
      scroll-behavior: smooth;
      -webkit-font-smoothing: antialiased;
+     position: relative;
+     min-height: 100vh;
+     overflow-x: hidden;
+     transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ==================== AMBIENT ANIMATED BACKGROUND ==================== */
+.ambient-bg {
+     position: fixed;
+     inset: 0;
+     z-index: -1;
+     overflow: hidden;
+     pointer-events: none;
+}
+
+.floating-shape {
+     position: absolute;
+     border-radius: 50%;
+     filter: blur(70px);
+     will-change: transform;
+}
+
+.shape-a {
+     width: 480px;
+     height: 480px;
+     top: -140px;
+     left: -100px;
+     background: var(--shape-1);
+     animation: drift-a 32s ease-in-out infinite;
+}
+
+.shape-b {
+     width: 360px;
+     height: 360px;
+     top: 30%;
+     right: -120px;
+     background: var(--shape-2);
+     animation: drift-b 38s ease-in-out infinite;
+}
+
+.shape-c {
+     width: 300px;
+     height: 300px;
+     bottom: -100px;
+     left: 20%;
+     background: var(--shape-3);
+     animation: drift-c 44s ease-in-out infinite;
+}
+
+.shape-d {
+     width: 220px;
+     height: 220px;
+     bottom: 10%;
+     right: 10%;
+     background: var(--shape-1);
+     animation: drift-b 28s ease-in-out infinite reverse;
+}
+
+@keyframes drift-a {
+
+     0%,
+     100% {
+          transform: translate(0, 0) scale(1);
+     }
+
+     33% {
+          transform: translate(60px, 80px) scale(1.12);
+     }
+
+     66% {
+          transform: translate(-40px, 30px) scale(0.94);
+     }
+}
+
+@keyframes drift-b {
+
+     0%,
+     100% {
+          transform: translate(0, 0) scale(1);
+     }
+
+     50% {
+          transform: translate(-90px, 60px) scale(1.15);
+     }
+}
+
+@keyframes drift-c {
+
+     0%,
+     100% {
+          transform: translate(0, 0) scale(1);
+     }
+
+     40% {
+          transform: translate(50px, -70px) scale(1.08);
+     }
+
+     75% {
+          transform: translate(-60px, -20px) scale(0.92);
+     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+     .floating-shape {
+          animation: none !important;
+     }
 }
 
 .luxury-container {
@@ -44,6 +201,8 @@ body {
      min-height: 100vh;
      display: flex;
      flex-direction: column;
+     position: relative;
+     z-index: 1;
 }
 
 /* ==================== TYPOGRAPHY SYSTEM ==================== */
@@ -56,14 +215,38 @@ h3,
      letter-spacing: -0.03em;
 }
 
+/* ==================== GLASS PANEL UTILITY ==================== */
+.glass-panel {
+     background: var(--glass-bg);
+     backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+     border: 1px solid var(--glass-border);
+     box-shadow: var(--glass-shadow);
+}
+
 /* ==================== MINIMALIST HEADER BAR ==================== */
 .luxury-header {
      display: flex;
      justify-content: space-between;
      align-items: center;
-     padding: 1.5rem 0 3rem 0;
-     border-bottom: 1px solid var(--border-light);
-     margin-bottom: 4rem;
+     padding: 1.1rem 1.75rem;
+     margin: 1.25rem 0 3.5rem 0;
+     position: sticky;
+     top: 1.25rem;
+     z-index: 50;
+     border-radius: var(--radius-lg);
+     background: var(--glass-bg-strong);
+     backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+     border: 1px solid var(--glass-border);
+     box-shadow: var(--glass-shadow);
+     transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.header-controls {
+     display: flex;
+     align-items: center;
+     gap: 2rem;
 }
 
 .brand-logo-area {
@@ -73,8 +256,8 @@ h3,
 }
 
 .ns-archive-brand-logo {
-     width: 48px;
-     height: 48px;
+     width: 40px;
+     height: 40px;
      object-fit: contain;
      filter: grayscale(100%);
 }
@@ -98,7 +281,7 @@ h3,
 
 .nav-links {
      display: flex;
-     gap: 3rem;
+     gap: 2.5rem;
 }
 
 .nav-links a {
@@ -111,8 +294,70 @@ h3,
      font-weight: 500;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
      color: var(--text-primary);
+}
+
+/* ==================== THEME TOGGLE — SLIDING PILL ==================== */
+.theme-toggle-pill {
+     position: relative;
+     width: 60px;
+     height: 30px;
+     border-radius: var(--radius-pill);
+     background: var(--glass-bg);
+     border: 1px solid var(--glass-border);
+     cursor: pointer;
+     padding: 0;
+     display: flex;
+     align-items: center;
+     transition: background-color 0.4s ease, border-color 0.4s ease;
+     flex-shrink: 0;
+}
+
+.theme-toggle-pill:focus-visible {
+     outline: 2px solid var(--accent-tan);
+     outline-offset: 3px;
+}
+
+.toggle-track-icon {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     font-size: 0.68rem;
+     color: var(--text-muted);
+     transition: opacity 0.3s ease;
+}
+
+.toggle-track-icon.icon-sun {
+     left: 8px;
+}
+
+.toggle-track-icon.icon-moon {
+     right: 8px;
+}
+
+.theme-toggle-knob {
+     position: absolute;
+     top: 2px;
+     left: 2px;
+     width: 24px;
+     height: 24px;
+     border-radius: 50%;
+     background: var(--accent-tan);
+     color: #FFFFFF;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 0.65rem;
+     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .theme-toggle-knob {
+     transform: translateX(30px);
+     background: #F6F1EA;
+     color: #14100D;
 }
 
 /* ==================== EDITORIAL SPOTLIGHT SLIDER LAYOUT ==================== */
@@ -123,7 +368,7 @@ h3,
 .editorial-slider-grid {
      display: grid;
      grid-template-columns: 1.2fr 0.8fr;
-     gap: 5rem;
+     gap: 3rem;
      align-items: start;
      margin-bottom: 4rem;
 }
@@ -137,20 +382,21 @@ h3,
 
 .main-image-viewport {
      position: relative;
-     background-color: #FFFFFF;
-     border: 1px solid var(--border-light);
+     border-radius: var(--radius-lg);
      padding: 4rem;
      display: flex;
      align-items: center;
      justify-content: center;
      height: 520px;
+     overflow: hidden;
+     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .main-image-viewport img {
      max-width: 100%;
      max-height: 100%;
      object-fit: contain;
-     transition: opacity 0.4s ease-in-out;
+     transition: opacity 0.4s ease-in-out, transform 0.3s ease;
 }
 
 /* Loading Shimmer Effects */
@@ -160,7 +406,7 @@ h3,
      left: 0;
      width: 100%;
      height: 100%;
-     background: linear-gradient(90deg, #FAF9F6 25%, #F0EEE9 50%, #FAF9F6 75%);
+     background: linear-gradient(90deg, transparent 25%, rgba(255, 255, 255, 0.35) 50%, transparent 75%);
      background-size: 200% 100%;
      animation: loading-pulse 1.5s infinite;
      opacity: 0;
@@ -189,8 +435,7 @@ h3,
 }
 
 .nav-arrow-btn {
-     background: transparent;
-     border: 1px solid var(--border-light);
+     border-radius: 50%;
      width: 46px;
      height: 46px;
      cursor: pointer;
@@ -202,15 +447,18 @@ h3,
      color: var(--text-primary);
 }
 
-.nav-arrow-btn:hover {
-     background-color: var(--text-primary);
-     color: #FFFFFF;
-     border-color: var(--text-primary);
+.nav-arrow-btn:hover,
+.nav-arrow-btn:focus-visible {
+     background: var(--btn-bg);
+     color: var(--btn-text);
+     border-color: var(--btn-bg);
 }
 
 /* Text Specs Meta Details Box */
 .slider-details-column {
-     padding-top: 1rem;
+     padding: 2.75rem 2.5rem;
+     border-radius: var(--radius-lg);
+     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .luxury-meta-tag {
@@ -224,7 +472,7 @@ h3,
 }
 
 .luxury-item-title {
-     font-size: 3.2rem;
+     font-size: 3rem;
      line-height: 1.1;
      text-transform: uppercase;
      margin-bottom: 1.5rem;
@@ -278,9 +526,10 @@ h3,
 }
 
 .editorial-action-btn {
-     background-color: var(--text-primary);
-     color: #FFFFFF;
+     background-color: var(--btn-bg);
+     color: var(--btn-text);
      border: none;
+     border-radius: var(--radius-pill);
      width: 100%;
      padding: 1.25rem;
      font-size: 0.75rem;
@@ -288,7 +537,7 @@ h3,
      letter-spacing: 0.2em;
      font-weight: 600;
      cursor: pointer;
-     transition: background-color 0.2s ease;
+     transition: background-color 0.2s ease, transform 0.2s ease;
      display: flex;
      align-items: center;
      justify-content: center;
@@ -299,8 +548,10 @@ h3,
      font-size: 0.95rem;
 }
 
-.editorial-action-btn:hover {
-     background-color: #332926;
+.editorial-action-btn:hover,
+.editorial-action-btn:focus-visible {
+     background-color: var(--btn-bg-hover);
+     transform: translateY(-2px);
 }
 
 /* ==================== INTERACTIVE THUMBNAIL RIBBON STRIP ==================== */
@@ -325,8 +576,7 @@ h3,
 }
 
 .strip-thumb-item {
-     border: 1px solid var(--border-light);
-     background-color: #FFFFFF;
+     border-radius: var(--radius-md);
      padding: 0.5rem;
      cursor: pointer;
      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -350,9 +600,9 @@ h3,
 }
 
 .strip-thumb-item.active {
-     border-color: var(--text-primary);
-     background-color: #FFFFFF;
+     border-color: var(--accent-tan);
      transform: translateY(-4px);
+     box-shadow: var(--glass-shadow);
 }
 
 /* ==================== LOWER COMPILATION LOOKBOOK MATRIX ==================== */
@@ -385,28 +635,34 @@ h3,
 .filter-menu-bar {
      display: flex;
      justify-content: center;
-     gap: 2.5rem;
+     gap: 0.5rem;
      margin-bottom: 3.5rem;
+     flex-wrap: wrap;
 }
 
 .filter-tab {
      background: transparent;
-     border: none;
+     border: 1px solid transparent;
+     border-radius: var(--radius-pill);
      font-size: 0.72rem;
      text-transform: uppercase;
      letter-spacing: 0.15em;
      color: var(--text-muted);
      cursor: pointer;
-     padding-bottom: 0.5rem;
-     border-bottom: 2px solid transparent;
-     transition: all 0.2s ease;
+     padding: 0.6rem 1.4rem;
+     transition: all 0.25s ease;
      font-weight: 500;
 }
 
 .filter-tab:hover,
-.filter-tab.active {
+.filter-tab:focus-visible {
      color: var(--text-primary);
-     border-bottom-color: var(--text-primary);
+     border-color: var(--glass-border);
+}
+
+.filter-tab.active {
+     color: var(--btn-text);
+     background: var(--btn-bg);
 }
 
 /* Portfolio Masonry Blocks grid */
@@ -418,8 +674,7 @@ h3,
 }
 
 .lookbook-item-card {
-     background-color: #FFFFFF;
-     border: 1px solid var(--border-light);
+     border-radius: var(--radius-lg);
      padding: 2.5rem;
      cursor: pointer;
      display: flex;
@@ -427,6 +682,13 @@ h3,
      justify-content: center;
      height: 320px;
      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+     opacity: 0;
+     transform: translateY(24px);
+}
+
+.lookbook-item-card.reveal-on-scroll.visible {
+     opacity: 1;
+     transform: translateY(0);
 }
 
 .lookbook-item-card img {
@@ -437,7 +699,9 @@ h3,
 }
 
 .lookbook-item-card:hover {
-     border-color: var(--text-primary);
+     border-color: var(--accent-tan);
+     transform: translateY(-6px);
+     box-shadow: var(--glass-shadow);
 }
 
 .lookbook-item-card:hover img {
@@ -450,8 +714,9 @@ h3,
 }
 
 .secondary-expand-btn {
-     background: transparent;
-     border: 1px solid var(--text-primary);
+     background: var(--glass-bg);
+     border: 1px solid var(--glass-border);
+     border-radius: var(--radius-pill);
      color: var(--text-primary);
      padding: 1rem 2.5rem;
      font-size: 0.72rem;
@@ -462,9 +727,11 @@ h3,
      transition: all 0.2s ease;
 }
 
-.secondary-expand-btn:hover {
-     background-color: var(--text-primary);
-     color: #FFFFFF;
+.secondary-expand-btn:hover,
+.secondary-expand-btn:focus-visible {
+     background: var(--btn-bg);
+     color: var(--btn-text);
+     border-color: var(--btn-bg);
 }
 
 /* ==================== EXTENDED CAROUSEL OVERLAY SCREEN ==================== */
@@ -474,7 +741,9 @@ h3,
      left: 0;
      width: 100%;
      height: 100%;
-     background-color: rgba(250, 249, 246, 0.95);
+     background-color: rgba(20, 16, 13, 0.55);
+     backdrop-filter: blur(6px);
+     -webkit-backdrop-filter: blur(6px);
      display: flex;
      align-items: center;
      justify-content: center;
@@ -511,8 +780,7 @@ h3,
 }
 
 .minimal-image-stage {
-     background-color: #FFFFFF;
-     border: 1px solid var(--border-light);
+     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
      padding: 5rem 3rem;
      display: flex;
      align-items: center;
@@ -527,15 +795,16 @@ h3,
 }
 
 .minimal-action-stage {
-     margin-top: 1.5rem;
+     margin-top: 0;
 }
 
 .btn-minimal-whatsapp {
      width: 100%;
-     background-color: var(--text-primary);
+     background-color: var(--btn-bg);
      border: none;
+     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
      padding: 1.25rem;
-     color: #FFFFFF;
+     color: var(--btn-text);
      text-transform: uppercase;
      font-size: 0.72rem;
      letter-spacing: 0.15em;
@@ -547,8 +816,9 @@ h3,
      transition: background-color 0.2s ease;
 }
 
-.btn-minimal-whatsapp:hover {
-     background-color: #332926;
+.btn-minimal-whatsapp:hover,
+.btn-minimal-whatsapp:focus-visible {
+     background-color: var(--btn-bg-hover);
 }
 
 .btn-minimal-whatsapp i {
@@ -565,7 +835,20 @@ h3,
 .manifesto-grid {
      display: grid;
      grid-template-columns: repeat(3, 1fr);
-     gap: 4rem;
+     gap: 1.75rem;
+}
+
+.manifesto-col {
+     padding: 2rem 1.75rem;
+     border-radius: var(--radius-md);
+     opacity: 0;
+     transform: translateY(20px);
+     transition: background-color 0.5s ease, border-color 0.5s ease, opacity 0.6s ease, transform 0.6s ease;
+}
+
+.manifesto-col.reveal-on-scroll.visible {
+     opacity: 1;
+     transform: translateY(0);
 }
 
 .manifesto-col h3 {
@@ -611,8 +894,25 @@ h3,
      font-family: "Poppins";
 }
 
-.editorial-socials a:hover {
-     color: var(--text-primary);
+.editorial-socials a:hover,
+.editorial-socials a:focus-visible {
+     color: var(--accent-tan);
+}
+
+/* ==================== SCROLL REVEAL BASE STATE ==================== */
+.reveal-on-scroll {
+     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+     .reveal-on-scroll,
+     .lookbook-item-card,
+     .manifesto-col {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+     }
 }
 
 /* ==================== ADAPTIVE RESPONSIVE LAYOUT MATRIX ==================== */
@@ -627,13 +927,19 @@ h3,
 
      .manifesto-grid {
           grid-template-columns: 1fr;
-          gap: 2.5rem;
+          gap: 1.25rem;
      }
 
      .luxury-header {
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
           text-align: center;
+          position: static;
+     }
+
+     .header-controls {
+          flex-direction: column;
+          gap: 1.25rem;
      }
 
      .brand-logo-area {
@@ -643,7 +949,7 @@ h3,
 
      .editorial-slider-grid {
           grid-template-columns: 1fr;
-          gap: 2.5rem;
+          gap: 2rem;
      }
 
      .luxury-item-title {
@@ -656,54 +962,44 @@ h3,
      }
 
      .filter-menu-bar {
-          gap: 1.25rem;
-          flex-wrap: wrap;
+          gap: 0.5rem;
      }
 
      .minimal-image-stage {
           padding: 2.5rem 1.5rem;
      }
-
-     .dashboard-grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-     }
 }
 
-/* ==================== LOOKBOOK MOBILE 3-COLUMN GRID OVERRIDE ==================== */
 /* ==================== LOOKBOOK MOBILE THUMBNAIL GRID OVERRIDE ==================== */
 @media (max-width: 768px) {
-
-     /* Converts the flex strip into an elegant 3-column grid structure */
      #thumbnail-strip-container {
           display: grid !important;
           grid-template-columns: repeat(3, 1fr) !important;
           gap: 8px !important;
      }
 
-     /* Standardizes card height layout tracking dimensions */
      .strip-thumb-item {
           flex: none !important;
           width: 100% !important;
           height: 100px !important;
-          /* Forces uniform height alignment */
           padding: 0 !important;
           overflow: hidden;
-          background-color: #F4F0EA;
      }
 
-     /* Forces the presentation images to scale and fill out the cards cleanly */
      .strip-thumb-item img {
           width: 100% !important;
           height: 100% !important;
           max-width: 100% !important;
           max-height: 100% !important;
           object-fit: cover !important;
-          /* Crops cleanly inside the card without distortion */
           opacity: 0.85 !important;
      }
 
      .strip-thumb-item.active img {
           opacity: 1 !important;
+     }
+
+     .floating-shape {
+          filter: blur(45px);
      }
 }
