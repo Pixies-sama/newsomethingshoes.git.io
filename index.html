@@ -1,320 +1,383 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>New Something Shoes | Handmade Footwear from Nigeria</title>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+      name="description"
+      content="Handcrafted palm slippers, sandals and shoes made in Nigeria. Browse the collection and order on WhatsApp."
     />
-    <title>NEW SOMETHING Shoes | Premium Footwear Collection</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./newshoecrop-removebg-preview.png"
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="New Something Shoes" />
+    <meta
+      property="og:title"
+      content="New Something Shoes | Handmade Footwear from Nigeria"
     />
+    <meta
+      property="og:description"
+      content="Handcrafted palm slippers, sandals and shoes made in Nigeria. Browse the collection and order on WhatsApp."
+    />
+    <meta
+      property="og:image"
+      content="https://newshoes.cv/assets/images/og-default.jpg"
+    />
+    <meta property="og:url" content="https://newshoes.cv/index.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F5F1EA" />
+    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <script>
-      /* Set theme before first paint to avoid a flash of the wrong theme */
-      (function () {
-        var saved = localStorage.getItem("ns-theme");
-        var theme =
-          saved ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        document.documentElement.setAttribute("data-theme", theme);
-      })();
-    </script>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
   </head>
-  <body>
-    <!-- Ambient animated background -->
-    <div class="ambient-bg" aria-hidden="true">
-      <span class="floating-shape shape-a"></span>
-      <span class="floating-shape shape-b"></span>
-      <span class="floating-shape shape-c"></span>
-      <span class="floating-shape shape-d"></span>
-    </div>
-
-    <div class="luxury-container">
-      <header class="luxury-header">
-        <div class="brand-logo-area">
-          <img
-            src="newshoecrop-removebg-preview.png"
-            alt="NS ARCHIVE LOGO"
-            class="ns-archive-brand-logo"
-          />
-          <a href="#" id="nav-home" class="brand-title-link"
-            >NEW SOMETHING <span>Shoes</span></a
+  <body data-page="home">
+    <header class="site-header">
+      <div class="container bar">
+        <a
+          class="logo"
+          href="index.html"
+          aria-label="New Something Shoes - home"
+          ><img
+            src="assets/images/logo-dark.png"
+            alt="New Something Shoes"
+            width="120"
+            height="60"
+        /></a>
+        <nav id="nav" class="nav" aria-label="Main">
+          <a href="index.html" aria-current="page">Home</a
+          ><a href="collections.html">Collections</a
+          ><a href="gallery.html">Gallery</a><a href="shoes.html">Shoes</a
+          ><a href="palm-slippers.html">Palm Slippers</a
+          ><a href="about.html">About</a><a href="contact.html">Contact</a>
+        </nav>
+        <a
+          class="icon-link"
+          href="collections.html?focus=search"
+          aria-label="Search the collection"
+          ><svg
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
           >
-        </div>
-        <div class="header-controls">
-          <nav class="nav-links">
-            <a href="#products-section" id="nav-collection">SIGNATURES</a>
-            <a href="#gallery-grid-section" id="nav-gallery">GALLERY</a>
-            <a href="#about-info" id="nav-about">INFO DESK</a>
-          </nav>
-          <button
-            id="theme-toggle"
-            class="theme-toggle-pill"
-            type="button"
-            aria-label="Switch to dark theme"
-            aria-pressed="false"
-          >
-            <i
-              class="fas fa-sun toggle-track-icon icon-sun"
-              aria-hidden="true"
-            ></i>
-            <i
-              class="fas fa-moon toggle-track-icon icon-moon"
-              aria-hidden="true"
-            ></i>
-            <span class="theme-toggle-knob" id="theme-toggle-knob">
-              <i
-                class="fas fa-sun"
-                id="toggle-knob-icon"
-                aria-hidden="true"
-              ></i>
-            </span>
-          </button>
-        </div>
-      </header>
-
-      <main id="products-section" class="showcase-view">
-        <div class="editorial-slider-grid">
-          <div class="slider-visual-column">
-            <div class="main-image-viewport glass-panel">
-              <div id="image-skeleton" class="skeleton-shimmer"></div>
-              <img
-                id="slider-main-image"
-                src=""
-                alt="Footwear Presentation Workspace Master Frame"
-                class="fade-element"
-              />
-            </div>
-
-            <div class="slider-arrows">
-              <button
-                id="prev-slide-btn"
-                class="nav-arrow-btn glass-panel"
-                aria-label="Previous Slide"
-              >
-                &larr;
-              </button>
-              <button
-                id="next-slide-btn"
-                class="nav-arrow-btn glass-panel"
-                aria-label="Next Slide"
-              >
-                &rarr;
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="slider-details-column glass-panel fade-element"
-            id="slider-details-tray"
-          >
-            <span id="slider-category" class="luxury-meta-tag"
-              >SIGNATURE SERIE</span
-            >
-            <h1 id="slider-title" class="luxury-item-title">
-              Loading Layout...
-            </h1>
-            <div id="slider-price" class="luxury-item-price">₦0</div>
-
-            <hr class="divider-line" />
-
-            <p id="slider-description" class="luxury-item-description"></p>
-            <ul id="slider-specs" class="luxury-spec-list"></ul>
-
-            <div class="action-integration-row">
-              <button id="slider-inquire-btn" class="editorial-action-btn">
-                INQUIRE VIA WHATSAPP <i class="fab fa-whatsapp"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <section class="lookbook-strip-section">
-          <h3 class="strip-section-title">THE SIGNATURE SPOTLIGHT (TOP 10)</h3>
-          <div id="thumbnail-strip-container" class="thumbnail-strip"></div>
-        </section>
-      </main>
-
-      <section id="gallery-grid-section" class="luxury-gallery-section">
-        <div class="section-header-minimal">
-          <h2>THE FULL GALLERY COLLECTION</h2>
-          <p>
-            Tap any preview canvas below to scale the visual workspace into an
-            expanded multi-angle review slider carousel.
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-4-4" /></svg
+        ></a>
+        <button
+          class="burger"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="nav"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="container hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Handmade in Nigeria</p>
+          <h1>Crafted for your every step.</h1>
+          <p class="lead">
+            Handcrafted footwear designed to bring together timeless
+            craftsmanship, comfort and modern style.
           </p>
+          <div class="hero__cta">
+            <a class="btn btn--dark" href="collections.html"
+              >Explore collection</a
+            ><a
+              class="btn btn--ghost"
+              data-wa
+              href="#"
+              target="_blank"
+              rel="noopener"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"
+                />
+                <path
+                  d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"
+                />
+              </svg>
+              Chat on WhatsApp</a
+            >
+          </div>
         </div>
-
-        <div class="filter-menu-bar">
-          <button class="filter-tab active" data-filter="all">
-            ALL DESIGNS
-          </button>
-          <button class="filter-tab" data-filter="Men">MEN</button>
-          <button class="filter-tab" data-filter="Women">WOMEN</button>
-          <button class="filter-tab" data-filter="Unisex">UNISEX</button>
-        </div>
-
-        <div id="gallery-cards-grid" class="boutique-lookbook-grid"></div>
-
-        <div id="expansion-trigger-box" class="expansion-wrapper">
-          <button id="show-all-btn" class="secondary-expand-btn">
-            SHOW MORE DESIGNS
-          </button>
+        <img
+          class="hero__img"
+          src="assets/images/hero/hero.webp"
+          alt="Handmade leather palm slippers in warm sunlight"
+          width="600"
+          height="600"
+          fetchpriority="high"
+        />
+      </section>
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow">Shop by category</p>
+          <h2>Made by hand. Made to last.</h2>
+          <div class="cats">
+            <a class="cat" href="palm-slippers.html"
+              ><img
+                src="assets/images/products/classic-leather-palm-1.jpg"
+                alt="Palm Slippers"
+                loading="lazy"
+                width="600"
+                height="600"
+              />
+              <h3>Palm Slippers</h3>
+              <p>Hand-stitched palms for everyday elegance.</p>
+              <span class="link-btn">Explore collection →</span></a
+            ><a class="cat" href="shoes.html"
+              ><img
+                src="assets/images/products/lagos-loafer-1.jpg"
+                alt="Shoes"
+                loading="lazy"
+                width="600"
+                height="600"
+              />
+              <h3>Shoes</h3>
+              <p>Loafers, oxfords and sneakers, made by hand.</p>
+              <span class="link-btn">Explore collection →</span></a
+            ><a class="cat" href="sandals.html"
+              ><img
+                src="assets/images/products/kano-double-strap-sandal-1.jpg"
+                alt="Sandals"
+                loading="lazy"
+                width="600"
+                height="600"
+              />
+              <h3>Sandals</h3>
+              <p>Strapped and wrapped for warm days.</p>
+              <span class="link-btn">Explore collection →</span></a
+            ><a class="cat" href="collections.html?f=premium"
+              ><img
+                src="assets/images/products/executive-woven-palm-1.jpg"
+                alt="Premium Collection"
+                loading="lazy"
+                width="600"
+                height="600"
+              />
+              <h3>Premium Collection</h3>
+              <p>Our finest leathers and woven details.</p>
+              <span class="link-btn">Explore collection →</span></a
+            >
+          </div>
         </div>
       </section>
-
-      <div id="product-modal" class="modal-overlay">
-        <div class="minimal-viewer-container">
-          <button
-            class="close-modal"
-            id="close-modal-btn"
-            aria-label="Close details"
-          >
-            &times;
-          </button>
-
+      <section class="section section--alt">
+        <div class="container">
+          <p class="eyebrow">Featured</p>
+          <h2>Featured from the collection</h2>
           <div
-            class="minimal-image-stage glass-panel"
-            style="
-              position: relative;
-              overflow: hidden;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-          >
-            <img
-              id="modal-product-image"
-              src=""
-              alt="Expanded View Workspace Matrix Image"
-              style="transition: opacity 0.2s ease-in-out"
-            />
-
-            <button
-              id="modal-prev-btn"
-              class="glass-panel"
-              style="
-                position: absolute;
-                left: 15px;
-                border-radius: 50%;
-                width: 42px;
-                height: 42px;
-                cursor: pointer;
-                font-family: monospace;
-                font-size: 1.2rem;
-                display: none;
-                z-index: 15;
-                align-items: center;
-                justify-content: center;
-                color: var(--text-primary);
-              "
-            >
-              &larr;
-            </button>
-            <button
-              id="modal-next-btn"
-              class="glass-panel"
-              style="
-                position: absolute;
-                right: 15px;
-                border-radius: 50%;
-                width: 42px;
-                height: 42px;
-                cursor: pointer;
-                font-family: monospace;
-                font-size: 1.2rem;
-                display: none;
-                z-index: 15;
-                align-items: center;
-                justify-content: center;
-                color: var(--text-primary);
-              "
-            >
-              &rarr;
-            </button>
-          </div>
-
-          <div
-            id="modal-carousel-dots"
-            class="glass-panel"
-            style="
-              display: flex;
-              justify-content: center;
-              gap: 8px;
-              padding: 14px 0;
-              border-top: none;
-              border-radius: 0;
-              border-left: none;
-              border-right: none;
-            "
+            id="featured-grid"
+            class="product-grid"
+            data-ids="classic-leather-palm,everyday-suede-palm,heritage-braided-palm,kano-double-strap-sandal,lagos-loafer,zenith-sneaker"
           ></div>
-
-          <div class="minimal-action-stage">
-            <button class="btn-minimal-whatsapp" id="modal-inquire-btn">
-              <span>INQUIRE ABOUT THIS DESIGN VIA WHATSAPP</span>
-              <i class="fab fa-whatsapp"></i>
-            </button>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container story">
+          <div>
+            <p class="eyebrow">Our story</p>
+            <h2>Made with experience. Worn with confidence.</h2>
+            <p class="lead">
+              New Something Shoes began with a simple belief: the footwear we
+              wear every day deserves the same care as the occasions we dress
+              for. Each pair is handcrafted in Nigeria in small batches.
+            </p>
+            <p style="margin-top: 16px">
+              <a class="link-btn" href="about.html">Read our story →</a>
+            </p>
           </div>
+          <div class="story__imgs">
+            <img
+              src="assets/images/about/about-1.jpg"
+              alt="Craftsman stitching leather by hand"
+              loading="lazy"
+              width="600"
+              height="400"
+            /><img
+              src="assets/images/about/about-2.jpg"
+              alt="Leather and tools on a workshop bench"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
+          </div>
+        </div>
+      </section>
+      <section class="section section--alt">
+        <div class="container">
+          <p class="eyebrow">Craftsmanship</p>
+          <h2>How each pair is made</h2>
+          <div class="steps">
+            <div class="step">
+              <b>01</b>
+              <h3>Materials</h3>
+              <p>
+                We select full-grain leathers, suedes and natural palm fibres.
+              </p>
+            </div>
+            <div class="step">
+              <b>02</b>
+              <h3>Craft</h3>
+              <p>Each pair is cut, lasted and stitched entirely by hand.</p>
+            </div>
+            <div class="step">
+              <b>03</b>
+              <h3>Detail</h3>
+              <p>Edges are burnished, seams checked and finishes applied.</p>
+            </div>
+            <div class="step">
+              <b>04</b>
+              <h3>Ready to wear</h3>
+              <p>Inspected, boxed and sent to step into your story.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cta">
+        <div class="container">
+          <h2>Found the one for you?</h2>
+          <p>
+            Speak with us directly on WhatsApp — we'll confirm availability,
+            sizes and pricing, and take your order.
+          </p>
+          <div class="hero__cta">
+            <a
+              class="btn btn--gold"
+              data-wa
+              href="#"
+              target="_blank"
+              rel="noopener"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"
+                />
+                <path
+                  d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"
+                />
+              </svg>
+              Chat with us on WhatsApp</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="foot">
+          <div>
+            <a class="logo" href="index.html"
+              ><img
+                src="assets/images/logo-light.png"
+                alt="New Something Shoes"
+                width="120"
+                height="60"
+            /></a>
+            <p>
+              Handcrafted palm slippers, sandals and shoes — made in Nigeria
+              with timeless craftsmanship, comfort and modern style.
+            </p>
+            <span class="eyebrow">Handcrafted in Nigeria</span>
+          </div>
+          <div>
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="collections.html">Collections</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="shoes.html">Shoes</a></li>
+              <li><a href="palm-slippers.html">Palm Slippers</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Collections</h4>
+            <ul>
+              <li><a href="shoes.html">Shoes</a></li>
+              <li><a href="palm-slippers.html">Palm Slippers</a></li>
+              <li><a href="sandals.html">Sandals</a></li>
+              <li>
+                <a href="collections.html?f=premium">Premium Collection</a>
+              </li>
+              <li><a href="collections.html?f=new">New Arrivals</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a data-wa href="#" target="_blank" rel="noopener"
+                  >WhatsApp — 0703 362 3329</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@newsomethingshoes0"
+                  target="_blank"
+                  rel="noopener"
+                  >TikTok — @newsomethingshoes0</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="legal">
+          <span>© 2026 New Something Shoes. All rights reserved.</span
+          ><span>Craftsmanship · Quality · Style · Confidence</span>
         </div>
       </div>
-
-      <section id="about-info" class="brand-manifesto">
-        <div class="manifesto-grid">
-          <div class="manifesto-col glass-panel">
-            <h3>DIRECT INQUIRIES</h3>
-            <p>omoloyehassan12@gmail.com</p>
-            <p>+234 703 362 3329</p>
-          </div>
-          <div class="manifesto-col glass-panel">
-            <h3>OUR PHILOSOPHY</h3>
-            <p>
-              Handcrafted footwear configurations, exceptional treatments, and
-              durable compositions. Every model serves as a direct personal
-              story piece.
-            </p>
-          </div>
-          <div class="manifesto-col glass-panel">
-            <h3>CONCIERGE DESK</h3>
-            <p>
-              Pure visual selection without noisy checkout cards. Tap any detail
-              card link to message our service line on WhatsApp to check stock
-              levels.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <footer class="boutique-footer">
-        <div class="editorial-socials">
-          <a href="#" aria-label="Instagram"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a
-            href="https://shorturl.at/FzOc9"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-            ><i class="fab fa-tiktok"></i
-          ></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>© 2026 NEW SOMETHING SHOES. ALL RIGHTS RESERVED.</p>
-      </footer>
-    </div>
-    <script src="./pages/index.js"></script>
+    </footer>
+    <a
+      class="wa-float"
+      data-wa
+      href="#"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat with us on WhatsApp"
+      ><svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" />
+        <path
+          d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4 4 0 0 1-2-2l.8-1-1-2z"
+        /></svg
+    ></a>
+    <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

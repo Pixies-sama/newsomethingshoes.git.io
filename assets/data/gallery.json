@@ -1,0 +1,35 @@
+{
+  "_example": {
+    "id": "gallery-001",
+    "images": [
+      "https://example.com/photo.jpg"
+    ],
+    "gender": "women",
+    "name": "optional",
+    "price": 25000,
+    "description": "optional"
+  },
+  "items": [
+      {
+    "id": "gallery-001",
+    "images": [
+      "https://i.pinimg.com/736x/1c/4e/cb/1c4ecb95fb7e07283a3fb7002c199f6e.jpg",
+      "https://i.pinimg.com/736x/e8/26/f8/e826f8ca21f86d71fafedf49a6db2e00.jpg"
+    ],
+    "gender": "women",
+    "name": "optional",
+    "price": 25000,
+    "description": "optional"
+  },
+  {
+    "id": "gallery-002",
+    "images": [
+      "https://i.pinimg.com/736x/e9/cb/12/e9cb1294fc43fa28289379c762303680.jpg"
+    ],
+    "gender": "women",
+    "name": "optional",
+    "price": 25000,
+    "description": "optional"
+  }
+  ]
+}

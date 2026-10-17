@@ -1,0 +1,432 @@
+{
+  "brand": {
+    "name": "New Something Shoes",
+    "whatsapp": "2347033623329",
+    "tiktok": "@newsomethingshoes0",
+    "site": "https://newshoes.cv"
+  },
+  "defaults": {
+    "sizes": {
+      "palm-slippers": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "sandals": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "shoes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "classic-leather-palm",
+      "name": "Classic Leather Palm",
+      "category": "palm-slippers",
+      "subCategory": "classic",
+      "gender": "unisex",
+      "price": 25000,
+      "currency": "₦",
+      "description": "A timeless palm slipper in full-grain brown leather, hand-stitched and finished for everyday elegance.",
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "colours": [
+        "Brown"
+      ],
+      "images": [
+        "assets/images/products/classic-leather-palm-1.jpg",
+        "assets/images/products/classic-leather-palm-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "executive-woven-palm",
+      "name": "Executive Woven Palm",
+      "category": "palm-slippers",
+      "subCategory": "premium",
+      "gender": "unisex",
+      "price": 32000,
+      "currency": "₦",
+      "description": "Hand-woven dark leather strips over a cushioned sole. Our most refined palm slipper.",
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "colours": [
+        "Dark Brown"
+      ],
+      "images": [
+        "assets/images/products/executive-woven-palm-1.jpg",
+        "assets/images/products/executive-woven-palm-2.jpg"
+      ],
+      "isNew": false,
+      "premium": true,
+      "inStock": true
+    },
+    {
+      "id": "everyday-suede-palm",
+      "name": "Everyday Suede Palm",
+      "category": "palm-slippers",
+      "subCategory": "everyday",
+      "gender": "unisex",
+      "price": 18000,
+      "currency": "₦",
+      "description": "Soft suede and a flexible sole. Made for easy mornings and slow evenings at home.",
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "colours": [
+        "Tan"
+      ],
+      "images": [
+        "assets/images/products/everyday-suede-palm-1.jpg",
+        "assets/images/products/everyday-suede-palm-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "heritage-braided-palm",
+      "name": "Heritage Braided Palm",
+      "category": "palm-slippers",
+      "subCategory": "traditional",
+      "gender": "unisex",
+      "price": 28000,
+      "currency": "₦",
+      "description": "Hand-braided leather straps in a traditional pattern, on a smooth tan footbed.",
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "colours": [
+        "Tan"
+      ],
+      "images": [
+        "assets/images/products/heritage-braided-palm-1.jpg",
+        "assets/images/products/heritage-braided-palm-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "ivory-slide-palm",
+      "name": "Ivory Slide Palm",
+      "category": "palm-slippers",
+      "subCategory": "casual",
+      "gender": "women",
+      "price": 22000,
+      "currency": "₦",
+      "description": "A clean ivory slide in soft leather. Minimal, light and easy to style.",
+      "sizes": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "colours": [
+        "Ivory"
+      ],
+      "images": [
+        "assets/images/products/ivory-slide-palm-1.jpg",
+        "assets/images/products/ivory-slide-palm-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "kano-double-strap-sandal",
+      "name": "Kano Double-Strap Sandal",
+      "category": "sandals",
+      "subCategory": "casual",
+      "gender": "unisex",
+      "price": 20000,
+      "currency": "₦",
+      "description": "Cork footbed with two adjustable buckled straps in woven indigo pattern.",
+      "sizes": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "colours": [
+        "Indigo"
+      ],
+      "images": [
+        "assets/images/products/kano-double-strap-sandal-1.jpg",
+        "assets/images/products/kano-double-strap-sandal-2.jpg"
+      ],
+      "isNew": true,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "adire-wrap-sandal",
+      "name": "Adire Wrap Sandal",
+      "category": "sandals",
+      "subCategory": "casual",
+      "gender": "women",
+      "price": 26000,
+      "currency": "₦",
+      "description": "Slim leather straps that wrap the ankle. Light, warm-weather elegance.",
+      "sizes": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "colours": [
+        "Tan"
+      ],
+      "images": [
+        "assets/images/products/adire-wrap-sandal-1.jpg",
+        "assets/images/products/adire-wrap-sandal-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "nomad-cross-sandal",
+      "name": "Nomad Cross Sandal",
+      "category": "sandals",
+      "subCategory": "casual",
+      "gender": "unisex",
+      "price": 24000,
+      "currency": "₦",
+      "description": "Cross-strap leather sandal with an adjustable heel strap.",
+      "sizes": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "colours": [
+        "Brown"
+      ],
+      "images": [
+        "assets/images/products/nomad-cross-sandal-1.jpg",
+        "assets/images/products/nomad-cross-sandal-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "lagos-loafer",
+      "name": "Lagos Loafer",
+      "category": "shoes",
+      "subCategory": "formal",
+      "gender": "men",
+      "price": 45000,
+      "currency": "₦",
+      "description": "A polished penny loafer in rich dark leather with a stacked sole.",
+      "sizes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "colours": [
+        "Dark Brown"
+      ],
+      "images": [
+        "assets/images/products/lagos-loafer-1.jpg",
+        "assets/images/products/lagos-loafer-2.jpg"
+      ],
+      "isNew": false,
+      "premium": true,
+      "inStock": true
+    },
+    {
+      "id": "ibadan-oxford",
+      "name": "Ibadan Oxford",
+      "category": "shoes",
+      "subCategory": "formal",
+      "gender": "men",
+      "price": 48000,
+      "currency": "₦",
+      "description": "Cap-toe oxford in burnished brown leather. Made for the boardroom and the wedding.",
+      "sizes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "colours": [
+        "Brown"
+      ],
+      "images": [
+        "assets/images/products/ibadan-oxford-1.jpg",
+        "assets/images/products/ibadan-oxford-2.jpg"
+      ],
+      "isNew": false,
+      "premium": true,
+      "inStock": true
+    },
+    {
+      "id": "metropolis-mule",
+      "name": "Metropolis Mule",
+      "category": "shoes",
+      "subCategory": "casual",
+      "gender": "unisex",
+      "price": 38000,
+      "currency": "₦",
+      "description": "A sleek pointed mule in black leather. Slips on, dresses up.",
+      "sizes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "colours": [
+        "Black"
+      ],
+      "images": [
+        "assets/images/products/metropolis-mule-1.jpg",
+        "assets/images/products/metropolis-mule-2.jpg"
+      ],
+      "isNew": false,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "zenith-sneaker",
+      "name": "Zenith Sneaker",
+      "category": "shoes",
+      "subCategory": "casual",
+      "gender": "unisex",
+      "price": 42000,
+      "currency": "₦",
+      "description": "Court-style sneaker in cream and tan leather with a cushioned sole.",
+      "sizes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "colours": [
+        "Cream / Tan"
+      ],
+      "images": [
+        "assets/images/products/zenith-sneaker-1.jpg",
+        "assets/images/products/zenith-sneaker-2.jpg"
+      ],
+      "isNew": true,
+      "premium": false,
+      "inStock": true
+    },
+    {
+      "id": "braided-palm",
+      "name": "Braided Palm",
+      "category": "palm-slippers",
+      "subCategory": "casual",
+      "gender": "female",
+      "price": 18000,
+      "currency": "₦",
+      "description": "Court-style sneaker in cream and tan leather with a cushioned sole.",
+      "sizes": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "colours": [
+        "Cream / Tan"
+      ],
+      "images": [
+        "https://i.pinimg.com/1200x/c8/39/8b/c8398b5d97fbc1c089295f3807c0da15.jpg",
+        "https://i.pinimg.com/736x/60/b4/e5/60b4e5d868b5583ce926d6c66fddfb53.jpg"
+      ],
+      "isNew": true,
+      "premium": false,
+      "inStock": true
+    }
+  ]
+}
